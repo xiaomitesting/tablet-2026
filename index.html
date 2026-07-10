@@ -168,13 +168,15 @@ const products = [
     { id:"redmi_pad_se_87", name:"REDMI Pad SE 8.7", series:"Redmi", price:999, size:"8.7吋 (輕量隨身屏)", chip:"輕度娛樂八核晶片", battery:"6650mAh 長續航", spec:"4GB + 64GB", scenario:["reading","media","portable"], budget:"low", screenType:"compact", tag:"極致實惠便攜款", desc:"放得進包包與口袋的小平板，適合搭車通勤看小說與影片，預算極致友好。", link:"https://www.mi.com/hk/product-list/tablets/tablet/", stylus:false, weight:280, pros:["極致輕巧","價格友好"], cons:["性能入門"], rating:4.0, targetUser:"通勤族、預算極低用戶" }
 ];
 
-// 競品數據庫
-const competitors = [
-    { id:"ipad_10", name:"Apple iPad (10th Gen)", brand:"Apple", price:2999, size:10.9, panel:"Liquid Retina LCD", chip:"A14 Bionic", ram:4, storage:64, weight:477, stylus:true, highlight:"iPadOS生態，學生首選", pros:["iPadOS生態豐富","App Store優質應用"], cons:["存儲起步64GB","非全貼合屏"], vsNote:"同價位iPad生態優勢明顯，但小米硬件配置更高" },
-    { id:"ipad_air_m3", name:"Apple iPad Air (M3)", brand:"Apple", price:4799, size:11, panel:"Liquid Retina LCD", chip:"Apple M3", ram:8, storage:128, weight:460, stylus:true, highlight:"M3芯片，輕薄生產力", pros:["M3性能強勁","輕薄設計"], cons:["價格高","仍為LCD屏"], vsNote:"性能對標Pad 8 Pro，但價格貴800 HKD" },
-    { id:"samsung_tab_s10_fe", name:"Samsung Galaxy Tab S10 FE", brand:"Samsung", price:2999, size:10.9, panel:"LCD 90Hz", chip:"Exynos 1580", ram:6, storage:128, weight:523, stylus:true, highlight:"S Pen附贈，DeX模式", pros:["S Pen隨機附送","IP68防水"], cons:["Exynos性能一般","充電慢"], vsNote:"S Pen附贈是優勢，但小米性能更強" },
-    { id:"huawei_matepad_11_5s", name:"HUAWEI MatePad 11.5\"S", brand:"Huawei", price:2999, size:11.5, panel:"PaperMatte 144Hz", chip:"Snapdragon 7 Gen 1", ram:8, storage:256, weight:510, stylus:true, highlight:"紙感屏幕，護眼王者", pros:["PaperMatte護眼屏","星閃手寫筆"], cons:["無GMS","芯片中端"], vsNote:"護眼場景小米Pad 8更均衡" }
-];
+// 競品數據庫 - 從外部JSON加載
+let competitors = [];
+
+async function loadCompetitors() {
+    try {
+        const resp = await fetch('js/data/competitors.json?t=' + Date.now());
+        if (resp.ok) competitors = await resp.json();
+    } catch(e) { console.warn('競品數據加載失敗，使用默認值'); }
+}
 
 // 場景定義
 const SCENARIOS = [
@@ -202,7 +204,7 @@ let currentSort = 'price-asc';
 // ============================================================
 // 3. 初始化
 // ============================================================
-window.onload = function() { renderQuiz(); renderCatalog('all'); updateFavBadge(); };
+window.onload = async function() { await loadCompetitors(); renderQuiz(); renderCatalog('all'); updateFavBadge(); };
 
 // ============================================================
 // 4. Tab 切換
@@ -483,6 +485,8 @@ function renderCompetitors() {
                     <h4 class="font-bold text-gray-900 text-lg">${c.name}</h4>
                     <p class="text-lg font-bold text-miOrange mt-1">HK$${c.price.toLocaleString()}</p>
                     <p class="text-xs text-gray-500 mt-1">${c.size}" ${c.panel} · ${c.chip} · ${c.ram}GB</p>
+                    ${c.lastUpdated?`<div class="text-[10px] text-gray-400 mt-1">💰 價格更新: ${c.lastUpdated} · 來源: ${c.priceSource||'官方'}</div>`:''}
+                    ${c.originalPrice?`<div class="text-xs text-red-400 line-through mt-1">原價 HK$${c.originalPrice.toLocaleString()}</div>`:''}
                     <p class="text-sm font-semibold mt-2">✨ ${c.highlight}</p>
                     <div class="mt-3 p-3 bg-orange-50 rounded-lg text-xs text-gray-700">
                         <strong>💡 蝦說：</strong>${c.vsNote}
