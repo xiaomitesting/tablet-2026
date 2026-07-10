@@ -9,10 +9,10 @@ const PRODUCTS = [
     name: "Xiaomi Pad 8 Pro",
     series: "Xiaomi",
     generation: 8,
-    price: 4199,
+    price: 3999,
     variants: [
-      { ram: 8, storage: 256, price: 4199 },
-      { ram: 12, storage: 512, price: 4699, label: "柔光螢幕版" }
+      { ram: 8, storage: 256, price: 3999 },
+      { ram: 12, storage: 512, price: 4499, label: "柔光螢幕版" }
     ],
     currency: "HKD",
     size: 12.4,
