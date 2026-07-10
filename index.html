@@ -155,13 +155,13 @@
 // 1. 產品數據庫
 // ============================================================
 const products = [
-    { id:"pad_8_pro", name:"Xiaomi Pad 8 Pro", series:"Xiaomi", price:4199, size:"12.4吋 (144Hz OLED)", chip:"Snapdragon 8s Gen 4 旗艦處理器", battery:"10000mAh / 120W 秒充", spec:"8GB + 256GB", scenario:["productivity","creative","media"], budget:"premium", screenType:"large", tag:"專業辦公旗艦", desc:"專為極致多工、手寫繪圖與行動辦公量身打造，具備 PC 級系統生產力體驗。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8-pro/", stylus:true, weight:520, pros:["120W秒充","OLED高刷屏","手寫筆+鍵盤","旗艦芯片"], cons:["價格較高","重量偏重"], rating:4.8, targetUser:"商務人士、設計師" },
-    { id:"pad_mini", name:"Xiaomi Pad Mini", series:"Xiaomi", price:3799, size:"8.8吋 (165Hz 電競屏)", chip:"MediaTek Dimensity 9400+", battery:"7500mAh / 67W 閃充", spec:"8GB + 256GB", scenario:["gaming","reading","portable"], budget:"premium", screenType:"compact", tag:"掌上遊戲小鋼砲", desc:"首款小尺寸頂配旗艦！極致散熱與電競級高刷，單手持握黃金尺寸，玩家不二之選。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-mini/", stylus:false, weight:290, pros:["165Hz電競屏","單手可握","旗艦芯片"], cons:["無手寫筆","續航一般"], rating:4.7, targetUser:"手遊玩家、通勤族" },
-    { id:"pad_8", name:"Xiaomi Pad 8", series:"Xiaomi", price:3199, size:"11.2吋 (144Hz 護眼屏)", chip:"Snapdragon 高端八核心", battery:"9200mAh / 45W 閃充", spec:"8GB + 256GB", scenario:["productivity","gaming","media"], budget:"mid", screenType:"large", tag:"全能主力旗艦", desc:"影音、遊戲與日常學習的均衡之選，金屬一體化機身，兼具質感與高性價比。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8/", stylus:true, weight:480, pros:["144Hz護眼屏","四揚聲器","手寫筆支持"], cons:["充電速度一般"], rating:4.6, targetUser:"學生、家庭用戶" },
-    { id:"redmi_pad_2_pro_5g", name:"REDMI Pad 2 Pro 5G", series:"Redmi", price:2699, size:"12.1吋 (90Hz 護眼大屏)", chip:"八核心 5G 處理器", battery:"10000mAh 超大電池", spec:"8GB + 256GB", scenario:["productivity","media","outdoor"], budget:"mid", screenType:"large", tag:"戶外隨行大屏", desc:"支援 5G 行動數據插卡，外出辦公、旅遊追劇隨時隨地不受 Wi-Fi 限制。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro-5g/", stylus:false, weight:510, pros:["5G移動網絡","10000mAh大電池"], cons:["90Hz偏低","無手寫筆"], rating:4.4, targetUser:"經常出差、戶外工作者" },
-    { id:"redmi_pad_2_pro", name:"REDMI Pad 2 Pro", series:"Redmi", price:1899, size:"12.1吋 (90Hz 護眼大屏)", chip:"高效能八核心處理器", battery:"10000mAh 超大電池", spec:"6GB + 128GB", scenario:["media","reading","education"], budget:"mid", screenType:"large", tag:"學習娛樂神器", desc:"超高性價比的大螢幕首選，學生網課、長輩看劇最佳伴侶，全金屬輕薄機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro/", stylus:true, weight:500, pros:["超高性價比","12.1吋大屏"], cons:["6GB運存偏小"], rating:4.3, targetUser:"學生、長輩、家庭共享" },
-    { id:"redmi_pad_2_97", name:"REDMI Pad 2 9.7", series:"Redmi", price:1099, size:"9.7吋 (護眼屏)", chip:"入門日常效能處理器", battery:"日常全天候續航", spec:"4GB + 64GB", scenario:["reading","media","kids"], budget:"low", screenType:"compact", tag:"入門隨身護眼寶", desc:"千元級極致實惠，9.7吋輕量化設計，適合電子書閱讀、網上學習與給兒童娛樂使用。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-97/", stylus:false, weight:350, pros:["價格極低","輕便易攜"], cons:["性能較弱","存儲較小"], rating:4.1, targetUser:"兒童、老人、電子書愛好者" },
-    { id:"redmi_pad_se_87", name:"REDMI Pad SE 8.7", series:"Redmi", price:799, size:"8.7吋 (輕量隨身屏)", chip:"輕度娛樂八核晶片", battery:"6650mAh 長續航", spec:"4GB + 64GB", scenario:["reading","media","portable"], budget:"low", screenType:"compact", tag:"極致實惠便攜款", desc:"放得進包包與口袋的小平板，適合搭車通勤看小說與影片，預算極致友好。", buyLink:"https://www.mi.com/hk/product/redmi-pad-se-87/", stylus:false, weight:280, pros:["極致輕巧","價格友好"], cons:["性能入門"], rating:4.0, targetUser:"通勤族、預算極低用戶" }
+    { id:"pad_8_pro", name:"Xiaomi Pad 8 Pro", series:"Xiaomi", price:4199, size:"12.4吋 (144Hz OLED)", chip:"Snapdragon 8s Gen 4 旗艦處理器", battery:"10000mAh / 120W 秒充", spec:"8GB + 256GB", scenario:["productivity","creative","media"], budget:"premium", screenType:"large", tag:"專業辦公旗艦", desc:"專為極致多工、手寫繪圖與行動辦公量身打造，具備 PC 級系統生產力體驗。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8-pro/", stylus:true, weight:520, pros:["120W秒充","OLED高刷屏","手寫筆+鍵盤","旗艦芯片"], cons:["價格較高","重量偏重"], rating:4.8, targetUser:"商務人士、設計師", salesMsg:"旗艦中的旗艦，買了不後悔", salesBadge:"🏆 旗艦之王" },
+    { id:"pad_mini", name:"Xiaomi Pad Mini", series:"Xiaomi", price:3799, size:"8.8吋 (165Hz 電競屏)", chip:"MediaTek Dimensity 9400+", battery:"7500mAh / 67W 閃充", spec:"8GB + 256GB", scenario:["gaming","reading","portable"], budget:"premium", screenType:"compact", tag:"掌上遊戲小鋼砲", desc:"首款小尺寸頂配旗艦！極致散熱與電競級高刷，單手持握黃金尺寸，玩家不二之選。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-mini/", stylus:false, weight:290, pros:["165Hz電競屏","單手可握","旗艦芯片"], cons:["無手寫筆","續航一般"], rating:4.7, targetUser:"手遊玩家、通勤族", salesMsg:"打機神器，手感一流", salesBadge:"🎮 電競首選" },
+    { id:"pad_8", name:"Xiaomi Pad 8", series:"Xiaomi", price:3199, size:"11.2吋 (144Hz 護眼屏)", chip:"Snapdragon 高端八核心", battery:"9200mAh / 45W 閃充", spec:"8GB + 256GB", scenario:["productivity","gaming","media"], budget:"mid", screenType:"large", tag:"全能主力旗艦", desc:"影音、遊戲與日常學習的均衡之選，金屬一體化機身，兼具質感與高性價比。", buyLink:"https://www.mi.com/hk/product/xiaomi-pad-8/", stylus:true, weight:480, pros:["144Hz護眼屏","四揚聲器","手寫筆支持"], cons:["充電速度一般"], rating:4.6, targetUser:"學生、家庭用戶", salesMsg:"全能均衡，閉眼入不踩雷", salesBadge:"🔥 人氣爆款" },
+    { id:"redmi_pad_2_pro_5g", name:"REDMI Pad 2 Pro 5G", series:"Redmi", price:2699, size:"12.1吋 (90Hz 護眼大屏)", chip:"八核心 5G 處理器", battery:"10000mAh 超大電池", spec:"8GB + 256GB", scenario:["productivity","media","outdoor"], budget:"mid", screenType:"large", tag:"戶外隨行大屏", desc:"支援 5G 行動數據插卡，外出辦公、旅遊追劇隨時隨地不受 Wi-Fi 限制。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro-5g/", stylus:false, weight:510, pros:["5G移動網絡","10000mAh大電池"], cons:["90Hz偏低","無手寫筆"], rating:4.4, targetUser:"經常出差、戶外工作者", salesMsg:"插卡即用，出門不用遷就Wi-Fi", salesBadge:"📡 5G自由" },
+    { id:"redmi_pad_2_pro", name:"REDMI Pad 2 Pro", series:"Redmi", price:1899, size:"12.1吋 (90Hz 護眼大屏)", chip:"高效能八核心處理器", battery:"10000mAh 超大電池", spec:"6GB + 128GB", scenario:["media","reading","education"], budget:"mid", screenType:"large", tag:"學習娛樂神器", desc:"超高性價比的大螢幕首選，學生網課、長輩看劇最佳伴侶，全金屬輕薄機身。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-pro/", stylus:true, weight:500, pros:["超高性價比","12.1吋大屏"], cons:["6GB運存偏小"], rating:4.3, targetUser:"學生、長輩、家庭共享", salesMsg:"兩千蚊有找，大屏+手寫筆，抵到爛", salesBadge:"💎 性價比王" },
+    { id:"redmi_pad_2_97", name:"REDMI Pad 2 9.7", series:"Redmi", price:1099, size:"9.7吋 (護眼屏)", chip:"入門日常效能處理器", battery:"日常全天候續航", spec:"4GB + 64GB", scenario:["reading","media","kids"], budget:"low", screenType:"compact", tag:"入門隨身護眼寶", desc:"千元級極致實惠，9.7吋輕量化設計，適合電子書閱讀、網上學習與給兒童娛樂使用。", buyLink:"https://www.mi.com/hk/product/redmi-pad-2-97/", stylus:false, weight:350, pros:["價格極低","輕便易攜"], cons:["性能較弱","存儲較小"], rating:4.1, targetUser:"兒童、老人、電子書愛好者", salesMsg:"送禮自用都啱，千蚊有找", salesBadge:"🎁 送禮首選" },
+    { id:"redmi_pad_se_87", name:"REDMI Pad SE 8.7", series:"Redmi", price:799, size:"8.7吋 (輕量隨身屏)", chip:"輕度娛樂八核晶片", battery:"6650mAh 長續航", spec:"4GB + 64GB", scenario:["reading","media","portable"], budget:"low", screenType:"compact", tag:"極致實惠便攜款", desc:"放得進包包與口袋的小平板，適合搭車通勤看小說與影片，預算極致友好。", buyLink:"https://www.mi.com/hk/product/redmi-pad-se-87/", stylus:false, weight:280, pros:["極致輕巧","價格友好"], cons:["性能入門"], rating:4.0, targetUser:"通勤族、預算極低用戶", salesMsg:"七百幾蚊，買嚟玩都值", salesBadge:"💰 最平之選" }
 ];
 
 
@@ -353,8 +353,12 @@ function showRecommendation() {
     rc.innerHTML = `
         <div class="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg border-2 border-miOrange overflow-hidden p-6 sm:p-10 relative fade-in">
             <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">最佳推薦 Match!</div>
-            <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold mb-4">🎯 契合度 ${top.score}%</span>
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-2">${top.product.name}</h2>
+            <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">🎯 契合度 ${top.score}%</span>
+                <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge}</span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-1">${top.product.name}</h2>
+            <p class="text-sm text-miOrange font-semibold mb-3">💬 「${top.product.salesMsg}」</p>
             <p class="text-xl font-bold text-miOrange mb-4">HK$ ${top.product.price.toLocaleString()} 起</p>
             <p class="text-gray-600 mb-6">${top.product.desc}</p>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
@@ -376,11 +380,12 @@ function showRecommendation() {
                 ${runnerUps.map(r=>`
                     <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
                         <div class="flex justify-between items-start mb-2">
-                            <span class="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs font-medium">契合度 ${r.score}%</span>
+                            <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge}</span>
                             <span class="text-sm font-bold text-miOrange">HK$${r.product.price.toLocaleString()}</span>
                         </div>
                         <h4 class="font-bold text-gray-900 mb-1">${r.product.name}</h4>
-                        <p class="text-xs text-gray-400 mb-2">${r.product.tag}</p>
+                        <p class="text-xs text-gray-400 mb-1">${r.product.tag}</p>
+                        <p class="text-xs text-miOrange font-semibold mb-2">「${r.product.salesMsg}」</p>
                         <p class="text-xs text-gray-600 line-clamp-2 mb-3">${r.product.desc}</p>
                         <div class="flex justify-between items-center border-t border-gray-100 pt-3">
                             <span class="text-xs text-gray-500">${r.product.size.split('(')[0]}</span>
@@ -412,10 +417,14 @@ function renderCatalog(filter='all') {
         <div class="product-card bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm flex flex-col justify-between">
             <div class="p-5">
                 <div class="flex justify-between items-start mb-2">
-                    <span class="px-2.5 py-1 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded-lg text-xs font-extrabold uppercase">${p.series}</span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="px-2.5 py-1 ${p.series==='Xiaomi'?'bg-orange-100 text-miOrange':'bg-red-50 text-red-600'} rounded-lg text-xs font-extrabold uppercase">${p.series}</span>
+                        <span class="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[10px] font-bold">${p.salesBadge}</span>
+                    </div>
                     <span class="text-lg font-bold text-miOrange">HK$ ${p.price.toLocaleString()}</span>
                 </div>
                 <h3 class="text-lg font-bold text-gray-900 mb-1">${p.name}</h3>
+                <p class="text-xs text-miOrange font-semibold mb-1">「${p.salesMsg}」</p>
                 <p class="text-xs text-gray-400 mb-2">${p.sizeLabel} · ${p.panel} · ${p.chip}</p>
                 <p class="text-sm text-gray-600 mb-3">${p.highlight}</p>
                 ${p.variants && p.variants.length > 1 ? `
