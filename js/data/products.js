@@ -287,6 +287,45 @@ const PRODUCTS = [
     targetUser: "老人、电子书爱好者",
     buyLink: "https://www.mi.com/hk/product/redmi-pad-2-97/",
     lastUpdated: "2026-07-12"
+  },
+  {
+    id: "redmi_pad_2_kids",
+    name: "REDMI Pad 2 兒童護眼版",
+    series: "Redmi",
+    generation: 2,
+    price: 1599,
+    variants: [
+      { ram: 4, storage: 128, price: 1599 }
+    ],
+    currency: "HKD",
+    size: 11,
+    sizeLabel: "11吋",
+    refreshRate: 90,
+    panel: "LCD 柔光",
+    chip: "MediaTek Helio G100-Ultra",
+    chipBrand: "MediaTek",
+    battery: 9000,
+    charging: 18,
+    ram: 4,
+    storage: 128,
+    cameras: { rear: "8MP", front: "5MP" },
+    speakers: 4,
+    stylus: true,
+    keyboard: false,
+    weight: 510,
+    thickness: 7.36,
+    os: "HyperOS 2.0",
+    connectivity: ["Wi-Fi 5", "Bluetooth 5.3"],
+    colors: ["Gray"],
+    scenarios: ["education", "kids", "reading"],
+    tags: ["儿童", "护眼", "柔光屏", "套装"],
+    highlight: "柔光護眼屏+繪畫筆+兒童保護殼，一套搞定",
+    pros: ["柔光護眼屏", "附贈繪畫筆", "兒童安全保護殼", "2.5K高清屏"],
+    cons: ["僅限套裝購買"],
+    rating: 4.9,
+    targetUser: "家長、兒童教育",
+    buyLink: "https://www.mi.com/hk/product/redmi-pad-2-play-bundle/",
+    lastUpdated: "2026-07-12"
   }
 ];
 
