@@ -13,7 +13,11 @@
     "spec": "12GB + 512GB",
     "ram": 12,
     "storage": 512,
-    "scenario": ["productivity", "creative", "media"],
+    "scenario": [
+      "productivity",
+      "creative",
+      "media"
+    ],
     "budget": "premium",
     "screenType": "large",
     "tag": "護眼柔光旗艦",
@@ -23,14 +27,31 @@
     "stylus": true,
     "keyboard": true,
     "weight": 485,
-    "pros": ["柔光護眼屏", "67W快充", "旗艦芯片", "手寫筆+鍵盤"],
-    "cons": ["價格較高"],
+    "pros": [
+      "柔光護眼屏",
+      "67W快充",
+      "旗艦芯片",
+      "手寫筆+鍵盤"
+    ],
+    "cons": [
+      "價格較高"
+    ],
     "rating": 4.8,
     "targetUser": "長時間創作、護眼需求者",
     "salesMsg": "護眼旗艦，柔光不反光",
     "salesBadge": "✨ 柔光護眼",
-    "colors": ["柔光屏"],
-    "variants": [{"ram": 12, "storage": 512, "price": 4999, "label": "柔光版"}]
+    "colors": [
+      "柔光屏"
+    ],
+    "variants": [
+      {
+        "ram": 12,
+        "storage": 512,
+        "price": 4999,
+        "label": "柔光版"
+      }
+    ],
+    "charging": "67W"
   },
   {
     "id": "pad_8_pro",
@@ -46,7 +67,11 @@
     "spec": "8GB + 256GB",
     "ram": 8,
     "storage": 256,
-    "scenario": ["productivity", "creative", "media"],
+    "scenario": [
+      "productivity",
+      "creative",
+      "media"
+    ],
     "budget": "premium",
     "screenType": "large",
     "tag": "專業辦公旗艦",
@@ -56,14 +81,37 @@
     "stylus": true,
     "keyboard": true,
     "weight": 485,
-    "pros": ["67W快充", "3.2K 144Hz高刷屏", "手寫筆+鍵盤", "旗艦芯片"],
-    "cons": ["價格較高"],
+    "pros": [
+      "67W快充",
+      "3.2K 144Hz高刷屏",
+      "手寫筆+鍵盤",
+      "旗艦芯片"
+    ],
+    "cons": [
+      "價格較高"
+    ],
     "rating": 4.8,
     "targetUser": "商務人士、設計師",
     "salesMsg": "旗艦中的旗艦，買了不後悔",
     "salesBadge": "🏆 旗艦之王",
-    "colors": ["灰色", "綠色", "藍色"],
-    "variants": [{"ram": 8, "storage": 256, "price": 4199}, {"ram": 12, "storage": 512, "price": 4799}]
+    "colors": [
+      "灰色",
+      "綠色",
+      "藍色"
+    ],
+    "variants": [
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 4199
+      },
+      {
+        "ram": 12,
+        "storage": 512,
+        "price": 4799
+      }
+    ],
+    "charging": "67W"
   },
   {
     "id": "pad_mini",
@@ -79,7 +127,11 @@
     "spec": "8GB + 256GB",
     "ram": 8,
     "storage": 256,
-    "scenario": ["gaming", "reading", "portable"],
+    "scenario": [
+      "gaming",
+      "reading",
+      "portable"
+    ],
     "budget": "premium",
     "screenType": "compact",
     "tag": "掌上遊戲小鋼砲",
@@ -89,14 +141,36 @@
     "stylus": true,
     "keyboard": false,
     "weight": 326,
-    "pros": ["165Hz電競屏", "單手可握", "旗艦芯片", "支持手寫筆"],
-    "cons": ["續航一般"],
+    "pros": [
+      "165Hz電競屏",
+      "單手可握",
+      "旗艦芯片",
+      "支持手寫筆"
+    ],
+    "cons": [
+      "續航一般"
+    ],
     "rating": 4.7,
     "targetUser": "手遊玩家、通勤族",
     "salesMsg": "打機神器，手感一流",
     "salesBadge": "🎮 電競首選",
-    "colors": ["灰色", "紫色"],
-    "variants": [{"ram": 8, "storage": 256, "price": 3799}, {"ram": 12, "storage": 512, "price": 4299}]
+    "colors": [
+      "灰色",
+      "紫色"
+    ],
+    "variants": [
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 3799
+      },
+      {
+        "ram": 12,
+        "storage": 512,
+        "price": 4299
+      }
+    ],
+    "charging": "45W"
   },
   {
     "id": "pad_8",
@@ -112,7 +186,11 @@
     "spec": "8GB + 256GB",
     "ram": 8,
     "storage": 256,
-    "scenario": ["productivity", "gaming", "media"],
+    "scenario": [
+      "productivity",
+      "gaming",
+      "media"
+    ],
     "budget": "mid",
     "screenType": "large",
     "tag": "全能主力旗艦",
@@ -122,14 +200,36 @@
     "stylus": true,
     "keyboard": true,
     "weight": 485,
-    "pros": ["144Hz護眼屏", "四揚聲器", "手寫筆+鍵盤"],
-    "cons": ["充電速度一般"],
+    "pros": [
+      "144Hz護眼屏",
+      "四揚聲器",
+      "手寫筆+鍵盤"
+    ],
+    "cons": [
+      "充電速度一般"
+    ],
     "rating": 4.6,
     "targetUser": "學生、家庭用戶",
     "salesMsg": "全能均衡，閉眼入不踩雷",
     "salesBadge": "🔥 人氣爆款",
-    "colors": ["灰色", "綠色", "藍色"],
-    "variants": [{"ram": 8, "storage": 256, "price": 3199}, {"ram": 12, "storage": 256, "price": 3599}]
+    "colors": [
+      "灰色",
+      "綠色",
+      "藍色"
+    ],
+    "variants": [
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 3199
+      },
+      {
+        "ram": 12,
+        "storage": 256,
+        "price": 3599
+      }
+    ],
+    "charging": "45W"
   },
   {
     "id": "redmi_pad_2_pro_5g",
@@ -145,7 +245,11 @@
     "spec": "8GB + 256GB",
     "ram": 8,
     "storage": 256,
-    "scenario": ["productivity", "media", "outdoor"],
+    "scenario": [
+      "productivity",
+      "media",
+      "outdoor"
+    ],
     "budget": "mid",
     "screenType": "large",
     "tag": "戶外隨行大屏",
@@ -155,14 +259,30 @@
     "stylus": true,
     "keyboard": true,
     "weight": 600,
-    "pros": ["5G移動網絡", "12000mAh大電池", "手寫筆+鍵盤"],
-    "cons": ["90Hz偏低"],
+    "pros": [
+      "5G移動網絡",
+      "12000mAh大電池",
+      "手寫筆+鍵盤"
+    ],
+    "cons": [
+      "90Hz偏低"
+    ],
     "rating": 4.4,
     "targetUser": "經常出差、戶外工作者",
     "salesMsg": "插卡即用，出門不用遷就Wi-Fi",
     "salesBadge": "📡 5G自由",
-    "colors": ["深灰色", "銀白色"],
-    "variants": [{"ram": 8, "storage": 256, "price": 2699}]
+    "colors": [
+      "深灰色",
+      "銀白色"
+    ],
+    "variants": [
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 2699
+      }
+    ],
+    "charging": "33W"
   },
   {
     "id": "redmi_pad_2_pro_matte",
@@ -178,7 +298,11 @@
     "spec": "8GB + 256GB",
     "ram": 8,
     "storage": 256,
-    "scenario": ["media", "reading", "productivity"],
+    "scenario": [
+      "media",
+      "reading",
+      "productivity"
+    ],
     "budget": "mid",
     "screenType": "large",
     "tag": "護眼學習神器",
@@ -188,14 +312,31 @@
     "stylus": true,
     "keyboard": true,
     "weight": 610,
-    "pros": ["柔光護眼屏", "12.1吋大屏", "手寫筆+鍵盤", "12000mAh大電池"],
-    "cons": ["價格比普通版高"],
+    "pros": [
+      "柔光護眼屏",
+      "12.1吋大屏",
+      "手寫筆+鍵盤",
+      "12000mAh大電池"
+    ],
+    "cons": [
+      "價格比普通版高"
+    ],
     "rating": 4.4,
     "targetUser": "學生、長輩、護眼需求者",
     "salesMsg": "護眼大屏，學習不傷眼",
     "salesBadge": "✨ 柔光護眼",
-    "colors": ["柔光屏"],
-    "variants": [{"ram": 8, "storage": 256, "price": 2399, "label": "柔光版"}]
+    "colors": [
+      "柔光屏"
+    ],
+    "variants": [
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 2399,
+        "label": "柔光版"
+      }
+    ],
+    "charging": "33W"
   },
   {
     "id": "redmi_pad_2_pro",
@@ -211,7 +352,11 @@
     "spec": "6GB + 128GB",
     "ram": 6,
     "storage": 128,
-    "scenario": ["media", "reading", "productivity"],
+    "scenario": [
+      "media",
+      "reading",
+      "productivity"
+    ],
     "budget": "mid",
     "screenType": "large",
     "tag": "學習娛樂神器",
@@ -221,14 +366,36 @@
     "stylus": true,
     "keyboard": true,
     "weight": 610,
-    "pros": ["超高性價比", "12.1吋大屏", "手寫筆+鍵盤"],
-    "cons": ["6GB運存偏小"],
+    "pros": [
+      "超高性價比",
+      "12.1吋大屏",
+      "手寫筆+鍵盤"
+    ],
+    "cons": [
+      "6GB運存偏小"
+    ],
     "rating": 5.0,
     "targetUser": "學生、長輩、家庭共享",
     "salesMsg": "兩千蚊有找，大屏+支援手寫筆，抵到爛",
     "salesBadge": "💎 性價比王",
-    "colors": ["深灰色", "薰衣草紫", "銀白色"],
-    "variants": [{"ram": 6, "storage": 128, "price": 1899}, {"ram": 8, "storage": 256, "price": 2199}]
+    "colors": [
+      "深灰色",
+      "薰衣草紫",
+      "銀白色"
+    ],
+    "variants": [
+      {
+        "ram": 6,
+        "storage": 128,
+        "price": 1899
+      },
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 2199
+      }
+    ],
+    "charging": "33W"
   },
   {
     "id": "redmi_pad_2",
@@ -244,7 +411,11 @@
     "spec": "4GB + 128GB",
     "ram": 4,
     "storage": 128,
-    "scenario": ["reading", "media", "productivity"],
+    "scenario": [
+      "reading",
+      "media",
+      "productivity"
+    ],
     "budget": "low",
     "screenType": "large",
     "tag": "2K大屏手寫筆",
@@ -254,14 +425,43 @@
     "stylus": true,
     "keyboard": false,
     "weight": 510,
-    "pros": ["2K高清大屏", "支援手寫筆", "四揚聲器", "MicroSD擴充"],
-    "cons": ["充電較慢"],
+    "pros": [
+      "2K高清大屏",
+      "支援手寫筆",
+      "四揚聲器",
+      "MicroSD擴充"
+    ],
+    "cons": [
+      "充電較慢"
+    ],
     "rating": 4.2,
     "targetUser": "學生、閱讀愛好者、家庭用戶",
     "salesMsg": "2K屏+手寫筆，超抵",
     "salesBadge": "🔥 超值首選",
-    "colors": ["石墨灰", "薰衣紫", "青色"],
-    "variants": [{"ram": 4, "storage": 128, "price": 1399}, {"ram": 8, "storage": 256, "price": 1799}, {"ram": 8, "storage": 256, "price": 1999, "label": "4G版"}]
+    "colors": [
+      "石墨灰",
+      "薰衣紫",
+      "青色"
+    ],
+    "variants": [
+      {
+        "ram": 4,
+        "storage": 128,
+        "price": 1399
+      },
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 1799
+      },
+      {
+        "ram": 8,
+        "storage": 256,
+        "price": 1999,
+        "label": "4G版"
+      }
+    ],
+    "charging": "18W"
   },
   {
     "id": "redmi_pad_2_97",
@@ -277,7 +477,11 @@
     "spec": "4G + 64GB",
     "ram": 4,
     "storage": 64,
-    "scenario": ["reading", "media", "kids"],
+    "scenario": [
+      "reading",
+      "media",
+      "kids"
+    ],
     "budget": "low",
     "screenType": "compact",
     "tag": "入門隨身護眼寶",
@@ -287,14 +491,47 @@
     "stylus": false,
     "keyboard": false,
     "weight": 406,
-    "pros": ["價格極低", "輕便易攜"],
-    "cons": ["性能較弱", "存儲較小"],
+    "pros": [
+      "價格極低",
+      "輕便易攜"
+    ],
+    "cons": [
+      "性能較弱",
+      "存儲較小"
+    ],
     "rating": 4.1,
     "targetUser": "老人、電子書愛好者",
     "salesMsg": "送禮自用都啱，千蚊有找",
     "salesBadge": "🎁 送禮首選",
-    "colors": ["石墨灰", "銀色"],
-    "variants": [{"ram": 4, "storage": 64, "price": 1199}, {"ram": 4, "storage": 128, "price": 1299}, {"ram": 4, "storage": 64, "price": 1399, "label": "4G版"}, {"ram": 4, "storage": 128, "price": 1499, "label": "4G版"}]
+    "colors": [
+      "石墨灰",
+      "銀色"
+    ],
+    "variants": [
+      {
+        "ram": 4,
+        "storage": 64,
+        "price": 1199
+      },
+      {
+        "ram": 4,
+        "storage": 128,
+        "price": 1299
+      },
+      {
+        "ram": 4,
+        "storage": 64,
+        "price": 1399,
+        "label": "4G版"
+      },
+      {
+        "ram": 4,
+        "storage": 128,
+        "price": 1499,
+        "label": "4G版"
+      }
+    ],
+    "charging": "18W"
   },
   {
     "id": "redmi_pad_2_kids",
@@ -310,7 +547,11 @@
     "spec": "4GB + 128GB",
     "ram": 4,
     "storage": 128,
-    "scenario": ["kids", "reading", "media"],
+    "scenario": [
+      "kids",
+      "reading",
+      "media"
+    ],
     "budget": "low",
     "screenType": "large",
     "tag": "兒童護眼套裝",
@@ -320,13 +561,29 @@
     "stylus": true,
     "keyboard": false,
     "weight": 510,
-    "pros": ["柔光護眼屏", "附贈繪畫筆", "兒童安全保護殼", "2.5K高清屏"],
-    "cons": ["僅限套裝購買"],
+    "pros": [
+      "柔光護眼屏",
+      "附贈繪畫筆",
+      "兒童安全保護殼",
+      "2.5K高清屏"
+    ],
+    "cons": [
+      "僅限套裝購買"
+    ],
     "rating": 4.9,
     "targetUser": "家長、兒童教育",
     "salesMsg": "護眼套裝，一套搞定",
     "salesBadge": "👶 兒童護眼",
-    "colors": ["灰色"],
-    "variants": [{"ram": 4, "storage": 128, "price": 1599}]
+    "colors": [
+      "灰色"
+    ],
+    "variants": [
+      {
+        "ram": 4,
+        "storage": 128,
+        "price": 1599
+      }
+    ],
+    "charging": "18W"
   }
 ]

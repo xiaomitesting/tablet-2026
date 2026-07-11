@@ -230,7 +230,7 @@
                     <option value="price-asc">價格 低→高</option>
                     <option value="price-desc">價格 高→低</option>
                     <option value="rating">評分最高</option>
-                    <option value="screen">屏幕最大</option>
+                    <option value="screen">螢幕最大</option>
                 </select>
             </div>
             <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -506,15 +506,15 @@ const stepsData = {
         {value:"need_5g",label:"📡 需要5G",desc:"追求極速移動網絡。"},
         {value:"no_preference",label:"🤷 都可以",desc:"沒有特別要求。"}
     ]},
-    6: { title:"📱 第六步：您有品牌偏好吗？", options:[
-        {value:"no_pref",label:"🤷 沒有偏好",desc:"只要是小米平板都行。"},
+    6: { title:"📱 第六步：您有品牌偏好嗎？", options:[
+        {value:"no_pref",label:"🤷 沒有偏好",desc:"只要係小米平板都得。"},
         {value:"prefer_xiaomi",label:"🟠 偏好Xiaomi",desc:"追求旗艦性能與品質。"},
         {value:"prefer_redmi",label:"🔴 偏好Redmi",desc:"追求高性價比。"}
     ]},
     7: { title:"⚡ 第七步：您最看重什麼？", options:[
         {value:"performance",label:"⚡ 性能",desc:"芯片速度、流暢度"},
         {value:"battery",label:"🔋 續航",desc:"電池容量、充電速度"},
-        {value:"display",label:"🖥️ 屏幕",desc:"顯示效果、刷新率"},
+        {value:"display",label:"🖥️ 螢幕",desc:"顯示效果、刷新率"},
         {value:"price",label:"💰 性價比",desc:"價格實惠、夠用就好"},
         {value:"portable",label:"🏃 便攜",desc:"輕薄、單手可握"},
         {value:"stylus",label:"✍️ 手寫筆",desc:"筆記、繪畫、標註"}
@@ -609,7 +609,7 @@ function calculateMatches() {
             switch(answers.priority) {
                 case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=10; reasons.push('旗艦芯片'); } else score+=3; break;
                 case 'battery': if (parseInt(p.battery)>=10000) { score+=10; reasons.push('超大電池'); } else score+=3; break;
-                case 'display': if (p.refreshRate>=120) { score+=10; reasons.push('高刷屏幕'); } else score+=3; break;
+                case 'display': if (p.refreshRate>=120) { score+=10; reasons.push('高刷螢幕'); } else score+=3; break;
                 case 'price': if (p.price<=1500) { score+=10; reasons.push('極致性價比'); } else score+=3; break;
                 case 'portable': if (p.weight<=300) { score+=10; reasons.push('超輕機身'); } else score+=2; break;
                 case 'stylus': if (p.stylus) { score+=10; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
@@ -673,8 +673,9 @@ function showRecommendation() {
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
                 <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
                 <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}</p></div>
-                <div><span class="text-xs font-semibold text-gray-400">存儲</span><p class="text-sm font-medium">${top.product.spec}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${v.ram}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${top.product.ram}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
@@ -809,7 +810,7 @@ function renderCatalog(filter='all') {
                     <div class="flex justify-between"><span>螢幕:</span><span class="font-medium text-gray-700">${p.size}" ${p.refreshRate}Hz</span></div>
                     <div class="flex justify-between"><span>芯片:</span><span class="font-medium text-gray-700 truncate ml-2">${p.chip}</span></div>
                     <div class="flex justify-between"><span>存儲:</span><span class="font-medium text-gray-700">${p.ram}GB + ${p.storage}GB</span></div>
-                    <div class="flex justify-between"><span>電池:</span><span class="font-medium text-gray-700">${p.battery}mAh</span></div>
+                    <div class="flex justify-between"><span>電池:</span><span class="font-medium text-gray-700">${p.battery}mAh / ${p.charging}</span></div>
                 </div>
                 <div class="flex flex-wrap gap-1 mt-2">
                     ${p.stylus?'<span class="text-[10px] bg-green-50 text-green-600 px-1.5 py-0.5 rounded">✍️手寫筆</span>':''}
@@ -1028,7 +1029,7 @@ function openCompareModal() {
     const prods = selectedForCompare.map(id=>products.find(p=>p.id===id));
     const fields = [
         {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'chip',label:'芯片'},
-        {key:'battery',label:'電池/充電'},{key:'spec',label:'存儲'},{key:'price',label:'價格',fmt:v=>`HK$${v.toLocaleString()}`},
+        {key:'battery',label:'電池',fmt:v=>`${v}mAh`},{key:'charging',label:'充電'},{key:'spec',label:'存儲'},{key:'price',label:'價格',fmt:v=>`HK$${v.toLocaleString()}`},
         {key:'weight',label:'重量',fmt:v=>`${v}g`},{key:'stylus',label:'手寫筆',fmt:v=>v?'✅':'❌'},
         {key:'rating',label:'評分',fmt:v=>`⭐ ${v}`}
     ];
@@ -1088,8 +1089,8 @@ function openDetailModal(id) {
                         <div class="text-sm font-semibold">${p.chip}</div>
                     </div>
                     <div class="bg-gray-50 rounded-lg p-3">
-                        <div class="text-[10px] text-gray-400 mb-1">電池</div>
-                        <div class="text-sm font-semibold">${p.battery}mAh</div>
+                        <div class="text-[10px] text-gray-400 mb-1">電池/充電</div>
+                        <div class="text-sm font-semibold">${p.battery}mAh<br><span class="text-miOrange">${p.charging}</span></div>
                     </div>
                     <div class="bg-gray-50 rounded-lg p-3">
                         <div class="text-[10px] text-gray-400 mb-1">存儲</div>
