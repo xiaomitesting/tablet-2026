@@ -313,6 +313,16 @@
 // 1. 產品數據庫
 // ============================================================
 let products = [];
+// DRC 動態運存擴展顯示：物理RAM × 2
+function dram(ram) {
+    const expanded = ram * 2;
+    return expanded === ram ? `${ram}GB` : `${expanded} (${ram}+${ram}) GB`;
+}
+// 簡潔版（用於小標籤）
+function dramShort(ram) {
+    const expanded = ram * 2;
+    return expanded === ram ? `${ram}GB` : `${expanded}GB`;
+}
 
 async function loadProducts() {
     try {
@@ -674,7 +684,7 @@ function showRecommendation() {
                 <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
                 <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
                 <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
-                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${v.ram}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${top.product.ram}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
+                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
             </div>
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
@@ -805,12 +815,12 @@ function renderCatalog(filter='all') {
                 <p class="text-sm text-gray-600 mb-3">${p.highlight}</p>
                 ${p.variants ? `
                 <div class="flex flex-wrap gap-1.5 mb-3">
-                    ${p.variants.map(v => `<span class="text-[11px] ${v.price===p.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${v.ram}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('')}
+                    ${p.variants.map(v => `<span class="text-[11px] ${v.price===p.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('')}
                 </div>` : ''}
                 <div class="space-y-1 text-xs text-gray-500 border-t border-gray-50 pt-3">
                     <div class="flex justify-between"><span>螢幕:</span><span class="font-medium text-gray-700">${p.size}" ${p.refreshRate}Hz</span></div>
                     <div class="flex justify-between"><span>芯片:</span><span class="font-medium text-gray-700 truncate ml-2">${p.chip}</span></div>
-                    <div class="flex justify-between"><span>存儲:</span><span class="font-medium text-gray-700">${p.ram}GB + ${p.storage}GB</span></div>
+                    <div class="flex justify-between"><span>存儲:</span><span class="font-medium text-gray-700">${dramShort(p.ram)}+${p.storage}GB</span></div>
                     <div class="flex justify-between"><span>電池:</span><span class="font-medium text-gray-700">${p.battery}mAh / ${p.charging}</span></div>
                 </div>
                 <div class="flex flex-wrap gap-1 mt-2">
@@ -1149,7 +1159,7 @@ function openDetailModal(id) {
                 <div class="mb-5">
                     <div class="text-xs font-semibold text-gray-500 mb-2">配置選擇</div>
                     <div class="flex flex-wrap gap-2">
-                        ${p.variants.map(v => `<span class="text-xs px-3 py-1.5 rounded-lg border ${v.price===p.price?'border-miOrange bg-orange-50 text-miOrange font-bold':'border-gray-200 text-gray-600'}">${v.label?v.label+' ':''}${v.ram}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('')}
+                        ${p.variants.map(v => `<span class="text-xs px-3 py-1.5 rounded-lg border ${v.price===p.price?'border-miOrange bg-orange-50 text-miOrange font-bold':'border-gray-200 text-gray-600'}">${v.label?v.label+' ':''}${dramShort(v.ram)}+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('')}
                     </div>
                 </div>` : ''}
 

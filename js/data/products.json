@@ -10,7 +10,7 @@
     "refreshRate": 144,
     "chip": "Snapdragon 8 Elite 旗艦處理器",
     "battery": 9200,
-    "spec": "12GB + 512GB",
+    "spec": "24 (12+12) GB + 512GB",
     "ram": 12,
     "storage": 512,
     "scenario": [
@@ -65,7 +65,7 @@
     "refreshRate": 144,
     "chip": "Snapdragon 8 Elite 旗艦處理器",
     "battery": 9200,
-    "spec": "8GB + 256GB",
+    "spec": "16 (8+8) GB + 256GB",
     "ram": 8,
     "storage": 256,
     "scenario": [
@@ -126,7 +126,7 @@
     "refreshRate": 165,
     "chip": "MediaTek Dimensity 9400+",
     "battery": 7500,
-    "spec": "8GB + 256GB",
+    "spec": "16 (8+8) GB + 256GB",
     "ram": 8,
     "storage": 256,
     "scenario": [
@@ -186,7 +186,7 @@
     "refreshRate": 144,
     "chip": "Snapdragon 8s Gen 4",
     "battery": 9200,
-    "spec": "8GB + 256GB",
+    "spec": "16 (8+8) GB + 256GB",
     "ram": 8,
     "storage": 256,
     "scenario": [
@@ -246,7 +246,7 @@
     "refreshRate": 90,
     "chip": "Snapdragon 7s Gen 4 5G",
     "battery": 12000,
-    "spec": "8GB + 256GB",
+    "spec": "16 (8+8) GB + 256GB",
     "ram": 8,
     "storage": 256,
     "scenario": [
@@ -300,7 +300,7 @@
     "refreshRate": 120,
     "chip": "Snapdragon 7s Gen 4",
     "battery": 12000,
-    "spec": "8GB + 256GB",
+    "spec": "16 (8+8) GB + 256GB",
     "ram": 8,
     "storage": 256,
     "scenario": [
@@ -355,7 +355,7 @@
     "refreshRate": 120,
     "chip": "Snapdragon 7s Gen 4",
     "battery": 12000,
-    "spec": "6GB + 128GB",
+    "spec": "12 (6+6) GB + 128GB",
     "ram": 6,
     "storage": 128,
     "scenario": [
@@ -415,7 +415,7 @@
     "refreshRate": 90,
     "chip": "MediaTek Helio G100-Ultra",
     "battery": 9000,
-    "spec": "4GB + 128GB",
+    "spec": "8 (4+4) GB + 128GB",
     "ram": 4,
     "storage": 128,
     "scenario": [
@@ -482,7 +482,7 @@
     "refreshRate": 60,
     "chip": "入門日常效能處理器",
     "battery": 7600,
-    "spec": "4G + 64GB",
+    "spec": "8 (4+4) GB + 64GB",
     "ram": 4,
     "storage": 64,
     "scenario": [
@@ -553,7 +553,7 @@
     "refreshRate": 90,
     "chip": "MediaTek Helio G100-Ultra",
     "battery": 9000,
-    "spec": "4GB + 128GB",
+    "spec": "8 (4+4) GB + 128GB",
     "ram": 4,
     "storage": 128,
     "scenario": [
