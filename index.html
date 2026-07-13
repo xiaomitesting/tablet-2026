@@ -42,8 +42,9 @@
         .nav-pill { transition: all 0.2s ease; }
         .nav-pill:hover { background: rgba(255,255,255,0.15); }
         .nav-pill.active { background: #FF6700; color: white; }
-        .calc-slider { -webkit-appearance: none; height: 8px; border-radius: 4px; outline: none; }
-        .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #FF6700; cursor: pointer; box-shadow: 0 2px 8px rgba(255,103,0,0.3); }
+        .calc-slider { -webkit-appearance: none; height: 24px; border-radius: 12px; outline: none; background: transparent; position: absolute; top: 0; pointer-events: none; }
+        .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #FF6700; cursor: pointer; pointer-events: all; box-shadow: 0 2px 8px rgba(255,103,0,0.3); position: relative; z-index: 2; }
+        .calc-slider::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: #FF6700; border: none; cursor: pointer; pointer-events: all; box-shadow: 0 2px 8px rgba(255,103,0,0.3); }
         /* 暗黑模式 */
         body.dark { background: #111827; color: #e5e7eb; }
         body.dark .bg-gray-50 { background: #111827; }
@@ -63,7 +64,8 @@
         body.dark #compare-drawer { background: #1f2937; border-color: #374151; }
         body.dark .filter-btn { background: #374151; color: #d1d5db; }
         body.dark select { background: #374151; color: #e5e7eb; border-color: #4b5563; }
-        body.dark input[type=range] { background: #374151; }
+        body.dark input[type=range] { background: transparent; }
+        body.dark .calc-slider::-webkit-slider-thumb { background: #FF6700; }
         body.dark #compare-modal > div { background: #1f2937; }
         body.dark #compare-modal .sticky { background: #1f2937; border-color: #374151; }
         body.dark #compare-modal th { background: #374151; color: #d1d5db; }
@@ -1028,25 +1030,49 @@ function renderGuide() {
 // ============================================================
 // 10. 預算計算器
 // ============================================================
-let calcBudget = 2000;
+let calcBudgetMin = 800;
+let calcBudgetMax = 3000;
 let calcAccessory = false;
 
 function renderCalculator() {
-    const total = calcBudget + (calcAccessory?500:0);
-    const matched = products.filter(p=>p.price<=total).sort((a,b)=>b.rating-a.rating);
+    const totalMax = calcBudgetMax + (calcAccessory?500:0);
+    const totalMin = calcBudgetMin + (calcAccessory?500:0);
+    const matched = products.filter(p=>p.price>=calcBudgetMin && p.price<=calcBudgetMax).sort((a,b)=>b.rating-a.rating);
+
+    // 同步雙滑桿：拖動任一側更新另一側
+    function syncMin(v){
+        calcBudgetMin = Math.min(parseInt(v), calcBudgetMax - 100);
+        document.getElementById('calc-min').value = calcBudgetMin;
+        document.getElementById('calc-max').value = calcBudgetMax;
+        renderCalculator();
+    }
+    function syncMax(v){
+        calcBudgetMax = Math.max(parseInt(v), calcBudgetMin + 100);
+        document.getElementById('calc-min').value = calcBudgetMin;
+        document.getElementById('calc-max').value = calcBudgetMax;
+        renderCalculator();
+    }
+
+    const minPct = ((calcBudgetMin-800)/4200)*100;
+    const maxPct = ((calcBudgetMax-800)/4200)*100;
 
     document.getElementById('calculator-section').innerHTML = `
         <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm mb-4">
             <div class="flex justify-between items-center mb-4">
-                <label class="font-semibold text-sm">平板預算</label>
+                <label class="font-semibold text-sm">平板預算區間</label>
                 <label class="text-sm text-gray-500 flex items-center gap-2">
                     <input type="checkbox" ${calcAccessory?'checked':''} onchange="calcAccessory=this.checked;renderCalculator()"> 預算配件（+HK$500）
                 </label>
             </div>
-            <input type="range" min="800" max="5000" step="100" value="${calcBudget}" oninput="calcBudget=parseInt(this.value);renderCalculator()" class="calc-slider w-full" style="background:linear-gradient(to right,#FF6700 0%,#FF6700 ${((calcBudget-800)/4200)*100}%,#e5e7eb ${((calcBudget-800)/4200)*100}%,#e5e7eb 100%);">
-            <div class="flex justify-between text-xs text-gray-400 mt-2">
+            <div class="relative h-8 mb-2">
+                <div class="absolute top-3 left-0 right-0 h-2 bg-gray-200 rounded-full"></div>
+                <div class="absolute top-3 h-2 bg-miOrange rounded-full" style="left:${minPct}%;right:${100-maxPct}%"></div>
+                <input id="calc-min" type="range" min="800" max="5000" step="100" value="${calcBudgetMin}" oninput="syncMin(this.value)" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
+                <input id="calc-max" type="range" min="800" max="5000" step="100" value="${calcBudgetMax}" oninput="syncMax(this.value)" class="calc-slider absolute top-0 w-full" style="pointer-events:none;">
+            </div>
+            <div class="flex justify-between text-xs text-gray-400 mt-1">
                 <span>HK$800</span>
-                <span class="text-lg font-bold text-miOrange">HK$${total.toLocaleString()}</span>
+                <span class="text-sm font-bold text-miOrange">HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</span>
                 <span>HK$5,000</span>
             </div>
         </div>
@@ -1067,7 +1093,7 @@ function renderCalculator() {
                     </div>
                 `).join('')}
             </div>
-        `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">預算範圍內暫無匹配產品</p><p class="text-xs text-gray-400 mt-2">最低預算 HK$${Math.min(...products.map(p=>p.price)).toLocaleString()}</p></div>`}
+        `:`<div class="text-center py-12"><div class="text-4xl mb-4">💸</div><p class="text-gray-500">預算範圍內暫無匹配產品</p><p class="text-xs text-gray-400 mt-2">區間：HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}</p></div>`}
     `;
 }
 
