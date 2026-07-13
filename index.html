@@ -116,6 +116,7 @@
                 <button onclick="switchTab('favorites')" id="tab-btn-favorites" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all relative">
                     ❤️ 收藏 <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
+                <button onclick="openCompareModal()" id="tab-btn-compare" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">⚖️ 橫向對比</button>
                 <button onclick="toggleDarkMode()" id="dark-toggle" class="nav-pill px-2 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" title="切換暗黑模式">🌙</button>
             </div>
             <!-- 手機端 Tab（橫向滾動） -->
@@ -128,6 +129,7 @@
                 <button onclick="switchTab('favorites')" id="mob-tab-favorites" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap relative">
                     ❤️ <span id="mob-fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
+                <button onclick="openCompareModal()" id="mob-tab-compare" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap">⚖️ 對比</button>
                 <button onclick="toggleDarkMode()" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap">🌙</button>
             </div>
         </div>
@@ -1012,7 +1014,7 @@ function renderGuide() {
         { icon:'📚', title:'學生黨', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_pro_matte', reason:'支持手寫筆+鍵盤' },
         { icon:'👶', title:'送小朋友', primary:'redmi_pad_2_kids', secondary:'redmi_pad_2_97', reason:'柔光護眼+保護殼+繪畫筆' },
         { icon:'🏃', title:'通勤族', primary:'redmi_pad_2_97', secondary:'pad_mini', reason:'輕巧機身+長續航' },
-        { icon:'🏕️', title:'需要電話卡功能', primary:'redmi_pad_2_pro_5g', secondary:'pad_8', reason:'5G插卡即用+12000mAh' },
+        { icon:'🏕️', title:'需要電話卡功能', primary:'redmi_pad_2_pro_5g', secondary:'redmi_pad_2', reason:'5G插卡即用+12000mAh' },
         { icon:'👴', title:'送長輩', primary:'redmi_pad_2_pro', secondary:'redmi_pad_2_97', reason:'大屏+高性價比' }
     ];
     const personaHtml = personas.map(p => {
