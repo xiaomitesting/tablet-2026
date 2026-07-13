@@ -932,7 +932,6 @@ function renderCatalog(filter='all') {
                 </div>` : ''}
             </div>
             <div class="p-3 bg-gray-50 border-t border-gray-100 space-y-2">
-                ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="block w-full text-center bg-miOrange hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition-colors">前往官網連結 →</a>` : ''}
                 <div class="flex items-center justify-between">
                     <label class="flex items-center gap-1.5 cursor-pointer">
                         <input type="checkbox" onchange="toggleCompare('${p.id}')" ${selectedForCompare.includes(p.id)?'checked':''} class="w-3.5 h-3.5 text-miOrange rounded">
@@ -1379,7 +1378,6 @@ function openDetailModal(id) {
 
                 <div class="flex gap-3">
                     <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
-                    ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="flex-1 text-center py-3 bg-miOrange text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">前往官網選購 →</a>` : ''}
                     <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all">返回瀏覽</button>
                 </div>
             </div>
