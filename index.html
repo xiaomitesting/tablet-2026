@@ -73,6 +73,8 @@
         body.dark #compare-modal tr:hover td { background: #374151; }
         body.dark #compare-modal .bg-gray-50 { background: #1f2937; }
         body.dark #compare-placeholder { color: #9ca3af; }
+        body.dark #compare-summary > div { background: #1f2937; border-color: #374151; color: #d1d5db; }
+        body.dark #compare-table td.bg-emerald-50 { background: #064e3b; color: #6ee7b7; }
         body.dark #import-modal > div { background: #1f2937; }
         body.dark #import-modal textarea { background: #374151; color: #e5e7eb; border-color: #4b5563; }
         /* 產品詳情彈窗 */
@@ -278,6 +280,7 @@
             </div>
             <!-- 對比表格 -->
             <div class="p-3 sm:p-6 overflow-x-auto">
+                <div id="compare-summary" class="mb-4 hidden"></div>
                 <div id="compare-placeholder" class="text-center py-12 text-gray-400">
                     <div class="text-4xl mb-3">📊</div>
                     <p class="text-sm">請至少選擇2款機型開始對比</p>
@@ -1252,9 +1255,11 @@ function renderCompareSelector() {
 function renderCompareTable() {
     const table = document.getElementById('compare-table');
     const placeholder = document.getElementById('compare-placeholder');
+    const summaryEl = document.getElementById('compare-summary');
     if (selectedForCompare.length < 2) {
         table.classList.add('hidden');
         placeholder.classList.remove('hidden');
+        if (summaryEl) summaryEl.classList.add('hidden');
         return;
     }
     table.classList.remove('hidden');
@@ -1262,16 +1267,52 @@ function renderCompareTable() {
 
     const prods = selectedForCompare.map(id => products.find(p => p.id === id));
     const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
+
+    // ── 1. 推薦結語 ──
+    const allScenarios = [];
+    prods.forEach(p => { if (p.scenario) p.scenario.forEach(s => { if (!allScenarios.includes(s)) allScenarios.push(s); }); });
+    const scenarioWeights = {};
+    allScenarios.forEach(s => { scenarioWeights[s] = prods.filter(p => p.scenario && p.scenario.includes(s)).length; });
+    const topScenario = Object.entries(scenarioWeights).sort((a,b)=>b[1]-a[1])[0];
+    const recProduct = prods.reduce((best, p) => {
+        const score = (p.rating || 0) * 30 + (1 - p.price / Math.max(...prods.map(x=>x.price))) * 40 + ((p.battery||0) / Math.max(...prods.map(x=>x.battery||1))) * 15 + ((p.refreshRate||0) / Math.max(...prods.map(x=>x.refreshRate||1))) * 15;
+        return score > best.score ? {product:p, score} : best;
+    }, {product:null, score:-1}).product;
+    const summaryText = recProduct ? `💡 綜合評估：${recProduct.name} 在性能、價格與續航方面表現均衡，性價比最高，推薦選購。` : '';
+    if (summaryEl) {
+        summaryEl.innerHTML = summaryText ? `<div class="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl px-5 py-3 text-sm text-gray-800">${summaryText}</div>` : '';
+        summaryEl.classList.toggle('hidden', !summaryText);
+    }
+
+    // ── 2. 規格行（含柔光版和 variants）──
     const fields = [
-        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},{key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
-        {key:'chip',label:'芯片'},{key:'spec',label:'存儲'},{key:'price',label:'價格',fmt:v=>`HK$${v.toLocaleString()}`},
+        {key:'tag',label:'定位'},{key:'size',label:'螢幕'},{key:'panel',label:'面板類型'},
+        {key:'matte',label:'柔光版',fmt:v=>v?'✅ 是':'—',compute:p=>(p.panel&&p.panel.includes('柔光'))?true:false},
+        {key:'refreshRate',label:'刷新率',fmt:v=>`${v}Hz`},
+        {key:'chip',label:'芯片'},
+    ];
+    // variants 按 ram+storage 排序後逐行加入
+    const allVariants = [];
+    prods.forEach(p => {
+        if (p.variants) p.variants.forEach(v => {
+            const key = `${v.ram}+${v.storage}`;
+            if (!allVariants.find(x=>x.key===key)) allVariants.push({key, ram:v.ram, storage:v.storage});
+        });
+    });
+    allVariants.sort((a,b)=>a.ram-b.ram||a.storage-b.storage);
+    allVariants.forEach(v => {
+        fields.push({key:`variant_${v.key}`, label:`${v.ram}+${v.storage}GB`, fmt:v2=>v2?`HK$${v2.toLocaleString()}`:'—',
+            compute:p=>{const found=p.variants&&p.variants.find(x=>x.ram===v.ram&&x.storage===v.storage);return found?found.price:null;}});
+    });
+    fields.push(
         {key:'battery',label:'電池',fmt:v=>`${v}mAh`},{key:'charging',label:'充電'},
         {key:'weight',label:'重量',fmt:v=>`${v}g`},
         {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
         {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
         {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},
         {key:'rating',label:'評分',fmt:v=>`⭐ ${v}`},{key:'targetUser',label:'適合人群'}
-    ];
+    );
+
     // 計算推薦標記
     const maxPrice = Math.max(...prods.map(p => p.price));
     const maxBattery = Math.max(...prods.map(p => p.battery));
@@ -1292,25 +1333,25 @@ function renderCompareTable() {
             <div class="text-miOrange font-bold">${p.name}</div>
             <div class="text-xs text-gray-500">HK$${p.price.toLocaleString()}</div>
         </th>`).join('')}`;
-    // 計算每行最佳值並高亮
+    // 計算每行最佳值並高亮（柔和綠色）
     const bestValues = {};
     fields.forEach(f => {
-        const vals = prods.map(p => p[f.key]);
-        if (f.key === 'price' || f.key === 'weight') {
+        const vals = prods.map(p => f.compute ? f.compute(p) : p[f.key]);
+        if (f.key === 'price' || f.key === 'weight' || f.key.startsWith('variant_')) {
             const numVals = vals.map(v => typeof v === 'number' ? v : Infinity);
             const minVal = Math.min(...numVals);
-            bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === minVal));
+            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return typeof v === 'number' && v === minVal; });
         } else if (f.key === 'refreshRate' || f.key === 'battery' || f.key === 'rating' || f.key === 'storage' || f.key === 'ram') {
             const numVals = vals.map(v => typeof v === 'number' ? v : -Infinity);
             const maxVal = Math.max(...numVals);
-            bestValues[f.key] = prods.map(p => (typeof p[f.key] === 'number' && p[f.key] === maxVal));
+            bestValues[f.key] = prods.map(p => { const v = f.compute ? f.compute(p) : p[f.key]; return typeof v === 'number' && v === maxVal; });
         } else if (f.key === 'stylus' || f.key === 'keyboard') {
             bestValues[f.key] = prods.map(p => p[f.key] === true);
         } else {
             bestValues[f.key] = prods.map(() => false);
         }
     });
-    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-green-200 font-bold text-green-900 ring-2 ring-green-400 ring-inset':''}">${f.fmt?f.fmt(p[f.key]):p[f.key]}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
+    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const val=f.compute?f.compute(p):p[f.key];const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-emerald-50 text-emerald-700 font-medium':''}">${f.fmt?f.fmt(val):val}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
 }
 
 function openCompareModal() {
