@@ -1242,7 +1242,7 @@ function openCompareModal() {
             bestValues[f.key] = prods.map(() => false);
         }
     });
-    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-green-50 font-bold text-green-700':''}">${f.fmt?f.fmt(p[f.key]):p[f.key]}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
+    document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-green-200 font-bold text-green-900 ring-2 ring-green-400 ring-inset':''}">${f.fmt?f.fmt(p[f.key]):p[f.key]}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
     modal.classList.remove('hidden');
 }
 
@@ -1353,6 +1353,7 @@ function openDetailModal(id) {
 
                 <div class="flex gap-3">
                     <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    <button onclick="closeDetailModal();toggleCompare('${p.id}')" class="flex-1 text-center py-3 border-2 ${selectedForCompare.includes(p.id)?'border-miOrange bg-orange-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-miOrange transition-all">${selectedForCompare.includes(p.id)?'⚖️ 已加入對比':'⚖️ 橫向對比'}</button>
                     ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="flex-1 text-center py-3 bg-miOrange text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">前往官網選購 →</a>` : ''}
                     <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all">返回瀏覽</button>
                 </div>
