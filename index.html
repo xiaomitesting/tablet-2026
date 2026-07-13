@@ -1268,17 +1268,33 @@ function renderCompareTable() {
     const prods = selectedForCompare.map(id => products.find(p => p.id === id));
     const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
 
-    // ── 1. 推薦結語 ──
-    const allScenarios = [];
-    prods.forEach(p => { if (p.scenario) p.scenario.forEach(s => { if (!allScenarios.includes(s)) allScenarios.push(s); }); });
-    const scenarioWeights = {};
-    allScenarios.forEach(s => { scenarioWeights[s] = prods.filter(p => p.scenario && p.scenario.includes(s)).length; });
-    const topScenario = Object.entries(scenarioWeights).sort((a,b)=>b[1]-a[1])[0];
-    const recProduct = prods.reduce((best, p) => {
-        const score = (p.rating || 0) * 30 + (1 - p.price / Math.max(...prods.map(x=>x.price))) * 40 + ((p.battery||0) / Math.max(...prods.map(x=>x.battery||1))) * 15 + ((p.refreshRate||0) / Math.max(...prods.map(x=>x.refreshRate||1))) * 15;
-        return score > best.score ? {product:p, score} : best;
-    }, {product:null, score:-1}).product;
-    const summaryText = recProduct ? `💡 綜合評估：${recProduct.name} 在性能、價格與續航方面表現均衡，性價比最高，推薦選購。` : '';
+    // ── 1. 智能推薦結語 ──
+    const chipTier = (chip) => {
+        if (!chip) return 0;
+        if (chip.includes('8 Elite')) return 5;
+        if (chip.includes('9400')) return 4;
+        if (chip.includes('8s Gen')) return 3;
+        if (chip.includes('7s Gen')) return 2;
+        return 1;
+    };
+    const cheapest = prods.reduce((a, b) => a.price < b.price ? a : b);
+    const bestPerf = prods.reduce((a, b) => chipTier(a.chip) > chipTier(b.chip) ? a : chipTier(a.chip) < chipTier(b.chip) ? b : (a.price < b.price ? a : b));
+    const bestBattery = prods.reduce((a, b) => (a.battery||0) > (b.battery||0) ? a : b);
+    const lightest = prods.reduce((a, b) => (a.weight||999) < (b.weight||999) ? a : b);
+    const bestScreen = prods.reduce((a, b) => (a.refreshRate||0) > (b.refreshRate||0) ? a : b);
+    const hasCreative = prods.filter(p => p.stylus && p.keyboard);
+    const hasKids = prods.filter(p => p.id && p.id.includes('kids'));
+    const parts = [];
+    const used = new Set();
+    if (cheapest && cheapest.rating >= 4.0) { parts.push(`性價比首選 ${cheapest.name}`); used.add(cheapest.id); }
+    if (bestPerf && !used.has(bestPerf.id) && chipTier(bestPerf.chip) >= 4) { parts.push(`追求極致性能選 ${bestPerf.name}`); used.add(bestPerf.id); }
+    if (bestBattery && !used.has(bestBattery.id) && (bestBattery.battery||0) >= 10000) { parts.push(`超長續航選 ${bestBattery.name}`); used.add(bestBattery.id); }
+    if (lightest && !used.has(lightest.id) && (lightest.weight||999) <= 350) { parts.push(`輕薄便攜選 ${lightest.name}`); used.add(lightest.id); }
+    if (bestScreen && !used.has(bestScreen.id) && (bestScreen.refreshRate||0) >= 144) { parts.push(`高刷體驗選 ${bestScreen.name}`); used.add(bestScreen.id); }
+    if (hasCreative.length > 0 && !used.has(hasCreative[0].id)) { parts.push(`辦公創作選 ${hasCreative[0].name}`); used.add(hasCreative[0].id); }
+    if (hasKids.length > 0 && !used.has(hasKids[0].id)) { parts.push(`小朋友用選 ${hasKids[0].name}`); used.add(hasKids[0].id); }
+    if (parts.length === 0 && cheapest) { parts.push(`預算有限選 ${cheapest.name}`); }
+    const summaryText = parts.length > 0 ? parts.join('，') + '！' : '';
     if (summaryEl) {
         summaryEl.innerHTML = summaryText ? `<div class="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl px-5 py-3 text-sm text-gray-800">${summaryText}</div>` : '';
         summaryEl.classList.toggle('hidden', !summaryText);
