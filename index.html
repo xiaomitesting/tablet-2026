@@ -367,7 +367,7 @@ let currentSort = 'price-asc';
 
 // ⚠️ 門店部署：把 Worker URL 填到下面引號內，所有問答數據會自動同步到飛書
 // 例如: 'https://mimi-sync-yourname.workers.dev'
-const SYNC_WORKER_URL_CONFIG = '';
+const SYNC_WORKER_URL_CONFIG = 'https://mimi-sync.kyle20020321.workers.dev';
 
 // 優先用配置值，其次用 localStorage（setSyncUrl 設置的）
 const SYNC_WORKER_URL = SYNC_WORKER_URL_CONFIG || localStorage.getItem('mimi_sync_worker_url') || '';
