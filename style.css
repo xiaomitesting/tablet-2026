@@ -64,14 +64,16 @@ body {
 .logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--mi-orange);
-  border-radius: var(--radius-sm);
+  background: #FF6700;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 18px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: -0.5px;
 }
 .logo-text {
   font-size: 18px;
