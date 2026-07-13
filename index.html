@@ -670,16 +670,16 @@ function calculateMatches() {
                 }
             });
         }
-        // 網絡需求 (10分)
+        // 網絡需求 (硬性篩選)
         if (answers.connectivity && answers.connectivity !== 'no_preference') {
             const has5G = p.id.includes('5g');
-            const has4G = p.id.includes('4g') || (p.variants && p.variants.some(v => v.label && v.label.includes('4G')));
+            const has4G = p.id.includes('4g') || (p.variants && p.variants.some(v => v.label && (v.label.includes('4G') || v.label.includes('SIM'))));
             if (answers.connectivity === 'need_5g') {
-                if (has5G) { score+=10; reasons.push('支持5G'); }
-                else { score-=5; warnings.push('不支持5G'); }
+                if (has5G) { score+=15; reasons.push('支持5G'); }
+                else { score-=40; warnings.push('不支持5G'); }
             } else if (answers.connectivity === 'need_4g') {
-                if (has5G || has4G) { score+=10; reasons.push('支持SIM卡'); }
-                else { score-=3; warnings.push('無SIM卡版本'); }
+                if (has5G || has4G) { score+=15; reasons.push('支持SIM卡'); }
+                else { score-=30; warnings.push('無SIM卡版本'); }
             } else {
                 score+=5;
             }
