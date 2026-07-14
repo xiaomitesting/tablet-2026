@@ -1162,7 +1162,8 @@ function updateCalcResults() {
                         <span class="text-sm font-bold text-miOrange">HK$${p.price.toLocaleString()}</span>
                     </div>
                     <h4 class="font-bold text-sm">${p.name}</h4>
-                    <p class="text-[11px] text-gray-500 mt-1">${p.size.split('(')[0]} · ⭐${p.rating}</p>
+                    <p class="text-[11px] text-miOrange font-medium mt-0.5">${p.tag||''}</p>
+                    <p class="text-[11px] text-gray-500 mt-1 line-clamp-2">${p.desc||p.size.split('(')[0]+' · ⭐'+p.rating}</p>
                     <div class="flex gap-2 mt-3">
                         <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-1.5 rounded-lg">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                     </div>
