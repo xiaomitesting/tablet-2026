@@ -1395,11 +1395,15 @@ function renderCompareTable() {
         summaryText = `同為 ${budgetLevel(profiles[0].price) === 'mid' ? '中階' : budgetLevel(profiles[0].price) === 'budget' ? '入門' : '旗艦'} 段位，定位各有側重：${descs.join('；')}。`;
 
     } else if (dim.price && priceRange >= 2000) {
-        // ── 策略 D：跨價位段對比 — 按使用場景+實際升級方向描述 ──
+        // ── 策略 D：跨價位段對比 — 兩邊都说清楚适合谁 ──
         const sorted = [...profiles].sort((a, b) => a.price - b.price);
         const cheapest = sorted[0];
         const priciest = sorted[sorted.length - 1];
-        // 只列出「多付錢確實能獲得的」升級（方向要正確）
+        const priceGap = priciest.price - cheapest.price;
+        // 各自的場景
+        const cheapScene = Array.isArray(cheapest.scenario) ? cheapest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
+        const priceyScene = Array.isArray(priciest.scenario) ? priciest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
+        // 升級項（方向正確）
         const upgrades = [];
         if (dim.chip) upgrades.push('更強芯片');
         if (dim.battery && priciest.battery > cheapest.battery) upgrades.push('更大電池');
@@ -1413,22 +1417,17 @@ function renderCompareTable() {
         if (dim.battery && cheapest.battery > priciest.battery) cheaperAdv.push('更大電池');
         if (dim.weight && cheapest.weight < priciest.weight) cheaperAdv.push('更輕機身');
         if (dim.screen && cheapest.refreshRate > priciest.refreshRate) cheaperAdv.push('更高刷新率');
-        // 場景描述
-        const cheapScene = Array.isArray(cheapest.scenario) ? cheapest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
-        const priceyScene = Array.isArray(priciest.scenario) ? priciest.scenario.map(s => scenarioLabels[s] || s).join('、') : '';
-        const priceGap = priciest.price - cheapest.price;
+        // 結語：兩邊定位 + 場景
         let summaryText = '';
-        // 先說便宜的適合誰
-        if (cheapScene) summaryText += `${cheapest.name}（HK$${cheapest.price.toLocaleString()}）主打${cheapest.tag || cheapScene}；`;
-        // 再說贵的升級了什麼
+        if (cheapScene) summaryText += `${cheapest.name}（HK$${cheapest.price.toLocaleString()}）適合${cheapest.targetUser || ''}，主打${cheapest.tag || cheapScene}，場景覆蓋${cheapScene}。`;
+        if (priceyScene) summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）適合${priciest.targetUser || ''}，主打${priciest.tag || priceyScene}，場景覆蓋${priceyScene}。`;
+        // 加錢能獲得什麼
         if (upgrades.length > 0) {
-            summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）多付 HK$${priceGap.toLocaleString()}，升級：${upgrades.join('、')}。`;
-        } else {
-            summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）定位更高，做工用料更講究。`;
+            summaryText += `多付 HK$${priceGap.toLocaleString()} 可獲得：${upgrades.join('、')}。`;
         }
         // 如果便宜的反而有獨特優勢，補充
         if (cheaperAdv.length > 0) {
-            summaryText += `不過 ${cheapest.name} 在${cheaperAdv.join('、')}方面反而更優。`;
+            summaryText += `${cheapest.name} 在${cheaperAdv.join('、')}方面反而更優。`;
         }
 
     } else {
