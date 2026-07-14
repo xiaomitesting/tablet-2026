@@ -798,7 +798,8 @@ function showRecommendation() {
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id}')" class="flex-grow px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                ${top.product.buyLink ? `<a href="${top.product.buyLink}" target="_blank" rel="noopener" class="flex-grow px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold text-center transition-all">🛒 前往官網選購 →</a>` : ''}
+                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
         </div>
@@ -957,6 +958,7 @@ function renderCatalog(filter='all') {
                     </label>
                     <button onclick="toggleFav('${p.id}')" class="fav-btn text-lg">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                 </div>
+                ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="block w-full text-center bg-miOrange hover:bg-orange-600 text-white text-xs font-bold py-2 rounded-lg transition-colors">前往官網連結 →</a>` : ''}
             </div>
         </div>
     `).join('');
@@ -1491,8 +1493,6 @@ function renderCompareTable() {
             bestValues[f.key] = prods.map(() => false);
         }
     });
-        }
-    });
     document.getElementById('compare-table-body').innerHTML = fields.map(f=>`<tr><td class="p-3 font-semibold text-sm text-gray-500 bg-gray-50">${f.label}</td>${prods.map((p,i)=>{const val=f.compute?f.compute(p):p[f.key];const isBest=bestValues[f.key]&&bestValues[f.key][i];return `<td class="p-3 text-sm text-center ${isBest?'bg-emerald-50 text-emerald-700 font-medium':''}">${f.fmt?f.fmt(val):val}${isBest?' 🏅':''}</td>`;}).join('')}</tr>`).join('');
 }
 
@@ -1610,6 +1610,8 @@ function openDetailModal(id) {
 
                 <div class="flex gap-3">
                     <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                    <button onclick="closeDetailModal();toggleCompare('${p.id}')" class="flex-1 text-center py-3 border-2 ${selectedForCompare.includes(p.id)?'border-miOrange bg-orange-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-miOrange transition-all">${selectedForCompare.includes(p.id)?'⚖️ 已加入對比':'⚖️ 橫向對比'}</button>
+                    ${p.buyLink ? `<a href="${p.buyLink}" target="_blank" rel="noopener" class="flex-1 text-center py-3 bg-miOrange text-white rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">前往官網選購 →</a>` : ''}
                     <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all">返回瀏覽</button>
                 </div>
             </div>
