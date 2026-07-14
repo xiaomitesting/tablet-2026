@@ -329,7 +329,7 @@
     <!-- 頁尾 -->
     <footer class="bg-white border-t border-gray-200 mt-8 sm:mt-12 py-4 sm:py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            <p>© 2026 小米香港官網產品線參考 · 數據僅供參考，以官網為準 · Made with 🦞</p>
+            <p>© 2026 小米香港官網產品線參考 · 數據僅供參考，以官網為準 </p>
         </div>
     </footer>
 
@@ -339,6 +339,13 @@
 // 1. 產品數據庫
 // ============================================================
 let products = [];
+// 芯片標籤：提取品牌+型號關鍵詞
+function chipLabel(chip) {
+    if (chip.includes('Snapdragon')) return chip.match(/Snapdragon\s+\S+(?:\s+\S+)?/)?.[0] || chip;
+    if (chip.includes('Dimensity')) return chip.match(/Dimensity\s+\d\w*/)?.[0] || chip;
+    if (chip.includes('Helio')) return chip.match(/Helio\s+\S+/)?.[0] || chip;
+    return chip.split(' ').slice(-1)[0];
+}
 // RAM顯示：直接使用物理RAM值
 function dram(ram) {
     return `${ram}GB`;
@@ -370,6 +377,11 @@ const SCENARIOS = [
     { id:"portable", icon:"🏃", label:"便攜出行", desc:"通勤、旅行" },
     { id:"kids", icon:"👶", label:"兒童教育", desc:"網課、早教" },
     { id:"outdoor", icon:"🏕️", label:"戶外辦公", desc:"移動作業" }
+];
+const BUDGETS = [
+    { id: "low", label: "入門級", range: "HKD 1,500以下", icon: "💰", max: 1500 },
+    { id: "mid", label: "主流級", range: "HKD 1,500–3,000", icon: "💰💰", max: 3000 },
+    { id: "premium", label: "旗艦級", range: "HKD 3,000以上", icon: "💰💰💰", max: Infinity }
 ];
 
 // ============================================================
@@ -470,7 +482,7 @@ function renderHome() {
                 <p class="text-xs text-gray-600 line-clamp-2 mb-3">${p.highlight}</p>
                 <div class="flex flex-wrap gap-1">
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${p.sizeLabel}</span>
-                    <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${p.chip.split(' ').slice(-1)[0]}</span>
+                    <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${chipLabel(p.chip)}</span>
                     <span class="text-[10px] bg-yellow-50 text-yellow-700 px-2 py-0.5 rounded">⭐${p.rating}</span>
                 </div>
                 ${p.colors ? `<div class="flex items-center gap-1.5 mt-2"><span class="text-[10px] text-gray-400">顏色：</span>${p.colors.map(c=>{const m={'灰色':'#808080','綠色':'#4CAF50','藍色':'#2196F3','紫色':'#9C27B0','薰衣草紫':'#B39DDB','深灰色':'#505050','銀白色':'#C0C0C0','石墨灰':'#3E3E3E','薰衣紫':'#9C7FBF','青色':'#00BCD4','銀色':'#D0D0D0','柔光屏':'#E8E4DF'};return `<span class="inline-flex items-center gap-1 text-[10px] text-gray-500"><span class="w-2.5 h-2.5 rounded-full border border-gray-200" style="background:${m[c]||'#CCC'}"></span>${c}</span>`}).join('')}</div>` : ''}
@@ -662,7 +674,7 @@ function calculateMatches() {
 
         // 用途 (25分) - 支持多選
         if (answers.scenario && answers.scenario.length > 0) {
-            const matchedScenarios = (p.scenarios || []).filter(s => answers.scenario.includes(s));
+            const matchedScenarios = (p.scenario || []).filter(s => answers.scenario.includes(s));
             if (matchedScenarios.length > 0) {
                 score += Math.min(25, 15 + matchedScenarios.length * 5);
                 reasons.push('匹配使用場景');
@@ -670,7 +682,7 @@ function calculateMatches() {
         }
         // 交叉加分：場景+尺寸同時匹配額外加分
         if (answers.size && answers.scenario && answers.scenario.length > 0) {
-            if (p.screenType === answers.size && (p.scenarios || []).some(s => answers.scenario.includes(s))) {
+            if (p.screenType === answers.size && (p.scenario || []).some(s => answers.scenario.includes(s))) {
                 score += 10; reasons.push('場景+尺寸完美匹配');
             }
         }
@@ -716,7 +728,7 @@ function calculateMatches() {
             switch(answers.environment) {
                 case 'personal': score += 3; break;
                 case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += 8; reasons.push('適合家庭使用'); } else score += 3; break;
-                case 'office': if (p.scenarios && p.scenarios.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
+                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
                 case 'outdoor': if (p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else if (p.weight <= 450) { score += 3; } else { score -= 5; warnings.push('過重不適合戶外'); } break;
             }
         }
@@ -761,7 +773,7 @@ function showRecommendation() {
                     <p class="text-gray-500 mb-6 max-w-md mx-auto">您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。</p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <button onclick="resetQuiz()" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 重新測驗</button>
-                        <button onclick="App.switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">📱 瀏覽全部機型</button>
+                        <button onclick="switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">📱 瀏覽全部機型</button>
                     </div>
                     <div class="mt-8 text-left">
                         <p class="text-sm font-semibold text-gray-700 mb-3">💡 您的選擇摘要：</p>
@@ -1000,7 +1012,7 @@ function renderGuide() {
     // 按场景分组
     const scenarioMap = {};
     products.forEach(p => {
-        (p.scenarios || []).forEach(s => {
+        (p.scenario || []).forEach(s => {
             if (!scenarioMap[s]) scenarioMap[s] = [];
             scenarioMap[s].push(p);
         });
