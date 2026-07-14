@@ -983,10 +983,17 @@ function renderGuide() {
         { label: '💰💰 中階 (HK$1,500-$3,000)', min: 1500, max: 3000 },
         { label: '💰💰💰 旗艦 (HK$3,000以上)', min: 3000, max: Infinity }
     ];
-    const budgetHtml = budgetGroups.map(g => {
+    const budgetHtml = budgetGroups.map((g, idx) => {
         const items = products.filter(p => p.price >= g.min && p.price < g.max).sort((a,b) => a.price - b.price);
         if (items.length === 0) return '';
-        return `<div class="mb-3"><div class="text-xs font-bold text-gray-700 mb-1.5">${g.label}</div>${items.map(p => `<div class="flex gap-2 mb-2"><span class="text-miOrange shrink-0">•</span><div><strong>HK$${p.price.toLocaleString()}</strong> ${p.name}<br><span class="text-gray-500">${p.highlight}</span></div></div>`).join('')}</div>`;
+        const separator = idx > 0 ? '<div class="border-t border-gray-100 my-3"></div>' : '';
+        return `${separator}<div class="mb-3">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs font-bold text-gray-700">${g.label}</span>
+                <span class="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">${items.length}款</span>
+            </div>
+            <div class="space-y-2.5">${items.map(p => `<div class="flex gap-2"><span class="text-miOrange shrink-0">•</span><div><strong>HK$${p.price.toLocaleString()}</strong> ${p.name}<br><span class="text-gray-500">${p.highlight}</span></div></div>`).join('')}</div>
+        </div>`;
     }).join('');
 
     // 按场景分组
