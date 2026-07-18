@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-HK" data-lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,16 +114,17 @@
             </div>
             <!-- 桌面端 Tab -->
             <div class="desktop-tabs flex space-x-1 bg-gray-100 p-1 rounded-full">
-                <button onclick="switchTab('home')" id="tab-btn-home" class="nav-pill active px-3 py-1.5 rounded-full text-xs font-medium transition-all">🏠 首頁</button>
-                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">🎯 智能推薦</button>
-                <button onclick="switchTab('catalog')" id="tab-btn-catalog" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">📱 全部機型</button>
-                <button onclick="switchTab('guide')" id="tab-btn-guide" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">📖 選購指南</button>
-                <button onclick="switchTab('calculator')" id="tab-btn-calculator" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">🧮 預算計算</button>
+                <button onclick="switchTab('home')" id="tab-btn-home" class="nav-pill active px-3 py-1.5 rounded-full text-xs font-medium transition-all" data-i18n="nav.home">🏠 首頁</button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.quiz">🎯 智能推薦</button>
+                <button onclick="switchTab('catalog')" id="tab-btn-catalog" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.catalog">📱 全部機型</button>
+                <button onclick="switchTab('guide')" id="tab-btn-guide" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.guide">📖 選購指南</button>
+                <button onclick="switchTab('calculator')" id="tab-btn-calculator" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.calculator">🧮 預算計算</button>
                 <button onclick="switchTab('favorites')" id="tab-btn-favorites" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all relative">
                     ❤️ 收藏 <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
                 </button>
-                <button onclick="openCompareModal()" id="tab-btn-compare" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all">⚖️ 橫向對比</button>
+                <button onclick="openCompareModal()" id="tab-btn-compare" class="nav-pill px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" data-i18n="nav.compare">⚖️ 橫向對比</button>
                 <button onclick="toggleDarkMode()" id="dark-toggle" class="nav-pill px-2 py-1.5 rounded-full text-xs font-medium text-gray-600 transition-all" title="切換暗黑模式">🌙</button>
+                <button onclick="toggleLang()" class="nav-pill px-3 py-1.5 text-sm rounded-full border border-white/20 hover:bg-white/10"><span id="lang-label">EN</span></button>
             </div>
             <!-- 手機端 Tab（橫向滾動） -->
             <div class="mobile-tabs">
@@ -137,6 +138,7 @@
                 </button>
                 <button onclick="openCompareModal()" id="mob-tab-compare" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap">⚖️ 對比</button>
                 <button onclick="toggleDarkMode()" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap">🌙</button>
+                <button onclick="toggleLang()" class="mobile-tab-btn nav-pill rounded-full text-[11px] font-medium text-gray-600 transition-all whitespace-nowrap">🌐</button>
             </div>
         </div>
     </header>
@@ -145,8 +147,8 @@
     <main class="flex-grow max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         <!-- 橫幅導言 -->
         <div class="text-center mb-6 sm:mb-10">
-            <h1 class="text-lg sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">尋找最適合您的小米平板</h1>
-            <p class="mt-2 sm:mt-3 text-xs sm:text-lg text-gray-500 max-w-2xl mx-auto">回答 7 個簡單問題，為您推薦最佳機型。</p>
+            <h1 class="text-lg sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight" data-i18n="home.findTitle">尋找最適合您的小米平板</h1>
+            <p class="mt-2 sm:mt-3 text-xs sm:text-lg text-gray-500 max-w-2xl mx-auto" data-i18n="home.findSubtitle">回答 7 個簡單問題，為您推薦最佳機型。</p>
         </div>
 
         <!-- ================= TAB 0: 首頁 ================= -->
@@ -156,17 +158,17 @@
                 <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20"></div>
                 <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-16 -mb-16"></div>
                 <div class="relative z-10">
-                    <p class="text-orange-100 text-sm mb-2">👋 歡迎使用</p>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden">智能選購助手</h1>
-                    <p class="text-orange-100 text-sm sm:text-base max-w-lg mb-6">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
+                    <p class="text-orange-100 text-sm mb-2">${t('home.welcome')}</p>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi 平板電腦<br class="sm:hidden">${t('home.heroTitle')}</h1>
+                    <p class="text-orange-100 text-sm sm:text-base mb-6">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base">
-                        🎯 開始智能推薦
+                        🎯 ${t('home.heroBtn')}
                     </button>
                 </div>
             </div>
 
             <!-- 功能卡片 -->
-            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">🛠️ 功能一覽</h2>
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4" data-i18n="home.featuresTitle">🛠️ 功能一覽</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8">
                 <div onclick="switchTab('quiz')" class="bg-white rounded-xl border border-gray-200 p-4 cursor-pointer hover:shadow-md hover:border-orange-300 transition-all group">
                     <div class="text-2xl mb-2">🎯</div>
@@ -196,7 +198,7 @@
             </div>
 
             <!-- 推薦機型 -->
-            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4">🏆 人氣推薦</h2>
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-4" data-i18n="home.popularTitle">🏆 人氣推薦</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" id="home-recommendations"></div>
 
 
@@ -212,16 +214,16 @@
         <section id="section-catalog" class="hidden">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-3 sm:p-4 mb-4 sm:mb-6 flex flex-col sm:flex-row flex-wrap items-start sm:items-center justify-between gap-3">
                 <div class="flex flex-wrap items-center gap-2">
-                    <span class="text-xs sm:text-sm font-medium text-gray-500">篩選：</span>
+                    <span class="text-xs sm:text-sm font-medium text-gray-500" data-i18n="catalog.filterLabel">篩選：</span>
                     <button onclick="filterCatalog('all')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-miOrange text-white">全部</button>
                     <button onclick="filterCatalog('Xiaomi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Xiaomi</button>
                     <button onclick="filterCatalog('Redmi')" class="filter-btn px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-medium bg-gray-100 text-gray-600 hover:bg-gray-200">Redmi</button>
                 </div>
                 <select onchange="sortCatalog(this.value)" class="text-xs border border-gray-200 rounded-lg px-3 py-1.5 bg-white w-full sm:w-auto">
-                    <option value="price-asc">價格 低→高</option>
-                    <option value="price-desc">價格 高→低</option>
-                    <option value="rating">評分最高</option>
-                    <option value="screen">螢幕最大</option>
+                    <option value="price-asc" data-i18n="catalog.sortPriceAsc">價格 低→高</option>
+                    <option value="price-desc" data-i18n="catalog.sortPriceDesc">價格 高→低</option>
+                    <option value="rating" data-i18n="catalog.sortRating">評分最高</option>
+                    <option value="screen" data-i18n="catalog.sortScreen">螢幕最大</option>
                 </select>
             </div>
             <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -242,8 +244,8 @@
         <!-- ================= TAB 6: 收藏 ================= -->
         <section id="section-favorites" class="hidden">
             <div id="favorites-actions" class="flex justify-end gap-2 mb-4">
-                <button onclick="exportFavorites()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-xs font-medium text-gray-600 transition-all">📥 匯出收藏</button>
-                <button onclick="openImportModal()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-xs font-medium text-gray-600 transition-all">📤 匯入收藏</button>
+                <button onclick="exportFavorites()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-xs font-medium text-gray-600 transition-all" data-i18n="export.btn">📥 匯出收藏</button>
+                <button onclick="openImportModal()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-xs font-medium text-gray-600 transition-all" data-i18n="import.btn">📤 匯入收藏</button>
             </div>
             <div id="favorites-section"></div>
         </section>
@@ -275,8 +277,8 @@
             <!-- 機型選擇器 -->
             <div class="p-4 sm:p-6 border-b border-gray-100 bg-gray-50">
                 <div class="flex items-center justify-between mb-3">
-                    <span class="text-sm font-semibold text-gray-700">選擇機型（最多3款，至少2款）</span>
-                    <span id="compare-select-count" class="text-xs text-miOrange font-bold">已選 0 款</span>
+                    <span class="text-sm font-semibold text-gray-700" data-i18n="compare.selectLabel">選擇機型（最多3款，至少2款）</span>
+                    <span id="compare-select-count" class="text-xs text-miOrange font-bold" data-i18n-compare-count>已選 0 款</span>
                 </div>
                 <div class="flex flex-wrap gap-2" id="compare-product-selector"></div>
             </div>
@@ -285,7 +287,7 @@
                 <div id="compare-summary" class="mb-4 hidden"></div>
                 <div id="compare-placeholder" class="text-center py-12 text-gray-400">
                     <div class="text-4xl mb-3">📊</div>
-                    <p class="text-sm">請至少選擇2款機型開始對比</p>
+                    <p class="text-sm" data-i18n="compare.minHint">請至少選擇2款機型開始對比</p>
                 </div>
                 <table id="compare-table" class="w-full text-left border-collapse hidden">
                     <thead><tr id="compare-table-headers" class="border-b-2 border-gray-200"></tr></thead>
@@ -303,12 +305,12 @@
     <!-- 匯入彈窗 -->
     <div id="import-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
-            <h3 class="text-lg font-bold mb-4">📥 匯入收藏</h3>
-            <p class="text-sm text-gray-500 mb-3">貼上之前匯出的 JSON 數據：</p>
+            <h3 class="text-lg font-bold mb-4" data-i18n="import.title">📥 匯入收藏</h3>
+            <p class="text-sm text-gray-500 mb-3" data-i18n="import.pasteHint">貼上之前匯出的 JSON 數據：</p>
             <textarea id="import-textarea" class="w-full border border-gray-200 rounded-lg p-3 text-xs h-32 font-mono" placeholder='[{"id":"pad_8_pro" ...}]'></textarea>
             <div class="flex gap-3 mt-4">
-                <button onclick="doImportFavorites()" class="flex-1 bg-miOrange text-white py-2 rounded-lg font-semibold text-sm">確認匯入</button>
-                <button onclick="closeImportModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600">取消</button>
+                <button onclick="doImportFavorites()" class="flex-1 bg-miOrange text-white py-2 rounded-lg font-semibold text-sm" data-i18n="import.confirm">確認匯入</button>
+                <button onclick="closeImportModal()" class="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-600" data-i18n="import.cancel">取消</button>
             </div>
             <p id="import-status" class="text-xs mt-2 text-center"></p>
         </div>
@@ -320,18 +322,18 @@
             <div class="flex items-center gap-3">
                 <span class="text-3xl">🎁</span>
                 <div>
-                    <div class="font-bold text-sm sm:text-base">限時優惠：購買任意平板即送保護殼</div>
+                    <div class="font-bold text-sm sm:text-base" data-i18n="promo.title">限時優惠：購買任意平板即送保護殼</div>
                     <div class="text-xs sm:text-sm text-white/80">額外加購手寫筆或鍵盤再減 HK$100</div>
                 </div>
             </div>
-            <span class="text-xs bg-white/20 px-3 py-1 rounded-full whitespace-nowrap">價錢優惠詳情請參考門市價簽</span>
+            <span class="text-xs bg-white/20 px-3 py-1 rounded-full whitespace-nowrap" data-i18n="promo.note">價錢優惠詳情請參考官網</span>
         </div>
     </div>
 
     <!-- 頁尾 -->
     <footer class="bg-white border-t border-gray-200 mt-8 sm:mt-12 py-4 sm:py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-            <p>© 2026 小米香港官網產品線參考 · 數據僅供參考，以官網為準 </p>
+            <p data-i18n="footer">© 2026 小米之家香港 · 數據僅供參考</p>
         </div>
     </footer>
 
@@ -341,6 +343,172 @@
 // 1. 產品數據庫
 // ============================================================
 let products = [];
+
+// ============================================================
+// 0. i18n System
+// ============================================================
+let currentLang = localStorage.getItem('mi_tablet_lang') || 'zh';
+const I18N = {
+zh: {
+'nav.home':'🏠 首頁','nav.quiz':'🎯 智能推薦','nav.catalog':'📱 全部機型','nav.guide':'📖 選購指南','nav.calculator':'🧮 預算計算','nav.favorites':'❤️ 收藏','nav.compare':'⚖️ 橫向對比',
+'mob.home':'🏠 首頁','mob.quiz':'🎯 推薦','mob.catalog':'📱 機型','mob.guide':'📖 指南','mob.calculator':'🧮 計算','mob.favorites':'❤️ 收藏','mob.compare':'⚖️ 對比',
+'home.findTitle':'尋找最適合您的小米平板','home.findSubtitle':'回答 7 個簡單問題，為您推薦最佳機型。',
+'home.welcome':'👋 歡迎使用','home.heroTitle':'智能選購助手',
+'home.heroDesc':'回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。',
+'home.startQuiz':'開始智能推薦','home.featuresTitle':'🛠️ 功能一覽','home.popularTitle':'🏆 人氣推薦','home.topBadge':'熱門',
+'home.heroBtn':'🎯 開始智能推薦',
+'home.featureQuiz':'智能推薦','home.featureCatalog':'全部機型','home.featureGuide':'選購指南','home.featureCalc':'預算計算','home.featureCompare':'橫向對比',
+'home.featureQuizDesc':'7 步問答<br>支持多選','home.featureCatalogDesc':'瀏覽所有平板<br>篩選排序對比','home.featureGuideDesc':'按預算、場景<br>快速選機','home.featureCalcDesc':'拖動滑桿<br>即時匹配機型','home.featureCompareDesc':'多機型規格<br>一目了然',
+'quiz.progress':'選購進度','quiz.confirmMulti':function(n){return '確認 ('+n+' 項已選)'},
+'quiz.multiHint':'💡 此題可多選，選好後按「確認」','quiz.back':'← 返回上一步',
+'quiz.t1':'💬 第一步：您購買平板的主要用途是？（可多選）','quiz.t2':'🔧 第二步：需要搭配配件使用嗎？','quiz.t3':'💰 第三步：您的預算範圍？','quiz.t4':'📏 第四步：您偏好的螢幕尺寸？','quiz.t5':'📶 第五步：需要插SIM卡嗎？','quiz.t6':'🏠 第六步：主要使用環境？','quiz.t7':'⚡ 第七步：您最看重什麼？（可多選）',
+
+'quiz.o1_1':'💻 辦公與專業創作','quiz.o1_1d':'文書處理、多工、繪圖或配合手寫筆/鍵盤。',
+'quiz.o1_2':'🎮 極致遊戲電競','quiz.o1_2d':'主打中大型手遊，需要超高更新率與頂級芯片。',
+'quiz.o1_3':'🎬 日常追劇與學習','quiz.o1_3d':'看串流影音、上網課，偏好立體聲與大螢幕。',
+'quiz.o1_4':'📖 隨行閱讀/給兒童','quiz.o1_4d':'看電子書、網頁，或供兒童作簡單娛樂學習。',
+'quiz.o1_5':'🎨 創意設計','quiz.o1_5d':'繪畫、修圖、影片剪輯等創意工作。',
+'quiz.o2_1':'🚫 不需要','quiz.o2_1d':'純平板使用，簡單方便。',
+'quiz.o2_2':'✍️ 手寫筆','quiz.o2_2d':'筆記、繪畫、標註，提升效率。',
+'quiz.o2_3':'⌨️ 鍵盤','quiz.o2_3d':'辦公打字、文書處理。',
+'quiz.o2_4':'✍️⌨️ 手寫筆+鍵盤','quiz.o2_4d':'完整生產力，替代筆電。',
+'quiz.o3_1':'🪙 實惠入門 (HK$1,500以下)','quiz.o3_1d':'滿足基本需求，最高性價比。',
+'quiz.o3_2':'⚖️ 均衡中階 (HK$1,500-$3,000)','quiz.o3_2d':'性能與價格最佳平衡。',
+'quiz.o3_3':'💎 高端旗艦 (HK$3,000以上)','quiz.o3_3d':'追求極致螢幕與頂級體驗。',
+'quiz.o3_4':'🤷 無預算範圍','quiz.o3_4d':'不限制預算，看最適合的。',
+'quiz.o4_1':'🎒 輕巧便攜 (10吋以下)','quiz.o4_1d':'單手好拿，適合隨身攜帶。',
+'quiz.o4_2':'🖥️ 寬廣視野 (10吋以上)','quiz.o4_2d':'大視野利於多工作業與追劇。',
+'quiz.o4_3':'🤷 無尺寸偏好','quiz.o4_3d':'大小都行，看最適合的。',
+'quiz.o5_1':'📶 純Wi-Fi','quiz.o5_1d':'主要在有Wi-Fi的環境使用。',
+'quiz.o5_2':'📱 需要4G','quiz.o5_2d':'需要隨時隨地上網，插SIM卡。',
+'quiz.o5_3':'📡 需要5G','quiz.o5_3d':'追求極速移動網絡。',
+'quiz.o5_4':'🤷 都可以','quiz.o5_4d':'沒有特別要求。',
+'quiz.o6_1':'👤 個人使用','quiz.o6_1d':'自己用，追求個人最佳體驗。',
+'quiz.o6_2':'👨\u200D👩\u200D👧\u200D👦 家庭共用','quiz.o6_2d':'家人一起用，需要多用戶支援。',
+'quiz.o6_3':'💼 辦公/學校','quiz.o6_3d':'工作或上課用，注重生產力。',
+'quiz.o6_4':'🏕️ 戶外/移動','quiz.o6_4d':'經常外出攜帶，需要耐用便攜。',
+'quiz.o7_1':'⚡ 性能','quiz.o7_1d':'芯片速度、流暢度',
+'quiz.o7_2':'🔋 續航','quiz.o7_2d':'電池容量、充電速度',
+'quiz.o7_3':'🖥️ 螢幕','quiz.o7_3d':'顯示效果、刷新率',
+'quiz.o7_4':'💰 性價比','quiz.o7_4d':'價格實惠、夠用就好',
+'quiz.o7_5':'🏃 便攜','quiz.o7_5d':'輕薄、單手可握',
+'quiz.o7_6':'✍️ 手寫筆','quiz.o7_6d':'筆記、繪畫、標註',
+'rec.bestMatch':'最佳推薦 Match!','rec.alts':'💡 還有其他備選方案：',
+'rec.tryAgain':'🔄 重新測驗','rec.browseAll':'📱 瀏覽全部機型',
+'rec.suitable':'適合人群：',
+'catalog.filterLabel':'篩選：','catalog.filterAll':'全部',
+'catalog.sortPriceAsc':'價格 低→高','catalog.sortPriceDesc':'價格 高→低','catalog.sortRating':'評分最高','catalog.sortScreen':'螢幕最大',
+'catalog.screen':'螢幕:','catalog.chip':'芯片:','catalog.storage':'存儲:','catalog.battery':'電池:',
+'catalog.colorsLabel':'顏色：','catalog.compareLabel':'橫向對比',
+'compare.selectLabel':'選擇機型（最多3款，至少2款）',
+'guide.budgetTitle':'📌 按預算選','guide.personaTitle':'👤 你是哪種人？選這款！','guide.tipsTitle':'📌 購買小貼士',
+'guide.budget1':'💰 入門級 (HK$1,500以下)','guide.budget2':'💰💰 中階 (HK$1,500-$3,000)','guide.budget3':'💰💰💰 旗艦 (HK$3,000以上)',
+'guide.altLabel':'備選：',
+'calc.budgetLabel':'平板預算區間','calc.accessoryLabel':'預算配件（+HK$500）',
+'fav.emptyTitle':'還沒有收藏任何平板','fav.emptyDesc':'在產品目錄中點擊 🤍 即可收藏',
+'promo.title':'限時優惠：購買任意平板即送保護殼','promo.desc':'額外加購手寫筆或鍵盤再減 HK$100','promo.note':'詳情請參考門市',
+'footer':'© 2026 小米之家香港 · 數據僅供參考',
+'detail.screen':'螢幕','detail.chip':'芯片','detail.batteryCharging':'電池/充電','detail.storage':'存儲',
+'detail.weight':'重量','detail.rating':'評分','detail.configSelect':'配置選擇','detail.colorSelect':'可選顏色',
+'detail.pros':'✅ 優點','detail.cons':'⚠️ 注意','detail.suitable':'適合：',
+'detail.promoTitle':'🎁 限時優惠',
+'detail.promoDesc':'購買即送保護殼 · 額外加購手寫筆或鍵盤再減 HK$100',
+'detail.promoNote':'詳情請參考門市','detail.backBtn':'返回瀏覽',
+'persona.office':'辦公族','persona.gamer':'手遊玩家','persona.mediaFan':'追劇達人','persona.student':'學生黨',
+'persona.kids':'送小朋友','persona.commute':'通勤族','persona.sim':'需要電話卡功能','persona.senior':'送長輩',
+'cs.productivity':'辦公/學習','cs.gaming':'遊戲電競','cs.media':'影音娛樂','cs.creative':'創意設計',
+'cs.reading':'閱讀','cs.portable':'便攜出行','cs.kids':'兒童教育','cs.outdoor':'戶外辦公',
+'compare.maxAlert':'最多同時對比3款','compare.selectCount':function(n){return '已選 '+n+' 款'},'compare.minHint':'請至少選擇2款機型開始對比',
+'import.title':'📥 匯入收藏','import.pasteHint':'貼上之前匯出的 JSON 數據：','import.confirm':'確認匯入','import.cancel':'取消','import.success':function(n){return '✅ 成功匯入 '+n+' 款收藏'},'export.btn':'📥 匯出收藏','import.btn':'📤 匯入收藏','export.jsonBtn':'📥 匯出 JSON',
+'sync.synced':function(n){return '✅ 已同步 '+n+' 條記錄'},'sync.nothing':'✅ 沒有需要同步的記錄','sync.stats':function(t,s){return '已收集 '+t+' 份問答 · '+s+' 份已同步'},
+},
+en: {
+'nav.home':'🏠 Home','nav.quiz':'🎯 Smart Pick','nav.catalog':'📱 All Models','nav.guide':'📖 Guide','nav.calculator':'🧮 Budget','nav.favorites':'❤️ Favs','nav.compare':'⚖️ Compare',
+'mob.home':'🏠 Home','mob.quiz':'🎯 Pick','mob.catalog':'📱 Models','mob.guide':'📖 Guide','mob.calculator':'🧮 Calc','mob.favorites':'❤️ Favs','mob.compare':'⚖️ Compare',
+'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
+'home.welcome':'👋 Welcome to','home.heroTitle':'Smart Tablet Finder',
+'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
+'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Top',
+'home.heroBtn':'🎯 Start Smart Recommendation',
+'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
+'home.featureQuizDesc':'7-step quiz<br>Multi-select','home.featureCatalogDesc':'Browse all tablets<br>Filter, sort & compare','home.featureGuideDesc':'By budget & scenario<br>Quick picks','home.featureCalcDesc':'Drag the slider<br>Instant match','home.featureCompareDesc':'Side-by-side specs<br>At a glance',
+'quiz.progress':'Progress','quiz.multiHint':'💡 You can select multiple options. Tap "Confirm" when done.','quiz.back':'← Back',
+'quiz.confirmMulti':function(n){return 'Confirm ('+n+' selected)'},
+
+'quiz.t1':'💬 Step 1: What will you mainly use the tablet for? (Multi-select)','quiz.t2':'🔧 Step 2: Need accessories?','quiz.t3':'💰 Step 3: Your budget range?','quiz.t4':'📏 Step 4: Preferred screen size?','quiz.t5':'📶 Step 5: Need a SIM card?','quiz.t6':'🏠 Step 6: Main usage environment?','quiz.t7':'⚡ Step 7: What matters most? (Multi-select)',
+
+'quiz.o1_1':'💻 Office & Creative Work','quiz.o1_1d':'Document editing, multitasking, drawing, or with stylus/keyboard.',
+'quiz.o1_2':'🎮 Gaming','quiz.o1_2d':'Mobile gaming, needs high refresh rate and top chip.',
+'quiz.o1_3':'🎬 Streaming & Learning','quiz.o1_3d':'Video streaming, online courses, large screen preferred.',
+'quiz.o1_4':'📖 Reading / Kids','quiz.o1_4d':'E-books, web browsing, or simple kids entertainment.',
+'quiz.o1_5':'🎨 Creative Design','quiz.o1_5d':'Drawing, photo editing, video editing.',
+'quiz.o2_1':'🚫 None','quiz.o2_1d':'Tablet only, simple and easy.',
+'quiz.o2_2':'✍️ Stylus','quiz.o2_2d':'Notes, drawing, annotations.',
+'quiz.o2_3':'⌨️ Keyboard','quiz.o2_3d':'Typing, document editing.',
+'quiz.o2_4':'✍️⌨️ Stylus + Keyboard','quiz.o2_4d':'Full productivity, laptop replacement.',
+'quiz.o3_1':'🪙 Budget (Under HK$1,500)','quiz.o3_1d':'Basic needs, best value.',
+'quiz.o3_2':'⚖️ Mid-range (HK$1,500–$3,000)','quiz.o3_2d':'Best balance of performance and price.',
+'quiz.o3_3':'💎 Premium (HK$3,000+)','quiz.o3_3d':'Ultimate display and top experience.',
+'quiz.o3_4':'🤷 No budget preference','quiz.o3_4d':'No limit, find the best fit.',
+'quiz.o4_1':'🎒 Compact (Under 10\")','quiz.o4_1d':'Easy to carry, one-hand friendly.',
+'quiz.o4_2':'🖥️ Large Screen (10\"+)','quiz.o4_2d':'Great for multitasking and streaming.',
+'quiz.o4_3':'🤷 No size preference','quiz.o4_3d':'Any size is fine.',
+'quiz.o5_1':'📶 Wi-Fi Only','quiz.o5_1d':'Use mainly where Wi-Fi is available.',
+'quiz.o5_2':'📱 Need 4G','quiz.o5_2d':'Need mobile data, SIM card required.',
+'quiz.o5_3':'📡 Need 5G','quiz.o5_3d':'Ultra-fast mobile connectivity.',
+'quiz.o5_4':'🤷 No preference','quiz.o5_4d':'Either works.',
+'quiz.o6_1':'👤 Personal Use','quiz.o6_1d':'For yourself, best personal experience.',
+'quiz.o6_2':'👨\u200D👩\u200D👧\u200D👦 Family Sharing','quiz.o6_2d':'Shared by family, multi-user support needed.',
+'quiz.o6_3':'💼 Office / School','quiz.o6_3d':'Work or study, productivity matters.',
+'quiz.o6_4':'🏕️ Outdoor / Mobile','quiz.o6_4d':'Frequently on the go, durable and portable.',
+'quiz.o7_1':'⚡ Performance','quiz.o7_1d':'Chip speed, smoothness',
+'quiz.o7_2':'🔋 Battery Life','quiz.o7_2d':'Battery capacity, charging speed',
+'quiz.o7_3':'🖥️ Display','quiz.o7_3d':'Visual quality, refresh rate',
+'quiz.o7_4':'💰 Value','quiz.o7_4d':'Affordable, good enough',
+'quiz.o7_5':'🏃 Portability','quiz.o7_5d':'Slim, one-hand hold',
+'quiz.o7_6':'✍️ Stylus','quiz.o7_6d':'Notes, drawing, annotations',
+'rec.bestMatch':'Best Match!','rec.alts':'💡 Other options:',
+'rec.tryAgain':'🔄 Retake Quiz','rec.browseAll':'📱 Browse All Models',
+'rec.suitable':'Ideal for:',
+'catalog.filterLabel':'Filter:','catalog.filterAll':'All',
+'catalog.sortPriceAsc':'Price Low→High','catalog.sortPriceDesc':'Price High→Low','catalog.sortRating':'Top Rated','catalog.sortScreen':'Largest Screen',
+'catalog.screen':'Display:','catalog.chip':'Processor:','catalog.storage':'Storage:','catalog.battery':'Battery:',
+'catalog.colorsLabel':'Colors:','catalog.compareLabel':'Compare',
+'compare.selectLabel':'Select models (max 3, min 2)',
+'guide.budgetTitle':'📌 By Budget','guide.personaTitle':'👤 Who are you? Pick this!','guide.tipsTitle':'📌 Buying Tips',
+'guide.budget1':'💰 Entry (Under HK$1,500)','guide.budget2':'💰💰 Mid-range (HK$1,500–$3,000)','guide.budget3':'💰💰💰 Flagship (HK$3,000+)',
+'guide.altLabel':'Alt:',
+'calc.budgetLabel':'Tablet Budget Range','calc.accessoryLabel':'Include Accessories (+HK$500)',
+'fav.emptyTitle':'No favorites yet','fav.emptyDesc':'Tap 🤍 on any product to add it here',
+'promo.title':'Limited Offer: Free case with any tablet','promo.desc':'Add a stylus or keyboard and save HK$100','promo.note':'See in-store for details',
+'footer':'© 2026 Xiaomi HK · Data for reference only.',
+'detail.screen':'Display','detail.chip':'Processor','detail.batteryCharging':'Battery / Charging','detail.storage':'Storage',
+'detail.weight':'Weight','detail.rating':'Rating','detail.configSelect':'Configuration','detail.colorSelect':'Colors',
+'detail.pros':'✅ Pros','detail.cons':'⚠️ Cons','detail.suitable':'Ideal for:',
+'detail.promoTitle':'🎁 Limited Offer',
+'detail.promoDesc':'Free case with purchase · Add stylus or keyboard and save HK$100',
+'detail.promoNote':'See in-store for details','detail.backBtn':'Back',
+'persona.office':'Office Worker','persona.gamer':'Gamer','persona.mediaFan':'Binge Watcher','persona.student':'Student',
+'persona.kids':'Gift for Kids','persona.commute':'Commuter','persona.sim':'Needs SIM Card','persona.senior':'Gift for Seniors',
+'cs.productivity':'Office / Study','cs.gaming':'Gaming','cs.media':'Media & Video','cs.creative':'Creative',
+'cs.reading':'Reading','cs.portable':'Portable','cs.kids':'Kids Education','cs.outdoor':'Outdoor',
+'compare.maxAlert':'Max 3 models for comparison','compare.selectCount':function(n){return n+' selected'},'compare.minHint':'Select at least 2 models to compare',
+'import.title':'📥 Import Favorites','import.pasteHint':'Paste your exported JSON data:','import.confirm':'Confirm Import','import.cancel':'Cancel','import.success':function(n){return '✅ Imported '+n+' favorites'},'export.btn':'📥 Export Favs','import.btn':'📤 Import Favs','export.jsonBtn':'📥 Export JSON',
+'sync.synced':function(n){return '✅ Synced '+n+' records'},'sync.nothing':'✅ Nothing to sync','sync.stats':function(t,s){return t+' quiz responses collected · '+s+' synced'},
+}
+};
+function t(k){var d=I18N[currentLang]||I18N.zh;var v=d[k];if(v===undefined)return k;if(typeof v==='function'){var a=Array.prototype.slice.call(arguments,1);return v.apply(null,a);}return v;}
+function pName(p){return currentLang==='en'&&p.nameEn?p.nameEn:p.name;}
+function pDesc(p){return currentLang==='en'&&p.descEn?p.descEn:p.desc;}
+function pTag(p){return currentLang==='en'&&p.tagEn?p.tagEn:p.tag;}
+function pHighlight(p){return currentLang==='en'&&p.highlightEn?p.highlightEn:p.highlight;}
+function pSalesMsg(p){return currentLang==='en'&&p.salesMsgEn?p.salesMsgEn:p.salesMsg;}
+function pTargetUser(p){return currentLang==='en'&&p.targetUserEn?p.targetUserEn:p.targetUser;}
+function scenarioLabel(id){return t('cs.'+id);}
+function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('mi_tablet_lang',currentLang);document.documentElement.setAttribute('data-lang',currentLang);document.getElementById('lang-label').textContent=currentLang==='zh'?'EN':'中';applyI18n();if(currentTab==='home')renderHome();if(currentTab==='quiz'){if(!document.getElementById('quiz-card').classList.contains('hidden'))renderQuiz();else if(currentQuizResults)showRecommendationFromCache();}if(currentTab==='catalog')renderCatalog(currentCatalogFilter);if(currentTab==='guide')renderGuide();if(currentTab==='calculator')renderCalculator();if(currentTab==='favorites')renderFavorites();if(!document.getElementById('compare-modal').classList.contains('hidden')){renderCompareSelector();renderCompareTable();}updateCompareDrawer();}
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k)el.textContent=v;});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
+function applyI18nMobile(){var mobMap={};document.querySelectorAll('[data-i18n-mob]').forEach(function(el){var k=el.getAttribute('data-i18n-mob');var v=t(k);if(v!==k)el.textContent=v;});}
+
 // 芯片標籤：提取品牌+型號關鍵詞
 function chipLabel(chip) {
     if (chip.includes('Snapdragon')) return chip.match(/Snapdragon\s+\S+(?:\s+\S+)?/)?.[0] || chip;
@@ -371,14 +539,14 @@ async function loadProducts() {
 
 // 場景定義
 const SCENARIOS = [
-    { id:"productivity", icon:"💼", label:"辦公/學習", desc:"文檔處理、網課、筆記" },
-    { id:"gaming", icon:"🎮", label:"遊戲電競", desc:"手遊、雲遊戲" },
-    { id:"media", icon:"🎬", label:"影音娛樂", desc:"追劇、YouTube" },
-    { id:"creative", icon:"🎨", label:"創意設計", desc:"繪畫、修圖" },
-    { id:"reading", icon:"📖", label:"閱讀", desc:"電子書、PDF" },
-    { id:"portable", icon:"🏃", label:"便攜出行", desc:"通勤、旅行" },
-    { id:"kids", icon:"👶", label:"兒童教育", desc:"網課、早教" },
-    { id:"outdoor", icon:"🏕️", label:"戶外辦公", desc:"移動作業" }
+    { id:"productivity", icon:"💼", label:"辦公/學習" },
+    { id:"gaming", icon:"🎮", label:"遊戲電競" },
+    { id:"media", icon:"🎬", label:"影音娛樂" },
+    { id:"creative", icon:"🎨", label:"創意設計" },
+    { id:"reading", icon:"📖", label:"閱讀" },
+    { id:"portable", icon:"🏃", label:"便攜出行" },
+    { id:"kids", icon:"👶", label:"兒童教育" },
+    { id:"outdoor", icon:"🏕️", label:"戶外辦公" }
 ];
 const BUDGETS = [
     { id: "low", label: "入門級", range: "HKD 1,500以下", icon: "💰", max: 1500 },
@@ -399,6 +567,7 @@ let selectedForCompare = [];
 let favorites = JSON.parse(localStorage.getItem('mi_tablet_favs') || '[]');
 let currentCatalogFilter = 'all';
 let currentSort = 'price-asc';
+let currentQuizResults = null; // 問答推薦結果快取，用於交換操作
 
 // ============================================================
 // 3. 初始化
@@ -429,7 +598,7 @@ async function manualSync() {
         const result = await QuizData.syncToFeishu();
         if (statusEl) {
             if (result.success) {
-                statusEl.textContent = result.count > 0 ? `✅ 已同步 ${result.count} 條記錄` : '✅ 沒有需要同步的記錄';
+                statusEl.textContent = result.count > 0 ? t('sync.synced', result.count) : t('sync.nothing');
                 statusEl.style.color = '#10B981';
             } else {
                 statusEl.textContent = `❌ ${result.error}`;
@@ -447,16 +616,20 @@ async function manualSync() {
 }
 
 window.onload = async function() {
+    var savedLang = localStorage.getItem('mi_tablet_lang');
+    if (savedLang) currentLang = savedLang;
+    document.documentElement.setAttribute('data-lang', currentLang);
+    document.getElementById('lang-label').textContent = currentLang === 'zh' ? 'EN' : '中';
+    applyI18n();
     await loadProducts();
     renderHome();
     renderQuiz();
     renderCatalog('all');
     updateFavBadge();
-    // 恢復暗黑模式
     if (localStorage.getItem('mi_dark_mode') === 'true') {
         document.body.classList.add('dark');
         document.body.setAttribute('data-theme', 'dark');
-        const btn = document.getElementById('dark-toggle');
+        var btn = document.getElementById('dark-toggle');
         if (btn) btn.textContent = '☀️';
     }
 };
@@ -473,15 +646,15 @@ function renderHome() {
             <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden" onclick="openDetailModal('${p.id}')">
                 <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">#${i+1} 熱門</div>
                 <div class="p-4">
-                    ${p.image ? `<img src="${p.image}" alt="${p.name}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
+                    ${p.image ? `<img src="${p.image}" alt="${pName(p)}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
                     <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'').charAt(0)}</div>
                 <div class="flex justify-between items-start mb-2">
                     <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-orange-600':'bg-red-50 text-red-600'} rounded text-[10px] font-bold uppercase">${p.series}</span>
                     <span class="text-lg font-extrabold text-orange-600">HK$${p.price.toLocaleString()}</span>
                 </div>
                 <h3 class="font-bold text-gray-900 mb-1">${p.name}</h3>
-                <p class="text-xs text-gray-500 mb-2">${p.tag}</p>
-                <p class="text-xs text-gray-600 line-clamp-2 mb-3">${p.highlight}</p>
+                <p class="text-xs text-gray-500 mb-2">${pTag(p)}</p>
+                <p class="text-xs text-gray-600 line-clamp-2 mb-3">${pHighlight(p)}</p>
                 <div class="flex flex-wrap gap-1">
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${p.sizeLabel}</span>
                     <span class="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded">${chipLabel(p.chip)}</span>
@@ -525,90 +698,88 @@ function switchTab(tab) {
 // ============================================================
 const TOTAL_QUIZ_STEPS = 7;
 const stepsData = {
-    1: { title:"💬 第一步：您購買平板的主要用途是？（可多選）", options:[
-        {value:"productivity",label:"💻 辦公與專業創作",desc:"文書處理、多工、繪圖或配合手寫筆/鍵盤。"},
-        {value:"gaming",label:"🎮 極致遊戲電競",desc:"主打中大型手遊，需要超高更新率與頂級芯片。"},
-        {value:"media",label:"🎬 日常追劇與學習",desc:"看串流影音、上網課，偏好立體聲與大螢幕。"},
-        {value:"reading",label:"📖 隨行閱讀/給兒童",desc:"看電子書、網頁，或供兒童作簡單娛樂學習。"},
-        {value:"creative",label:"🎨 創意設計",desc:"繪畫、修圖、影片剪輯等創意工作。"}
+    1: { titleKey:"quiz.t1", options:[
+        {value:"productivity",labelKey:"quiz.o1_1",descKey:"quiz.o1_1d"},
+        {value:"gaming",labelKey:"quiz.o1_2",descKey:"quiz.o1_2d"},
+        {value:"media",labelKey:"quiz.o1_3",descKey:"quiz.o1_3d"},
+        {value:"reading",labelKey:"quiz.o1_4",descKey:"quiz.o1_4d"},
+        {value:"creative",labelKey:"quiz.o1_5",descKey:"quiz.o1_5d"}
     ]},
-    2: { title:"🔧 第二步：需要搭配配件使用嗎？", options:[
-        {value:"none",label:"🚫 不需要",desc:"純平板使用，簡單方便。"},
-        {value:"stylus",label:"✍️ 手寫筆",desc:"筆記、繪畫、標註，提升效率。"},
-        {value:"keyboard",label:"⌨️ 鍵盤",desc:"辦公打字、文書處理。"},
-        {value:"both",label:"✍️⌨️ 手寫筆+鍵盤",desc:"完整生產力，替代筆電。"}
+    2: { titleKey:"quiz.t2", options:[
+        {value:"none",labelKey:"quiz.o2_1",descKey:"quiz.o2_1d"},
+        {value:"stylus",labelKey:"quiz.o2_2",descKey:"quiz.o2_2d"},
+        {value:"keyboard",labelKey:"quiz.o2_3",descKey:"quiz.o2_3d"},
+        {value:"both",labelKey:"quiz.o2_4",descKey:"quiz.o2_4d"}
     ]},
-    3: { title:"💰 第三步：您的預算範圍？", options:[
-        {value:"low",label:"🪙 實惠入門 (HK$1,500以下)",desc:"滿足基本需求，最高性價比。"},
-        {value:"mid",label:"⚖️ 均衡中階 (HK$1,500-$3,000)",desc:"性能與價格最佳平衡。"},
-        {value:"premium",label:"💎 高端旗艦 (HK$3,000以上)",desc:"追求極致螢幕與頂級體驗。"},
-        {value:"no_budget",label:"🤷 無預算範圍",desc:"不限制預算，看最適合的。"}
+    3: { titleKey:"quiz.t3", options:[
+        {value:"low",labelKey:"quiz.o3_1",descKey:"quiz.o3_1d"},
+        {value:"mid",labelKey:"quiz.o3_2",descKey:"quiz.o3_2d"},
+        {value:"premium",labelKey:"quiz.o3_3",descKey:"quiz.o3_3d"},
+        {value:"no_budget",labelKey:"quiz.o3_4",descKey:"quiz.o3_4d"}
     ]},
-    4: { title:"📏 第四步：您偏好的螢幕尺寸？", options:[
-        {value:"compact",label:"🎒 輕巧便攜 (10吋以下)",desc:"單手好拿，適合隨身攜帶。"},
-        {value:"large",label:"🖥️ 寬廣視野 (10吋以上)",desc:"大視野利於多工作業與追劇。"}
+    4: { titleKey:"quiz.t4", options:[
+        {value:"compact",labelKey:"quiz.o4_1",descKey:"quiz.o4_1d"},
+        {value:"large",labelKey:"quiz.o4_2",descKey:"quiz.o4_2d"},
+        {value:"no_preference",labelKey:"quiz.o4_3",descKey:"quiz.o4_3d"}
     ]},
-    5: { title:"📶 第五步：需要插SIM卡嗎？", options:[
-        {value:"wifi_only",label:"📶 純Wi-Fi",desc:"主要在有Wi-Fi的環境使用。"},
-        {value:"need_4g",label:"📱 需要4G",desc:"需要隨時隨地上網，插SIM卡。"},
-        {value:"need_5g",label:"📡 需要5G",desc:"追求極速移動網絡。"},
-        {value:"no_preference",label:"🤷 都可以",desc:"沒有特別要求。"}
+    5: { titleKey:"quiz.t5", options:[
+        {value:"wifi_only",labelKey:"quiz.o5_1",descKey:"quiz.o5_1d"},
+        {value:"need_4g",labelKey:"quiz.o5_2",descKey:"quiz.o5_2d"},
+        {value:"need_5g",labelKey:"quiz.o5_3",descKey:"quiz.o5_3d"},
+        {value:"no_preference",labelKey:"quiz.o5_4",descKey:"quiz.o5_4d"}
     ]},
-    6: { title:"🏠 第六步：主要使用環境？", options:[
-        {value:"personal",label:"👤 個人使用",desc:"自己用，追求個人最佳體驗。"},
-        {value:"family",label:"👨‍👩‍👧‍👦 家庭共用",desc:"家人一起用，需要多用戶支援。"},
-        {value:"office",label:"💼 辦公/學校",desc:"工作或上課用，注重生產力。"},
-        {value:"outdoor",label:"🏕️ 戶外/移動",desc:"經常外出攜帶，需要耐用便攜。"}
+    6: { titleKey:"quiz.t6", options:[
+        {value:"personal",labelKey:"quiz.o6_1",descKey:"quiz.o6_1d"},
+        {value:"family",labelKey:"quiz.o6_2",descKey:"quiz.o6_2d"},
+        {value:"office",labelKey:"quiz.o6_3",descKey:"quiz.o6_3d"},
+        {value:"outdoor",labelKey:"quiz.o6_4",descKey:"quiz.o6_4d"}
     ]},
-    7: { title:"⚡ 第七步：您最看重什麼？（可多選）", options:[
-        {value:"performance",label:"⚡ 性能",desc:"芯片速度、流暢度"},
-        {value:"battery",label:"🔋 續航",desc:"電池容量、充電速度"},
-        {value:"display",label:"🖥️ 螢幕",desc:"顯示效果、刷新率"},
-        {value:"price",label:"💰 性價比",desc:"價格實惠、夠用就好"},
-        {value:"portable",label:"🏃 便攜",desc:"輕薄、單手可握"},
-        {value:"stylus",label:"✍️ 手寫筆",desc:"筆記、繪畫、標註"}
+    7: { titleKey:"quiz.t7", options:[
+        {value:"performance",labelKey:"quiz.o7_1",descKey:"quiz.o7_1d"},
+        {value:"battery",labelKey:"quiz.o7_2",descKey:"quiz.o7_2d"},
+        {value:"display",labelKey:"quiz.o7_3",descKey:"quiz.o7_3d"},
+        {value:"price",labelKey:"quiz.o7_4",descKey:"quiz.o7_4d"},
+        {value:"portable",labelKey:"quiz.o7_5",descKey:"quiz.o7_5d"},
+        {value:"stylus",labelKey:"quiz.o7_6",descKey:"quiz.o7_6d"}
     ]}
 };
 
 const MULTI_SELECT_STEPS = [1, 7]; // 第1步（用途）和第7步（優先級）支持多選
 
 function renderQuiz() {
-    const card = document.getElementById('quiz-card');
-    const data = stepsData[quizStep];
-    const progress = ((quizStep - 1) / TOTAL_QUIZ_STEPS) * 100;
-    const isMulti = MULTI_SELECT_STEPS.includes(quizStep);
-
-    // 多選步驟：步驟切換時從已保存答案恢復，同一步 re-render 保留用戶選擇
+    var card = document.getElementById('quiz-card');
+    var data = stepsData[quizStep];
+    var progress = ((quizStep - 1) / TOTAL_QUIZ_STEPS) * 100;
+    var isMulti = MULTI_SELECT_STEPS.includes(quizStep);
     if (isMulti && quizStep !== lastMultiStep) {
-        const key = quizStep === 1 ? 'scenario' : 'priority';
-        multiSelectTemp = Array.isArray(answers[key]) ? [...answers[key]] : (answers[key] ? [answers[key]] : []);
+        var key = quizStep === 1 ? 'scenario' : 'priority';
+        multiSelectTemp = Array.isArray(answers[key]) ? answers[key].slice() : (answers[key] ? [answers[key]] : []);
         lastMultiStep = quizStep;
     }
-
-    card.innerHTML = `
-        <div class="mb-6">
-            <div class="flex justify-between items-center text-xs text-gray-400 mb-2">
-                <span>選購進度</span><span>第 ${quizStep} / ${TOTAL_QUIZ_STEPS} 步</span>
-            </div>
-            <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
-                <div class="bg-miOrange h-full transition-all duration-300" style="width:${progress}%"></div>
-            </div>
-            ${isMulti ? '<p class="text-[11px] text-miOrange mt-2 font-medium">💡 此題可多選，選好後按「確認」</p>' : ''}
-        </div>
-        <h2 class="text-lg sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">${data.title}</h2>
-        <div class="grid grid-cols-2 gap-2 sm:gap-3">
-            ${data.options.map(opt => {
-                const selected = isMulti ? multiSelectTemp.includes(opt.value) : false;
-                const onclick = isMulti ? `toggleMultiSelect('${opt.value}')` : `handleAnswer('${opt.value}')`;
-                return `<button onclick="${onclick}" class="quiz-option text-left p-3 sm:p-4 rounded-xl border-2 ${selected ? 'border-miOrange bg-orange-50 shadow-sm' : 'border-gray-200 hover:border-miOrange hover:bg-orange-50/30'} group">
-                    <div class="font-semibold ${selected ? 'text-miOrange' : 'text-gray-800 group-hover:text-miOrange'} text-xs sm:text-sm">${opt.label}</div>
-                    <div class="text-[10px] sm:text-xs text-gray-500 mt-1 hidden sm:block">${opt.desc}</div>
-                </button>`;
-            }).join('')}
-        </div>
-        ${isMulti ? `<button onclick="confirmMultiSelect()" class="mt-4 w-full bg-miOrange text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">確認 (${multiSelectTemp.length} 項已選)</button>` : ''}
-        ${quizStep > 1 ? `<button onclick="prevStep()" class="mt-4 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">← 返回上一步</button>` : ''}
-    `;
+    var titleKey = 'quiz.t' + quizStep;
+    card.innerHTML = '<div class="mb-6">' +
+        '<div class="flex justify-between items-center text-xs text-gray-400 mb-2">' +
+        '<span>' + t('quiz.progress') + '</span><span>Step ' + quizStep + ' / ' + TOTAL_QUIZ_STEPS + '</span>' +
+        '</div>' +
+        '<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">' +
+        '<div class="bg-miOrange h-full transition-all duration-300" style="width:' + progress + '%"></div>' +
+        '</div>' +
+        (isMulti ? '<p class="text-[11px] text-miOrange mt-2 font-medium">' + t('quiz.multiHint') + '</p>' : '') +
+        '</div>' +
+        '<h2 class="text-lg sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">' + t(titleKey) + '</h2>' +
+        '<div class="grid grid-cols-2 gap-2 sm:gap-3">' +
+        data.options.map(function(opt) {
+            var selected = isMulti ? multiSelectTemp.indexOf(opt.value) > -1 : false;
+            var onclick = isMulti ? "toggleMultiSelect('" + opt.value + "')" : "handleAnswer('" + opt.value + "')";
+            return '<button onclick="' + onclick + '" class="quiz-option text-left p-3 sm:p-4 rounded-xl border-2 ' +
+                (selected ? 'border-miOrange bg-orange-50 shadow-sm' : 'border-gray-200 hover:border-miOrange hover:bg-orange-50/30') + ' group">' +
+                '<div class="font-semibold ' + (selected ? 'text-miOrange' : 'text-gray-800 group-hover:text-miOrange') + ' text-xs sm:text-sm">' + t(opt.labelKey) + '</div>' +
+                '<div class="text-[10px] sm:text-xs text-gray-500 mt-1 hidden sm:block">' + t(opt.descKey) + '</div>' +
+                '</button>';
+        }).join('') +
+        '</div>' +
+        (isMulti ? '<button onclick="confirmMultiSelect()" class="mt-4 w-full bg-miOrange text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition-all">' + t('quiz.confirmMulti', multiSelectTemp.length) + '</button>' : '') +
+        (quizStep > 1 ? '<button onclick="prevStep()" class="mt-4 flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">' + t('quiz.back') + '</button>' : '');
 }
 
 function toggleMultiSelect(value) {
@@ -636,6 +807,136 @@ function handleAnswer(value) {
 
 function prevStep() { if (quizStep > 1) { quizStep--; renderQuiz(); } }
 
+function swapTopResult() {
+    if (!currentQuizResults || !currentQuizResults.runnerUps.length) return;
+    // 把主推薦和第一個備選互換
+    const tmp = currentQuizResults.top;
+    currentQuizResults.top = currentQuizResults.runnerUps[0];
+    currentQuizResults.runnerUps[0] = tmp;
+    // 重新渲染推薦結果
+    showRecommendationFromCache();
+}
+function shareRecommendation() {
+    if (!currentQuizResults) return;
+    var top = currentQuizResults.top;
+    var p = top.product;
+    var lines = [];
+    if (currentLang === 'en') {
+        lines.push('📱 Xiaomi Tablet Recommendation');
+        lines.push('');
+        lines.push('✅ Best Match: ' + pName(p));
+        lines.push('💰 Price: HK$' + p.price.toLocaleString());
+        lines.push('📺 ' + p.size + ' · ' + p.panel);
+        lines.push('⚡ ' + p.chip + ' · ' + dramShort(p.ram) + 'GB+' + p.storage + 'GB');
+        lines.push('🔋 ' + p.battery + ' · ' + p.charging);
+        if (p.stylus) lines.push('✍️ Stylus supported');
+        if (p.keyboard) lines.push('⌨️ Keyboard supported');
+        if (top.reasons.length) lines.push('✅ ' + top.reasons.join(' · '));
+        if (currentQuizResults.runnerUps.length) {
+            lines.push('');
+            lines.push('💡 Alternatives:');
+            currentQuizResults.runnerUps.forEach(function(r) {
+                lines.push('  • ' + pName(r.product) + ' HK$' + r.product.price.toLocaleString());
+            });
+        }
+        lines.push('');
+        lines.push('via Xiaomi Tablet Finder');
+    } else {
+        lines.push('📱 小米平板推薦');
+        lines.push('');
+        lines.push('✅ 最佳推薦：' + pName(p));
+        lines.push('💰 售價：HK$' + p.price.toLocaleString());
+        lines.push('📺 ' + p.size + ' · ' + p.panel);
+        lines.push('⚡ ' + p.chip + ' · ' + dramShort(p.ram) + 'GB+' + p.storage + 'GB');
+        lines.push('🔋 ' + p.battery + ' · ' + p.charging);
+        if (p.stylus) lines.push('✍️ 支援手寫筆');
+        if (p.keyboard) lines.push('⌨️ 支援鍵盤');
+        if (top.reasons.length) lines.push('✅ ' + top.reasons.join(' · '));
+        if (currentQuizResults.runnerUps.length) {
+            lines.push('');
+            lines.push('💡 其他選擇：');
+            currentQuizResults.runnerUps.forEach(function(r) {
+                lines.push('  • ' + pName(r.product) + ' HK$' + r.product.price.toLocaleString());
+            });
+        }
+        lines.push('');
+        lines.push('— Xiaomi 平板選購助手');
+    }
+    var text = lines.join('\n');
+    if (navigator.share) {
+        navigator.share({ title: currentLang==='en'?'Tablet Recommendation':'平板推薦', text: text }).catch(function(){});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert(currentLang==='en'?'✅ Recommendation copied to clipboard! Copy and paste into WhatsApp/WeChat.':'✅ 推薦已複製到剪貼簿！可貼上到 WhatsApp/WeChat 發送給朋友。');
+        });
+    } else {
+        var ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        alert(currentLang==='en'?'✅ Recommendation copied!':'✅ 推薦已複製！');
+    }
+}
+
+function showRecommendationFromCache() {
+    if (!currentQuizResults) return;
+    const { top, runnerUps } = currentQuizResults;
+    const rc = document.getElementById('result-card');
+    var scenarioLabels = {};
+    SCENARIOS.forEach(function(s) { scenarioLabels[s.id] = scenarioLabel(s.id); });
+    rc.innerHTML = `
+        <div class="bg-gradient-to-br from-orange-50 to-white rounded-2xl shadow-lg border-2 border-miOrange overflow-hidden p-4 sm:p-10 relative fade-in">
+            <div class="absolute top-4 right-4 bg-miOrange text-white text-xs font-bold px-3 py-1 rounded-full">最佳推薦 Match!</div>
+            <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block px-3 py-1 bg-orange-100 text-miOrange rounded-full text-xs font-bold">🎯 契合度 ${top.score}%</span>
+                <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-xs font-bold">${top.product.salesBadge}</span>
+            </div>
+            <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${pName(top.product)}</h2>
+            <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${pSalesMsg(top.product)}」</p>
+            <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} 起</p>
+            <p class="text-gray-600 mb-4">${pDesc(top.product)}</p>
+            ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>${t('detail.suitable')}</strong>${pTargetUser(top.product)}</span></div>` : ''}
+            ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${scenarioLabels[s]||s}</span>`).join('')}</div>` : ''}
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
+                <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">電池</span><p class="text-sm font-medium">${top.product.battery}mAh</p></div>
+                <div><span class="text-xs font-semibold text-gray-400">充電</span><p class="text-sm font-medium">${top.product.charging}</p></div>
+                <div class="col-span-2"><span class="text-xs font-semibold text-gray-400">規格版本</span><div class="flex flex-wrap gap-1.5 mt-1">${top.product.variants && top.product.variants.length > 1 ? top.product.variants.map(v => `<span class="text-[11px] ${v.price===top.product.price?'bg-miOrange text-white':'bg-gray-100 text-gray-600'} px-2 py-0.5 rounded-full font-medium">${v.label?v.label+' ':''}${dramShort(v.ram)}GB+${v.storage}GB HK$${v.price.toLocaleString()}</span>`).join('') : `<span class="text-[11px] bg-miOrange text-white px-2 py-0.5 rounded-full font-medium">${dramShort(top.product.ram)}GB+${top.product.storage}GB HK$${top.product.price.toLocaleString()}</span>`}</div></div>
+            </div>
+            ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
+            ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
+                <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
+            </div>
+        </div>
+        <div class="slide-up">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">💡 ${t('rec.alts')}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                ${runnerUps.map(r=>`
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2 py-0.5 bg-red-50 text-red-600 rounded text-xs font-bold">${r.product.salesBadge}</span>
+                            <span class="text-sm font-bold text-miOrange">HK$${r.product.price.toLocaleString()}</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-1">${pName(r.product)}</h4>
+                        <p class="text-xs text-gray-400 mb-1">${r.product.tag}</p>
+                        <p class="text-xs text-miOrange font-semibold mb-2">「${pSalesMsg(r.product)}」</p>
+                        <p class="text-xs text-gray-600 line-clamp-2 mb-2">${pDesc(r.product)}</p>
+                        ${r.product.targetUser ? `<p class="text-[11px] text-orange-600 mb-2">👤 ${pTargetUser(r.product)}</p>` : ''}
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+                            <span class="text-xs text-gray-500">${r.product.size.split('(')[0]}</span>
+                            <div class="flex gap-2">
+                                <button onclick="toggleFav('${r.product.id}')" class="text-sm">${favorites.includes(r.product.id)?'❤️':'🤍'}</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
 function resetQuiz() {
     quizStep = 1;
     answers = {scenario:[],accessory:null,budget:null,size:null,connectivity:null,environment:null,priority:[]};
@@ -650,6 +951,9 @@ function resetQuiz() {
 // 6. 推薦演算法
 // ============================================================
 function calculateMatches() {
+    // 權重分配（總分100）：配件30 + 場景20 + 預算20 + 尺寸15 + 優先級10 + 環境5
+    const WEIGHT = { accessory: 30, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5 };
+
     // 為每款產品衍生 budget 和 screenType
     const enriched = products.map(p => ({
         ...p,
@@ -658,84 +962,92 @@ function calculateMatches() {
     }));
 
     return enriched.map(p => {
-        let score = 0, reasons = [], warnings = [];
+        let score = 0, reasons = [], warnings = [], penalty = 0;
 
-        // 配件硬性篩選（最高優先級）
+        // ── 配件 (30分) ──
         if (answers.accessory && answers.accessory !== 'none') {
             const needStylus = answers.accessory === 'stylus' || answers.accessory === 'both';
             const needKeyboard = answers.accessory === 'keyboard' || answers.accessory === 'both';
             const hasStylus = p.stylus;
             const hasKeyboard = p.keyboard;
-            
-            if (needStylus && !hasStylus) { score -= 30; warnings.push('不支持手寫筆'); }
-            if (needKeyboard && !hasKeyboard) { score -= 30; warnings.push('不支持鍵盤'); }
-            if (needStylus && hasStylus) { score += 15; reasons.push('支持手寫筆'); }
-            if (needKeyboard && hasKeyboard) { score += 15; reasons.push('支持鍵盤'); }
-            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { score += 10; reasons.push('手寫筆+鍵盤全支持'); }
+            let accScore = 0;
+            if (needStylus && hasStylus) { accScore += 15; reasons.push('支持手寫筆'); }
+            if (needKeyboard && hasKeyboard) { accScore += 15; reasons.push('支持鍵盤'); }
+            if (needStylus && needKeyboard && hasStylus && hasKeyboard) { reasons.push('手寫筆+鍵盤全支持'); }
+            if (needStylus && !hasStylus) { penalty += 25; warnings.push('不支持手寫筆'); }
+            if (needKeyboard && !hasKeyboard) { penalty += 25; warnings.push('不支持鍵盤'); }
+            score += Math.min(WEIGHT.accessory, accScore);
         }
 
-        // 用途 (25分) - 支持多選
+        // ── 場景 (20分) ──
         if (answers.scenario && answers.scenario.length > 0) {
             const matchedScenarios = (p.scenario || []).filter(s => answers.scenario.includes(s));
             if (matchedScenarios.length > 0) {
-                score += Math.min(25, 15 + matchedScenarios.length * 5);
+                score += Math.min(WEIGHT.scenario, 10 + matchedScenarios.length * 5);
                 reasons.push('匹配使用場景');
-            } else { score += 5; warnings.push('場景不完全匹配'); }
+            } else { warnings.push('場景不完全匹配'); }
         }
-        // 交叉加分：場景+尺寸同時匹配額外加分
-        if (answers.size && answers.scenario && answers.scenario.length > 0) {
+        // 交叉加分：場景+尺寸同時匹配
+        if (answers.size && answers.size !== 'no_preference' && answers.scenario && answers.scenario.length > 0) {
             if (p.screenType === answers.size && (p.scenario || []).some(s => answers.scenario.includes(s))) {
-                score += 10; reasons.push('場景+尺寸完美匹配');
+                score += 5; reasons.push('場景+尺寸完美匹配');
             }
         }
-        // 網絡硬性篩選（最高優先級，直接決策）
+
+        // ── 網絡（硬性篩選，不計分） ──
         if (answers.connectivity === 'need_5g') {
-            if (p.id === 'redmi_pad_2_pro_5g') { score += 100; reasons.push('5G唯一選擇'); }
+            if (p.id === 'redmi_pad_2_pro_5g') { reasons.push('5G唯一選擇'); }
             else { return { product:p, score:-999, reasons:[], warnings:['不支持5G'] }; }
         } else if (answers.connectivity === 'need_4g') {
-            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { score += 80; reasons.push('4G插卡推薦'); }
+            if (p.id === 'redmi_pad_2' || p.id === 'redmi_pad_2_97') { reasons.push('4G插卡推薦'); }
             else { return { product:p, score:-999, reasons:[], warnings:['無SIM卡版本'] }; }
         }
-        // 預算 (最高50分，核心決策因素)
+
+        // ── 預算 (20分) ──
         if (answers.budget && answers.budget !== 'no_budget') {
-            if (p.budget === answers.budget) { score += 50; reasons.push('預算完美匹配'); }
-            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 30; reasons.push('略低於預算'); }
-            else if (answers.budget === 'mid' && p.budget === 'low') { score += 20; reasons.push('低於預算'); }
-            else { score -= 20; warnings.push('超出預算'); }
+            if (p.budget === answers.budget) { score += WEIGHT.budget; reasons.push('預算完美匹配'); }
+            else if (answers.budget === 'premium' && p.budget === 'mid') { score += 12; reasons.push('略低於預算'); }
+            else if (answers.budget === 'mid' && p.budget === 'low') { score += 8; reasons.push('低於預算'); }
+            else { penalty += 10; warnings.push('超出預算'); }
         }
-        // 尺寸 (最高20分，次要因素)
-        if (answers.size) {
-            if (p.screenType === answers.size) {
-                score += 20; reasons.push('尺寸匹配');
-            } else {
-                score -= 15; warnings.push('尺寸與需求不符');
-            }
+
+        // ── 尺寸 (15分) ──
+        if (answers.size && answers.size !== 'no_preference') {
+            if (p.screenType === answers.size) { score += WEIGHT.size; reasons.push('尺寸匹配'); }
+            else { penalty += 10; warnings.push('尺寸與需求不符'); }
         }
-        // 優先級 (10分) - 支持多選，每個優先級獨立計分
+
+        // ── 優先級 (10分，均分) ──
         if (answers.priority && answers.priority.length > 0) {
+            const perPri = Math.floor(WEIGHT.priority / answers.priority.length);
             answers.priority.forEach(pr => {
                 switch(pr) {
-                    case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=10; reasons.push('旗艦芯片'); } else score+=3; break;
-                    case 'battery': if (parseInt(p.battery)>=10000) { score+=10; reasons.push('超大電池'); } else score+=3; break;
-                    case 'display': if (p.refreshRate>=120) { score+=10; reasons.push('高刷螢幕'); } else score+=3; break;
-                    case 'price': if (p.price<=1500) { score+=10; reasons.push('極致性價比'); } else score+=3; break;
-                    case 'portable': if (p.weight<=300) { score+=10; reasons.push('超輕機身'); } else if (p.weight<=400) { score+=3; } else { score-=10; warnings.push('机身偏重不利便攜'); } break;
-                    case 'stylus': if (p.stylus) { score+=10; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
+                    case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=perPri; reasons.push('旗艦芯片'); } break;
+                    case 'battery': if (parseInt(p.battery)>=10000) { score+=perPri; reasons.push('超大電池'); } break;
+                    case 'display': if (p.refreshRate>=120) { score+=perPri; reasons.push('高刷螢幕'); } break;
+                    case 'price': if (p.price<=1500) { score+=perPri; reasons.push('極致性價比'); } break;
+                    case 'portable': if (p.weight<=300) { score+=perPri; reasons.push('超輕機身'); } else if (p.weight>400) { penalty+=5; warnings.push('机身偏重不利便攜'); } break;
+                    case 'stylus': if (p.stylus) { score+=perPri; reasons.push('支持手寫筆'); } else { warnings.push('不支持手寫筆'); } break;
                 }
             });
         }
-        // 網絡已在此函數開頭硬性篩選，此處跳過
-        // 使用環境 (8分)
+
+        // ── 環境 (5分) ──
         if (answers.environment && answers.environment !== 'none') {
             switch(answers.environment) {
-                case 'personal': score += 3; break;
-                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += 8; reasons.push('適合家庭使用'); } else score += 3; break;
-                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += 8; reasons.push('辦公生產力強'); } else score += 3; break;
-                case 'outdoor': if (p.weight <= 350) { score += 8; reasons.push('戶外便攜'); } else if (p.weight <= 450) { score += 3; } else { score -= 5; warnings.push('過重不適合戶外'); } break;
+                case 'personal': score += 2; break;
+                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
+                case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
+                case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push('戶外便攜'); } else if (p.weight > 450) { penalty += 3; warnings.push('過重不適合戶外'); } break;
             }
         }
-        score += p.rating * 2;
-        return { product:p, score:Math.min(100,Math.round(score)), reasons, warnings };
+
+        // 評分加成 (滿分5)
+        score += Math.min(5, p.rating);
+
+        // 扣分不低於0，總分 cap 到100
+        const finalScore = Math.max(0, Math.min(100, Math.round(score - penalty)));
+        return { product:p, score:finalScore, reasons, warnings };
     }).sort((a,b) => b.score - a.score);
 }
 
@@ -752,7 +1064,7 @@ function showRecommendation() {
         // 異步同步到飛書 Bitable（不阻塞頁面）
         QuizData.syncToFeishu().then(res => {
             console.log('📡 同步結果:', JSON.stringify(res));
-            if (res.count > 0) console.log(`✅ 已同步 ${res.count} 條記錄到飛書`);
+            if (res.count > 0) console.log(`✅ Synced ${res.count} records`);
             else console.log('⚠️ 同步返回0條:', res.error || res.message || '無詳情');
         }).catch(err => console.error('❌ 同步失敗:', err.message, err));
     } else {
@@ -760,6 +1072,7 @@ function showRecommendation() {
     }
 
     const top = results[0], runnerUps = results.slice(1,4);
+    currentQuizResults = { top, runnerUps };
     const stats = typeof QuizData !== 'undefined' ? QuizData.getStats() : null;
     const statsHtml = stats ? renderQuizStats(stats) : '';
 
@@ -782,7 +1095,7 @@ function showRecommendation() {
                         <div class="flex flex-wrap gap-2">
                             ${answers.scenario?.length ? answers.scenario.map(s => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">${SCENARIOS.find(x=>x.id===s)?.label||s}</span>`).join('') : ''}
                             ${answers.budget && answers.budget!=='no_budget' ? `<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs">${BUDGETS.find(x=>x.id===answers.budget)?.label||answers.budget}</span>` : ''}
-                            ${answers.size ? `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">${answers.size==='compact'?'輕巧便攜':'寬廣視野'}</span>` : ''}
+                            ${answers.size && answers.size!=='no_preference' ? `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded-full text-xs">${answers.size==='compact'?'輕巧便攜':'寬廣視野'}</span>` : ''}
                         </div>
                     </div>
                 </div>
@@ -801,7 +1114,9 @@ function showRecommendation() {
             <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 mb-1">${top.product.name}</h2>
             <p class="text-xs sm:text-sm text-miOrange font-semibold mb-2 sm:mb-3">💬 「${top.product.salesMsg}」</p>
             <p class="text-lg sm:text-xl font-bold text-miOrange mb-3 sm:mb-4">HK$ ${top.product.price.toLocaleString()} 起</p>
-            <p class="text-gray-600 mb-6">${top.product.desc}</p>
+            <p class="text-gray-600 mb-4">${top.product.desc}</p>
+            ${top.product.targetUser ? `<div class="bg-orange-50 border border-orange-100 rounded-xl px-4 py-3 mb-4"><span class="text-sm text-orange-700">👤 <strong>適合人群：</strong>${top.product.targetUser}</span></div>` : ''}
+            ${top.product.scenario && top.product.scenario.length ? `<div class="flex flex-wrap gap-1.5 mb-4">${top.product.scenario.map(s => {const labels = {productivity:'💼 辦公',gaming:'🎮 遊戲',media:'🎬 影音',creative:'🎨 創意',reading:'📖 閱讀',portable:'🏃 便攜',kids:'👶 兒童',outdoor:'🏕️ 戶外'}; return `<span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full text-xs font-medium">${labels[s]||s}</span>`;}).join('')}</div>` : ''}
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-100 pt-6 mb-6">
                 <div><span class="text-xs font-semibold text-gray-400">螢幕</span><p class="text-sm font-medium">${top.product.size}</p></div>
                 <div><span class="text-xs font-semibold text-gray-400">芯片</span><p class="text-sm font-medium">${top.product.chip}</p></div>
@@ -812,12 +1127,13 @@ function showRecommendation() {
             ${top.reasons.length?`<div class="mb-3"><strong class="text-green-600 text-sm">✅ 推薦理由：</strong><div class="flex flex-wrap gap-2 mt-2">${top.reasons.map(r=>`<span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs">${r}</span>`).join('')}</div></div>`:''}
             ${top.warnings.length?`<div class="mb-4"><strong class="text-amber-600 text-sm">⚠️ 注意：</strong><div class="flex flex-wrap gap-2 mt-2">${top.warnings.map(w=>`<span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs">${w}</span>`).join('')}</div></div>`:''}
             <div class="flex flex-col sm:flex-row gap-3">
-                <button onclick="toggleFav('${top.product.id}')" class="flex-grow px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="toggleFav('${top.product.id}')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-red-300 transition-all">${favorites.includes(top.product.id)?'❤️ 已收藏':'🤍 收藏'}</button>
+                <button onclick="swapTopResult()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">↕️ 交換</button><button onclick="shareRecommendation()" class="px-6 py-3 bg-miOrange text-white rounded-xl font-semibold hover:bg-orange-600 transition-all">📲 幫朋友選</button>
                 <button onclick="resetQuiz()" class="px-6 py-3 border border-gray-300 rounded-xl text-gray-600 font-semibold hover:bg-gray-50 transition-all">重新測驗</button>
             </div>
         </div>
         <div class="slide-up">
-            <h3 class="text-xl font-bold text-gray-900 mb-4">💡 還有其他備選方案：</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">💡 ${t('rec.alts')}</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 ${runnerUps.map(r=>`
                     <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
@@ -828,7 +1144,8 @@ function showRecommendation() {
                         <h4 class="font-bold text-gray-900 mb-1">${r.product.name}</h4>
                         <p class="text-xs text-gray-400 mb-1">${r.product.tag}</p>
                         <p class="text-xs text-miOrange font-semibold mb-2">「${r.product.salesMsg}」</p>
-                        <p class="text-xs text-gray-600 line-clamp-2 mb-3">${r.product.desc}</p>
+                        <p class="text-xs text-gray-600 line-clamp-2 mb-2">${r.product.desc}</p>
+                        ${r.product.targetUser ? `<p class="text-[11px] text-orange-600 mb-2">👤 ${r.product.targetUser}</p>` : ''}
                         <div class="flex justify-between items-center border-t border-gray-100 pt-3">
                             <span class="text-xs text-gray-500">${r.product.size.split('(')[0]}</span>
                             <div class="flex gap-2">
@@ -874,7 +1191,7 @@ function renderQuizStats(stats) {
         <div style="margin-top:32px;padding:20px;background:white;border-radius:12px;border:1px solid #E5E7EB;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
                 <div style="font-size:14px;font-weight:700;color:#111827;">📊 數據洞察</div>
-                <div style="font-size:12px;color:#6B7280;">已收集 ${stats.total} 份問答 · ${stats.synced} 份已同步</div>
+                <div style="font-size:12px;color:#6B7280;">${t('sync.stats', stats.total, stats.synced)}</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
                 ${section('🎯 場景偏好', stats.scenarios)}
@@ -893,7 +1210,7 @@ function renderQuizStats(stats) {
                 </div>
             ` : ''}
             <div style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:12px;">
-                <button onclick="QuizData.downloadJSON();" style="font-size:11px;color:#9CA3AF;background:none;border:none;cursor:pointer;text-decoration:underline;">📥 匯出 JSON</button>
+                <button onclick="QuizData.downloadJSON();" style="font-size:11px;color:#9CA3AF;background:none;border:none;cursor:pointer;text-decoration:underline;" data-i18n="export.jsonBtn">📥 匯出 JSON</button>
                 ${stats.unsynced > 0 ? `<button onclick="manualSync()" style="font-size:11px;color:#FF6700;background:none;border:none;cursor:pointer;text-decoration:underline;">🔄 同步到飛書 (${stats.unsynced} 條)</button>` : '<span style="font-size:11px;color:#10B981;">✅ 已全部同步</span>'}
             </div>
             <div id="sync-status" style="margin-top:8px;text-align:center;font-size:11px;color:#6B7280;"></div>
@@ -971,7 +1288,6 @@ function renderCatalog(filter='all') {
                     </label>
                     <button onclick="toggleFav('${p.id}')" class="fav-btn text-lg">${favorites.includes(p.id)?'❤️':'🤍'}</button>
                 </div>
-
             </div>
         </div>
     `).join('');
@@ -993,10 +1309,10 @@ function sortProducts(arr, key) {
 // ============================================================
 function renderGuide() {
     // 按预算分组
-    const budgetGroups = [
-        { label: '💰 入門級 (HK$1,500以下)', min: 0, max: 1500 },
-        { label: '💰💰 中階 (HK$1,500-$3,000)', min: 1500, max: 3000 },
-        { label: '💰💰💰 旗艦 (HK$3,000以上)', min: 3000, max: Infinity }
+    var budgetGroups = [
+        { label: t('guide.budget1'), min: 0, max: 1500 },
+        { label: t('guide.budget2'), min: 1500, max: 3000 },
+        { label: t('guide.budget3'), min: 3000, max: Infinity }
     ];
     const budgetHtml = budgetGroups.map((g, idx) => {
         const items = products.filter(p => p.price >= g.min && p.price < g.max).sort((a,b) => a.price - b.price);
@@ -1067,28 +1383,28 @@ function renderGuide() {
             </div>
             <div class="bg-orange-50 rounded-lg p-3 mb-2">
                 <div class="flex items-baseline justify-between">
-                    <div class="font-bold text-sm text-gray-900">${pp.name}</div>
+                    <div class="font-bold text-sm text-gray-900">${pName(pp)}</div>
                     <div class="text-miOrange font-bold text-sm">HK$${pp.price.toLocaleString()}</div>
                 </div>
                 <div class="text-[11px] text-gray-500 mt-1">${p.reason}</div>
             </div>
-            ${sp ? `<div class="text-[11px] text-gray-400 px-1">備選：${sp.name} HK$${sp.price.toLocaleString()}</div>` : ''}
+            ${sp ? `<div class="text-[11px] text-gray-400 px-1">${t('guide.altLabel')} ${pName(sp)} HK$${sp.price.toLocaleString()}</div>` : ''}
         </div>`;
     }).join('');
 
     document.getElementById('guide-section').innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm">
-                <h3 class="font-bold text-gray-900 mb-4">📌 按預算選</h3>
+                <h3 class="font-bold text-gray-900 mb-4" data-i18n="guide.budgetTitle">📌 按預算選</h3>
                 <div class="space-y-3 text-sm">${budgetHtml}</div>
             </div>
             <div class="md:col-span-2">
-                <h3 class="font-bold text-gray-900 mb-4">👤 你是哪種人？選這款！</h3>
+                <h3 class="font-bold text-gray-900 mb-4" data-i18n="guide.personaTitle">👤 你是哪種人？選這款！</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">${personaHtml}</div>
             </div>
         </div>
         <div class="mt-6 bg-white rounded-xl border border-gray-200 p-4 sm:p-6 shadow-sm">
-            <h3 class="font-bold text-gray-900 mb-4">📌 購買小貼士</h3>
+            <h3 class="font-bold text-gray-900 mb-4" data-i18n="guide.tipsTitle">📌 購買小貼士</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
                 <div class="flex gap-2"><span>✅</span><div><strong>手寫筆需求</strong><br>${stylusProducts.map(p => p.name).join('、')} 支持</div></div>
                 <div class="flex gap-2"><span>✅</span><div><strong>鍵盤需求</strong><br>${keyboardProducts.length > 0 ? keyboardProducts.map(p => p.name).join('、') + ' 支持' : '暫無支持鍵盤的機型'}</div></div>
@@ -1115,7 +1431,7 @@ function renderCalculator() {
     document.getElementById('calculator-section').innerHTML = `
         <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm mb-4">
             <div class="flex justify-between items-center mb-4">
-                <label class="font-semibold text-sm">平板預算區間</label>
+                <label class="font-semibold text-sm" data-i18n="calc.budgetLabel">平板預算區間</label>
                 <label class="text-sm text-gray-500 flex items-center gap-2">
                     <input type="checkbox" ${calcAccessory?'checked':''} onchange="calcAccessory=this.checked;renderCalculator()"> 預算配件（+HK$500）
                 </label>
@@ -1144,22 +1460,18 @@ function syncCalc() {
     if (!minEl || !maxEl) return;
     calcBudgetMin = Math.min(parseInt(minEl.value), calcBudgetMax - 100);
     calcBudgetMax = Math.max(parseInt(maxEl.value), calcBudgetMin + 100);
-    // 更新滑桿位置（避免循環觸發）
     minEl.value = calcBudgetMin;
     maxEl.value = calcBudgetMax;
-    // 更新橙色軌道
     const minPct = ((calcBudgetMin-800)/4200)*100;
     const maxPct = ((calcBudgetMax-800)/4200)*100;
     const track = document.getElementById('calc-track');
     if (track) { track.style.left = minPct+'%'; track.style.right = (100-maxPct)+'%'; }
-    // 更新價格標籤
     const label = document.getElementById('calc-label');
     if (label) label.textContent = `HK$${calcBudgetMin.toLocaleString()} ~ HK$${calcBudgetMax.toLocaleString()}`;
-    // 更新產品列表
     updateCalcResults();
 }
 
-// 更新產品列表（syncCalc 和 renderCalculator 共用）
+// 更新產品列表
 function updateCalcResults() {
     const el = document.getElementById('calc-results');
     if (!el) return;
@@ -1217,7 +1529,7 @@ function renderFavorites() {
     const el = document.getElementById('favorites-section');
     const favProducts = products.filter(p=>favorites.includes(p.id));
     if (favProducts.length===0) {
-        el.innerHTML = `<div class="text-center py-16"><div class="text-5xl mb-4">💝</div><p class="text-gray-500 text-lg">還沒有收藏任何平板</p><p class="text-sm text-gray-400 mt-2">在產品目錄中點擊 🤍 即可收藏</p></div>`;
+        el.innerHTML = `<div class="text-center py-16"><div class="text-5xl mb-4">💝</div><p class="text-gray-500 text-lg" data-i18n="fav.emptyTitle">還沒有收藏任何平板</p><p class="text-sm text-gray-400 mt-2" data-i18n="fav.emptyDesc">在產品目錄中點擊 🤍 即可收藏</p></div>`;
         return;
     }
     el.innerHTML = `
@@ -1231,7 +1543,7 @@ function renderFavorites() {
                     </div>
                     <h4 class="font-bold">${p.name}</h4>
                     <p class="text-xs text-gray-400 mt-1">${p.tag}</p>
-                    <p class="text-xs text-gray-600 mt-2 line-clamp-2">${p.desc}</p>
+                    <p class="text-xs text-gray-600 mt-2 line-clamp-2">${pDesc(p)}</p>
                     <div class="flex gap-2 mt-3">
                         <button onclick="toggleFav('${p.id}')" class="flex-1 text-center text-xs font-semibold border border-gray-200 py-2 rounded-lg">💔 移除收藏</button>
                     </div>
@@ -1247,7 +1559,7 @@ function renderFavorites() {
 function toggleCompare(id) {
     const idx = selectedForCompare.indexOf(id);
     if (idx>-1) selectedForCompare.splice(idx,1);
-    else { if (selectedForCompare.length>=3) { alert('最多同時對比3款'); return; } selectedForCompare.push(id); }
+    else { if (selectedForCompare.length>=3) { alert(t('compare.maxAlert')); return; } selectedForCompare.push(id); }
     updateCompareDrawer();
     // 如果對比彈窗已打開，同步更新選擇器和表格
     if (!document.getElementById('compare-modal').classList.contains('hidden')) {
@@ -1286,7 +1598,7 @@ function renderCompareSelector() {
         </label>`;
     }).join('');
     const countEl = document.getElementById('compare-select-count');
-    if (countEl) countEl.textContent = `已選 ${selectedForCompare.length} 款`;
+    if (countEl) countEl.textContent = t('compare.selectCount', selectedForCompare.length);
 }
 
 // 渲染對比表格
@@ -1304,7 +1616,8 @@ function renderCompareTable() {
     placeholder.classList.add('hidden');
 
     const prods = selectedForCompare.map(id => products.find(p => p.id === id));
-    const scenarioLabels = {productivity:'辦公/學習',gaming:'遊戲電競',media:'影音娛樂',creative:'創意設計',reading:'閱讀',portable:'便攜出行',kids:'兒童教育',outdoor:'戶外辦公'};
+    var scenarioLabels = {};
+    SCENARIOS.forEach(function(s) { scenarioLabels[s.id] = scenarioLabel(s.id); });
 
     // ══════════════════════════════════════════════
     // 1. 產品畫像 — 每款產品提取關鍵特徵
@@ -1320,6 +1633,7 @@ function renderCompareTable() {
     const budgetLevel = (price) => price < 1600 ? 'budget' : price < 3000 ? 'mid' : 'premium';
     const perfLevel = (chip) => { const t = chipTier(chip); return t >= 4 ? 'flagship' : t >= 3 ? 'upper' : t >= 2 ? 'mid' : 'entry'; };
 
+    // 為每款產品建立畫像
     const profiles = prods.map(p => ({
         ...p,
         _budget: budgetLevel(p.price),
@@ -1358,6 +1672,7 @@ function renderCompareTable() {
         size:     hasDiff(prods.map(p => parseFloat(p.sizeLabel) || 0), 0.5),
     };
 
+    // 有差異的維度數量
     const diffCount = Object.values(dim).filter(Boolean).length;
 
     // ══════════════════════════════════════════════
@@ -1366,19 +1681,23 @@ function renderCompareTable() {
     const allSameTier = profiles.every(p => p._tier === profiles[0]._tier);
     const allSameBudget = profiles.every(p => p._budget === profiles[0]._budget);
     const priceRange = Math.max(...prices) - Math.min(...prices);
+    const isSameModel = prods.every(p => p.id.replace(/_matte$/, '').replace(/_pro$/, '') === prods[0].id.replace(/_matte$/, '').replace(/_pro$/, ''));
+    // 同系列不同版本（如 Pad 8 Pro vs Pad 8 Pro 柔光版）
     const isVariantPair = prods.length === 2 && (
         prods[0].name.replace(/柔光版|兒童護眼版/g, '').trim() === prods[1].name.replace(/柔光版|兒童護眼版/g, '').trim()
     );
 
     // ══════════════════════════════════════════════
-    // 4. 生成結語
+    // 4. 生成結語 — 不同策略 produce 不同風格的結語
     // ══════════════════════════════════════════════
     let summaryText = '';
 
     if (diffCount === 0) {
+        // ── 策略 A：幾乎完全一樣 ──
         summaryText = '這幾款配置非常接近，按外觀顏色或品牌偏好選擇即可。';
 
     } else if (isVariantPair) {
+        // ── 策略 B：同款機型的不同版本（如標準 vs 柔光版）──
         const matteProd = profiles.find(p => p._matte);
         const regularProd = profiles.find(p => !p._matte);
         if (matteProd && regularProd) {
@@ -1398,6 +1717,7 @@ function renderCompareTable() {
         }
 
     } else if (allSameBudget && !dim.chip) {
+        // ── 策略 C：同價位段但不同定位 ──
         // 同系列产品检测：去除 5G/LTE/柔光版/儿童护眼版等后缀比较基础名
         const stripVariant = n => n.replace(/\s*(5G|LTE|柔光版|兒童護眼版)\s*/g, '').trim();
         const baseNames = profiles.map(p => stripVariant(p.name));
@@ -1480,12 +1800,15 @@ function renderCompareTable() {
         }
 
     } else {
+        // ── 策略 E：通用 — 逐款描述核心賣點 + 差異 ──
         const perProduct = profiles.map(p => {
             const traits = [];
+            // 性能
             if (p._perf === 'flagship') traits.push('旗艦性能');
             else if (p._perf === 'upper') traits.push('中高端性能');
             else if (p._perf === 'mid') traits.push('中端性能');
             else traits.push('入門性能');
+            // 獨特賣點
             if (p._matte) traits.push('護眼柔光屏');
             if (p._portable) traits.push('極致輕薄');
             if (p._productive) traits.push('生產力套裝');
@@ -1496,6 +1819,8 @@ function renderCompareTable() {
             if (p.refreshRate >= 144) traits.push(`${p.refreshRate}Hz高刷`);
             return { name: p.name, price: p.price, traits };
         });
+
+        // 找出每款的「獨家優勢」（其他產品沒有的）
         const summary = perProduct.map(pp => {
             const others = perProduct.filter(x => x.name !== pp.name);
             const unique = pp.traits.filter(t => !others.some(o => o.traits.includes(t)));
@@ -1537,7 +1862,8 @@ function renderCompareTable() {
         {key:'weight',label:'重量',fmt:v=>`${v}g`},
         {key:'stylus',label:'手寫筆',fmt:v=>v?'✅ 支持':'❌ 不支持'},{key:'keyboard',label:'鍵盤',fmt:v=>v?'✅ 支持':'❌ 不支持'},
         {key:'scenario',label:'適用場景',fmt:v=>Array.isArray(v)?v.map(s=>scenarioLabels[s]||s).join('、'):(v||'-')},
-        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'}
+        {key:'colors',label:'可選顏色',fmt:v=>Array.isArray(v)?v.join('、'):'-'},{key:'targetUser',label:'適合人群'},
+        
     );
 
     // 計算推薦標記
@@ -1545,16 +1871,15 @@ function renderCompareTable() {
     const maxBattery = Math.max(...prods.map(p => p.battery));
     const maxRefresh = Math.max(...prods.map(p => p.refreshRate));
     // 判斷是否同機型不同版本（如標準 vs 柔光版）
-    const isSameModel = prods.length === 2 && (
+    const isSameModelRec = prods.length === 2 && (
         prods[0].name.replace(/柔光版|兒童護眼版/g, '').trim() ===
         prods[1].name.replace(/柔光版|兒童護眼版/g, '').trim()
     );
     const recScores = prods.map(p => {
         let s = 0;
-        // 跨價位對比：不比評分（不同級別評分無意義），比性價比和場景匹配
         s += (p.battery / maxBattery) * 15;
         s += (p.refreshRate / maxRefresh) * 15;
-        if (isSameModel) {
+        if (isSameModelRec) {
             // 同機型對比：柔光版 +20（護眼溢價），降價差權重
             if (p.panel && p.panel.includes('柔光')) s += 20;
             s += p.rating * 30;
@@ -1714,14 +2039,13 @@ function openDetailModal(id) {
                         <span class="font-bold text-sm text-red-600">限時優惠</span>
                     </div>
                     <p class="text-xs text-gray-600">購買即送保護殼 · 額外加購手寫筆或鍵盤再減 HK$100</p>
-                    <p class="text-[10px] text-gray-400 mt-1">價錢優惠詳情請參考門市價簽</p>
+                    <p class="text-[10px] text-gray-400 mt-1">價錢優惠詳情請參考官網</p>
                 </div>
 
                 <div class="flex gap-3">
                     <button onclick="toggleFav('${p.id}');openDetailModal('${p.id}')" class="flex-1 text-center py-3 border-2 ${favorites.includes(p.id)?'border-red-300 bg-red-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-red-300 transition-all">${favorites.includes(p.id)?'❤️ 已收藏':'🤍 收藏'}</button>
                     <button onclick="closeDetailModal();toggleCompare('${p.id}')" class="flex-1 text-center py-3 border-2 ${selectedForCompare.includes(p.id)?'border-miOrange bg-orange-50':'border-gray-200'} rounded-xl font-semibold text-sm hover:border-miOrange transition-all">${selectedForCompare.includes(p.id)?'⚖️ 已加入對比':'⚖️ 橫向對比'}</button>
-
-                    <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all">返回瀏覽</button>
+                    <button onclick="closeDetailModal()" class="px-5 py-3 bg-gray-100 text-gray-700 rounded-xl font-bold text-sm hover:bg-gray-200 transition-all" data-i18n="detail.backBtn">返回瀏覽</button>
                 </div>
             </div>
         </div>
@@ -1775,7 +2099,7 @@ function doImportFavorites() {
         localStorage.setItem('mi_tablet_favs', JSON.stringify(favorites));
         updateFavBadge();
         renderFavorites();
-        status.textContent = `✅ 成功匯入 ${valid.length} 款收藏`;
+        status.textContent = t('import.success', valid.length);
         status.style.color = '#10B981';
         setTimeout(closeImportModal, 1500);
     } catch(e) {
