@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小米之家專用平板選購助手</title>
+    <title>小米之家專用 - 平板選購助手</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
@@ -110,7 +110,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 mobile-header flex items-center justify-between">
             <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 cursor-pointer" onclick="switchTab('home')">
                 <img src="assets/xiaomi-logo-square.png" alt="MI Logo" class="w-7 h-7 sm:w-8 sm:h-8 rounded shrink-0" />
-                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap">小米之家專用<span class="text-miOrange font-bold">平板選購助手</span></span>
+                <span class="text-sm sm:text-xl font-bold tracking-tight text-gray-900 whitespace-nowrap"><span data-i18n="home.headerBrand">小米之家專用</span><span class="text-miOrange font-bold" data-i18n="home.headerTitle">平板選購助手</span></span>
             </div>
             <!-- 桌面端 Tab -->
             <div class="desktop-tabs flex space-x-1 bg-gray-100 p-1 rounded-full">
@@ -160,7 +160,7 @@
                 <div class="relative z-10">
                     <p class="text-orange-100 text-sm mb-2" data-i18n="home.welcome">👋 歡迎使用</p>
                     <h1 class="text-2xl sm:text-4xl font-extrabold mb-3 leading-tight">Xiaomi <span data-i18n="home.heroTablet">Tablet</span><span data-i18n="home.heroTitle">Smart Finder</span><br class="sm:hidden" data-i18n="home.heroTitle">智能選購助手</h1>
-                    <p class="text-orange-100 text-sm sm:text-base mb-6">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
+                    <p class="text-orange-100 text-sm sm:text-base mb-6" data-i18n="home.heroDesc">回答幾個簡單問題，為您推薦最適合的小米平板。涵蓋 Xiaomi Pad 全系列及 Redmi Pad，從入門到旗艦一網打盡。</p>
                     <button onclick="switchTab('quiz')" class="bg-white text-orange-600 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-all shadow-lg text-sm sm:text-base" data-i18n="home.heroBtn">
                         🎯 開始智能推薦
                     </button>
@@ -428,7 +428,7 @@ en: {
 'home.findTitle':'Find Your Perfect Xiaomi Tablet','home.findSubtitle':'Answer 7 quick questions and get the best recommendation.',
 'home.welcome':'👋 Welcome to','home.heroTablet':'Tablet','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroDesc':'Answer a few simple questions to find your ideal Xiaomi tablet. Covers the full Xiaomi Pad lineup and Redmi Pad, from entry-level to flagship.',
-'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi Store','home.headerTitle':'Tablet Finder','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
+'home.startQuiz':'Start Smart Recommendation','home.featuresTitle':'🛠️ Features','home.popularTitle':'🏆 Popular Picks','home.topBadge':'Hot','home.headerBrand':'Xiaomi Home Exclusive','home.headerTitle':'Tablet Finder','home.heroTablet':'Tablet','home.heroTitle':'Smart Finder',
 'home.heroBtn':'🎯 Start Smart Recommendation',
 'home.featureQuiz':'Smart Pick','home.featureCatalog':'All Models','home.featureGuide':'Buying Guide','home.featureCalc':'Budget Calc','home.featureCompare':'Compare',
 'home.featureQuizDesc':'7-step quiz<br>Multi-select','home.featureCatalogDesc':'Browse all tablets<br>Filter, sort & compare','home.featureGuideDesc':'By budget & scenario<br>Quick picks','home.featureCalcDesc':'Drag the slider<br>Instant match','home.featureCompareDesc':'Side-by-side specs<br>At a glance',
@@ -481,7 +481,7 @@ en: {
 'calc.budgetLabel':'Tablet Budget Range','calc.accessoryLabel':'Include Accessories (+HK$500)',
 'darkMode.toggle':'Toggle dark mode','fav.emptyTitle':'No favorites yet','fav.emptyDesc':'Tap 🤍 on any product to add it here',
 'promo.title':'Limited Offer: Free case with any tablet','promo.desc':'Add a stylus or keyboard and save HK$100','promo.note':'See in-store for details',
-'footer':'© 2026 Xiaomi HK · Data for reference only.',
+'footer':'© 2026 Xiaomi Home HK · Data for reference only.',
 'detail.screen':'Display','detail.chip':'Processor','detail.batteryCharging':'Battery / Charging','detail.storage':'Storage',
 'detail.weight':'Weight','detail.rating':'Rating','detail.configSelect':'Configuration','detail.colorSelect':'Colors',
 'detail.pros':'✅ Pros','detail.cons':'⚠️ Cons','detail.suitable':'Ideal for:',
@@ -653,7 +653,7 @@ function renderHome() {
                 <div class="absolute top-3 left-3 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full z-10">#${i+1} <span data-i18n="home.topBadge">熱門</span></div>
                 <div class="p-4">
                     ${p.image ? `<img src="${p.image}" alt="${pName(p)}" class="product-img mb-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">` : ''}
-                    <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'').charAt(0)}</div>
+                    <div class="product-img-fallback mb-3 ${p.image ? 'hidden' : ''}" style="background:linear-gradient(135deg,${p.series==='Xiaomi'?'#FF6700,#FF8533':'#EF4444,#F87171'})">${p.name.replace(/Xiaomi |REDMI /i,'')}</div>
                 <div class="flex justify-between items-start mb-2">
                     <span class="px-2 py-0.5 ${p.series==='Xiaomi'?'bg-orange-100 text-orange-600':'bg-red-50 text-red-600'} rounded text-[10px] font-bold uppercase">${p.series}</span>
                     <span class="text-lg font-extrabold text-orange-600">HK$${p.price.toLocaleString()}</span>
@@ -958,7 +958,7 @@ function resetQuiz() {
 // ============================================================
 function calculateMatches() {
     // 權重分配（總分100）：配件30 + 場景20 + 預算20 + 尺寸15 + 優先級10 + 環境5
-    const WEIGHT = { accessory: 30, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5 };
+    const WEIGHT = { accessory: 20, scenario: 20, budget: 20, size: 15, priority: 10, environment: 5, screen_quality: 10 };
 
     // 為每款產品衍生 budget 和 screenType
     const enriched = products.map(p => ({
@@ -980,8 +980,8 @@ function calculateMatches() {
             if (needStylus && hasStylus) { accScore += 15; reasons.push('支持手寫筆'); }
             if (needKeyboard && hasKeyboard) { accScore += 15; reasons.push('支持鍵盤'); }
             if (needStylus && needKeyboard && hasStylus && hasKeyboard) { reasons.push('手寫筆+鍵盤全支持'); }
-            if (needStylus && !hasStylus) { penalty += 25; warnings.push('不支持手寫筆'); }
-            if (needKeyboard && !hasKeyboard) { penalty += 25; warnings.push('不支持鍵盤'); }
+            if (needStylus && !hasStylus) { penalty += 15; warnings.push('不支持手寫筆'); }
+            if (needKeyboard && !hasKeyboard) { penalty += 15; warnings.push('不支持鍵盤'); }
             score += Math.min(WEIGHT.accessory, accScore);
         }
 
@@ -1028,8 +1028,8 @@ function calculateMatches() {
             const perPri = Math.floor(WEIGHT.priority / answers.priority.length);
             answers.priority.forEach(pr => {
                 switch(pr) {
-                    case 'performance': if (p.chip.includes('8')||p.chip.includes('9')) { score+=perPri; reasons.push('旗艦芯片'); } break;
-                    case 'battery': if (parseInt(p.battery)>=10000) { score+=perPri; reasons.push('超大電池'); } break;
+                    case 'performance': if (chipTier(p.chip)>=3) { score+=perPri; reasons.push('旗艦芯片'); } break;
+                    case 'battery': if (parseInt(p.battery)>=11000) { score+=perPri; reasons.push('超大電池'); } else if (parseInt(p.battery)>=9000) { score+=Math.floor(perPri*0.6); reasons.push('大電池'); } break;
                     case 'display': if (p.refreshRate>=120) { score+=perPri; reasons.push('高刷螢幕'); } break;
                     case 'price': if (p.price<=1500) { score+=perPri; reasons.push('極致性價比'); } break;
                     case 'portable': if (p.weight<=300) { score+=perPri; reasons.push('超輕機身'); } else if (p.weight>400) { penalty+=5; warnings.push('机身偏重不利便攜'); } break;
@@ -1042,10 +1042,21 @@ function calculateMatches() {
         if (answers.environment && answers.environment !== 'none') {
             switch(answers.environment) {
                 case 'personal': score += 2; break;
-                case 'family': if (p.id.includes('kids') || p.rating >= 4.5) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
+                case 'family': if (p.id.includes('kids') || (parseFloat(p.size)>=10.6 && p.rating>=4.4)) { score += WEIGHT.environment; reasons.push('適合家庭使用'); } else score += 2; break;
                 case 'office': if (p.scenario && p.scenario.includes('productivity')) { score += WEIGHT.environment; reasons.push('辦公生產力強'); } else score += 2; break;
                 case 'outdoor': if (p.weight <= 350) { score += WEIGHT.environment; reasons.push('戶外便攜'); } else if (p.weight > 450) { penalty += 3; warnings.push('過重不適合戶外'); } break;
             }
+        }
+
+        // ── 螢幕品質 (10分) ──
+        if (answers.priority && answers.priority.includes('display')) {
+            let sqScore = 0;
+            if (p.panel && p.panel.includes('OLED')) sqScore += 4;
+            if (p.panel && p.panel.includes('AMOLED')) sqScore += 4;
+            if (p.panel && p.panel.includes('柔光')) sqScore += 3;
+            if (p.refreshRate >= 144) sqScore += 3;
+            else if (p.refreshRate >= 120) sqScore += 2;
+            score += Math.min(WEIGHT.screen_quality, sqScore);
         }
 
         // 評分加成 (滿分5)
@@ -1344,8 +1355,14 @@ function renderGuide() {
     const scenarioLabels = { productivity:'💼 辦公學習', gaming:'🎮 遊戲電競', media:'🎬 影音娛樂', creative:'🎨 創意設計', reading:'📖 閱讀', portable:'🏃 便攜出行', kids:'👶 兒童教育', outdoor:'🏕️ 戶外辦公' };
     // 場景自定義排序
     const sceneRank = {
-        productivity: ['pad_8_pro_matte','pad_8_pro','pad_8','redmi_pad_2_pro'],
-        gaming: ['pad_mini','pad_8_pro']
+        productivity: ['pad_8_pro_matte','pad_8_pro','redmi_pad_2_pro_5g','redmi_pad_2_pro'],
+        gaming: ['pad_mini','pad_8_pro','pad_8'],
+        media: ['pad_8','pad_8_pro','redmi_pad_2_pro','redmi_pad_2'],
+        creative: ['pad_8_pro_matte','pad_8_pro','redmi_pad_2_pro_matte'],
+        reading: ['redmi_pad_2_pro_matte','redmi_pad_2_kids','redmi_pad_2_97','pad_mini'],
+        portable: ['pad_mini','redmi_pad_2_97','redmi_pad_2'],
+        kids: ['redmi_pad_2_kids','redmi_pad_2_pro_matte','redmi_pad_2_97'],
+        outdoor: ['redmi_pad_2_pro_5g','redmi_pad_2_97','pad_mini']
     };
     const sceneRankIdx = (sid) => (sceneRank[sid] || []);
     const scenarioHtml = Object.entries(scenarioMap).map(([sid, items]) => {
@@ -1793,7 +1810,6 @@ function renderCompareTable() {
         if (dim.weight && cheapest.weight < priciest.weight) cheaperAdv.push('更輕機身');
         if (dim.screen && cheapest.refreshRate > priciest.refreshRate) cheaperAdv.push('更高刷新率');
         // 結語：兩邊定位 + 場景
-        let summaryText = '';
         if (cheapScene) summaryText += `${cheapest.name}（HK$${cheapest.price.toLocaleString()}）適合${cheapest.targetUser || ''}，主打${cheapest.tag || cheapScene}，場景覆蓋${cheapScene}。`;
         if (priceyScene) summaryText += `${priciest.name}（HK$${priciest.price.toLocaleString()}）適合${priciest.targetUser || ''}，主打${priciest.tag || priceyScene}，場景覆蓋${priceyScene}。`;
         // 加錢能獲得什麼
