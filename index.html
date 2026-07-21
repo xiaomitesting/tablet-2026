@@ -395,7 +395,7 @@ zh: {
 'quiz.o7_6':'✍️ 手寫筆','quiz.o7_6d':'筆記、繪畫、標註',
 'rec.bestMatch':'最佳推薦 Match!','rec.alts':'💡 還有其他備選方案：',
 'rec.tryAgain':'🔄 重新測驗','rec.browseAll':'📱 瀏覽全部機型',
-'rec.suitable':'適合人群：',
+'rec.suitable':'適合人群：','rec.reasons':'✅ 推薦理由：','rec.warnings':'⚠️ 注意：','rec.score':'🎯 契合度','rec.noMatch':'暫無合適推薦','rec.noMatchTitle':'暫時找不到高度匹配的機型','rec.noMatchDesc':'您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。','rec.yourChoices':'💡 您的選擇摘要：','rec.swap':'↕️ 交換','rec.share':'📲 幫朋友選','rec.restart':'🔄 重新測驗','rec.browseAll':'📱 瀏覽全部機型',
 'catalog.filterLabel':'篩選：','catalog.filterAll':'全部',
 'catalog.sortPriceAsc':'價格 低→高','catalog.sortPriceDesc':'價格 高→低','catalog.sortRating':'評分最高','catalog.sortScreen':'螢幕最大',
 'catalog.screen':'螢幕:','catalog.chip':'芯片:','catalog.storage':'存儲:','catalog.battery':'電池:',
@@ -469,7 +469,7 @@ en: {
 'quiz.o7_6':'✍️ Stylus','quiz.o7_6d':'Notes, drawing, annotations',
 'rec.bestMatch':'Best Match!','rec.alts':'💡 Other options:',
 'rec.tryAgain':'🔄 Retake Quiz','rec.browseAll':'📱 Browse All Models',
-'rec.suitable':'Ideal for:',
+'rec.suitable':'Ideal for:','rec.reasons':'✅ Reasons:','rec.warnings':'⚠️ Notes:','rec.score':'🎯 Match','rec.noMatch':'No Match Found','rec.noMatchTitle':'No close match found','rec.noMatchDesc':'Your criteria are quite specific. Try adjusting your needs or browse all models.','rec.yourChoices':'💡 Your choices:','rec.swap':'↕️ Swap','rec.share':'📲 Share','rec.restart':'🔄 Retake','rec.browseAll':'📱 Browse All',
 'catalog.filterLabel':'Filter:','catalog.filterAll':'All',
 'catalog.sortPriceAsc':'Price Low→High','catalog.sortPriceDesc':'Price High→Low','catalog.sortRating':'Top Rated','catalog.sortScreen':'Largest Screen',
 'catalog.screen':'Display:','catalog.chip':'Processor:','catalog.storage':'Storage:','catalog.battery':'Battery:',
@@ -506,7 +506,7 @@ function pSalesMsg(p){return currentLang==='en'&&p.salesMsgEn?p.salesMsgEn:p.sal
 function pTargetUser(p){return currentLang==='en'&&p.targetUserEn?p.targetUserEn:p.targetUser;}
 function scenarioLabel(id){return t('cs.'+id);}
 function toggleLang(){currentLang=currentLang==='zh'?'en':'zh';localStorage.setItem('mi_tablet_lang',currentLang);document.documentElement.setAttribute('data-lang',currentLang);document.getElementById('lang-label').textContent=currentLang==='zh'?'EN':'中';applyI18n();if(currentTab==='home'){renderHome();}if(currentTab==='quiz'){if(!document.getElementById('quiz-card').classList.contains('hidden'))renderQuiz();else if(currentQuizResults)showRecommendationFromCache();}if(currentTab==='catalog')renderCatalog(currentCatalogFilter);if(currentTab==='guide')renderGuide();if(currentTab==='calculator')renderCalculator();if(currentTab==='favorites')renderFavorites();if(!document.getElementById('compare-modal').classList.contains('hidden')){renderCompareSelector();renderCompareTable();}updateCompareDrawer();}
-function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k)el.textContent=v;});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
+function applyI18n(){document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');var v=t(k);if(v!==k){if(typeof v==='string'&&v.indexOf('<')>-1&&v.indexOf('>')>-1){el.innerHTML=v;}else{el.textContent=v;}}});var cc=document.getElementById('compare-select-count');if(cc)cc.textContent=t('compare.selectCount',selectedForCompare.length);applyI18nMobile();}
 function applyI18nMobile(){var mobMap={};document.querySelectorAll('[data-i18n-mob]').forEach(function(el){var k=el.getAttribute('data-i18n-mob');var v=t(k);if(v!==k)el.textContent=v;});}
 
 // 芯片標籤：提取品牌+型號關鍵詞
@@ -695,6 +695,7 @@ function switchTab(tab) {
         }
     });
     if (tab === 'home') renderHome();
+    if (tab === 'quiz') renderQuiz();
     if (tab === 'catalog') renderCatalog(currentCatalogFilter);
     if (tab === 'guide') renderGuide();
     if (tab === 'calculator') renderCalculator();
@@ -1091,6 +1092,21 @@ function showRecommendation() {
         console.error('❌ QuizData 模組未載入！');
     }
 
+    // 防禦：products 為空或無結果時顯示錯誤提示
+    if (!results || results.length === 0) {
+        rc.innerHTML = `
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
+                <div class="text-center py-8">
+                    <div class="text-5xl mb-4">⚠️</div>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">載入失敗</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">產品數據未能載入，請檢查網絡連接後刷新頁面重試。</p>
+                    <button onclick="resetQuiz();location.reload();" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 刷新頁面</button>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
     const top = results[0], runnerUps = results.slice(1,4);
     currentQuizResults = { top, runnerUps };
     const stats = typeof QuizData !== 'undefined' ? QuizData.getStats() : null;
@@ -1098,20 +1114,20 @@ function showRecommendation() {
 
     // 最低契合度門檻：低於15%不推薦
     const MIN_SCORE = 15;
-    if (top.score < MIN_SCORE) {
+    if (!top || top.score < MIN_SCORE) {
         rc.innerHTML = `
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-lg border-2 border-gray-200 overflow-hidden p-4 sm:p-10 relative fade-in">
-                <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">暫無合適推薦</div>
+                <div class="absolute top-4 right-4 bg-gray-400 text-white text-xs font-bold px-3 py-1 rounded-full">${t('rec.noMatch')}</div>
                 <div class="text-center py-8">
                     <div class="text-5xl mb-4">🤔</div>
-                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">暫時找不到高度匹配的機型</h2>
-                    <p class="text-gray-500 mb-6 max-w-md mx-auto">您選擇的條件組合較為特殊，現有机型無法完美匹配。建議調整部分需求，或瀏覽全部機型自行挑選。</p>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-2">${t('rec.noMatchTitle')}</h2>
+                    <p class="text-gray-500 mb-6 max-w-md mx-auto">${t('rec.noMatchDesc')}</p>
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <button onclick="resetQuiz()" class="px-6 py-3 bg-miOrange hover:bg-orange-600 text-white rounded-xl font-bold transition-all">🔄 重新測驗</button>
                         <button onclick="switchTab('catalog')" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-semibold hover:border-miOrange transition-all">📱 瀏覽全部機型</button>
                     </div>
                     <div class="mt-8 text-left">
-                        <p class="text-sm font-semibold text-gray-700 mb-3">💡 您的選擇摘要：</p>
+                        <p class="text-sm font-semibold text-gray-700 mb-3">${t('rec.yourChoices')}</p>
                         <div class="flex flex-wrap gap-2">
                             ${answers.scenario?.length ? answers.scenario.map(s => `<span class="px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs">${SCENARIOS.find(x=>x.id===s)?.label||s}</span>`).join('') : ''}
                             ${answers.budget && answers.budget!=='no_budget' ? `<span class="px-2 py-1 bg-green-50 text-green-700 rounded-full text-xs">${BUDGETS.find(x=>x.id===answers.budget)?.label||answers.budget}</span>` : ''}

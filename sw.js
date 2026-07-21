@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tablet-2026-v7';
+const CACHE_NAME = 'tablet-2026-v8';
 
 // 需要缓存的核心资源
 const CORE_ASSETS = [
@@ -7,6 +7,8 @@ const CORE_ASSETS = [
   './style.css',
   './css/style.css',
   './js/app.js',
+  './js/data/products.json',
+  './js/modules/quiz-data.js',
   './assets/xiaomi-logo-square.png',
   './assets/mi-logo.png',
   './assets/mi-logo.svg',
