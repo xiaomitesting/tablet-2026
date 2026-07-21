@@ -1,6 +1,5 @@
-const CACHE_NAME = 'tablet-2026-v10';
+const CACHE_NAME = 'tablet-2026-v11';
 
-// 需要缓存的核心资源
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -20,14 +19,6 @@ const CORE_ASSETS = [
   './offline.html'
 ];
 
-const VERSION_CHANNEL = 'sw-version-update';
-
-function notifyClientsNewVersion() {
-  self.clients.matchAll({ type: 'window' }).then(clients => {
-    clients.forEach(client => client.postMessage({ type: VERSION_CHANNEL }));
-  });
-}
-
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -43,9 +34,11 @@ self.addEventListener('activate', event => {
         keys.filter(key => key !== CACHE_NAME)
             .map(key => caches.delete(key))
       )
-    ).then(() => {
-      self.clients.claim();
-      notifyClientsNewVersion();
+    ).then(() => self.clients.claim())
+  );
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window' }).then(clients => {
+      clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
     })
   );
 });
