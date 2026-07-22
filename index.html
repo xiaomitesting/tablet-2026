@@ -861,47 +861,25 @@ function shareRecommendation() {
     var top = currentQuizResults.top;
     var p = top.product;
     var lines = [];
-    if (currentLang === 'en') {
-        lines.push('📱 Xiaomi Tablet Recommendation');
+    lines.push('📱 ' + t('rec.bestMatch'));
+    lines.push('');
+    lines.push('✅ ' + t('rec.bestMatch') + ': ' + pName(p));
+    lines.push('💰 HK$' + p.price.toLocaleString());
+    lines.push('📺 ' + p.sizeLabel + ' · ' + p.panel);
+    lines.push('⚡ ' + p.chip + ' · ' + dramShort(p.ram) + 'GB+' + p.storage + 'GB');
+    lines.push('🔋 ' + p.battery + ' · ' + p.charging);
+    if (p.stylus) lines.push('✍️ ' + t('reason.stylusSupport'));
+    if (p.keyboard) lines.push('⌨️ ' + t('reason.keyboardSupport'));
+    if (top.reasons.length) lines.push('✅ ' + top.reasons.join(' · '));
+    if (currentQuizResults.runnerUps.length) {
         lines.push('');
-        lines.push('✅ Best Match: ' + pName(p));
-        lines.push('💰 Price: HK$' + p.price.toLocaleString());
-        lines.push('📺 ' + p.size + ' · ' + p.panel);
-        lines.push('⚡ ' + p.chip + ' · ' + dramShort(p.ram) + 'GB+' + p.storage + 'GB');
-        lines.push('🔋 ' + p.battery + ' · ' + p.charging);
-        if (p.stylus) lines.push('✍️ Stylus supported');
-        if (p.keyboard) lines.push('⌨️ Keyboard supported');
-        if (top.reasons.length) lines.push('✅ ' + top.reasons.join(' · '));
-        if (currentQuizResults.runnerUps.length) {
-            lines.push('');
-            lines.push('💡 Alternatives:');
-            currentQuizResults.runnerUps.forEach(function(r) {
-                lines.push('  • ' + pName(r.product) + ' HK$' + r.product.price.toLocaleString());
-            });
-        }
-        lines.push('');
-        lines.push('via Xiaomi Tablet Finder');
-    } else {
-        lines.push('📱 小米平板推薦');
-        lines.push('');
-        lines.push('✅ 最佳推薦：' + pName(p));
-        lines.push('💰 售價：HK$' + p.price.toLocaleString());
-        lines.push('📺 ' + p.size + ' · ' + p.panel);
-        lines.push('⚡ ' + p.chip + ' · ' + dramShort(p.ram) + 'GB+' + p.storage + 'GB');
-        lines.push('🔋 ' + p.battery + ' · ' + p.charging);
-        if (p.stylus) lines.push('✍️ 支援手寫筆');
-        if (p.keyboard) lines.push('⌨️ 支援鍵盤');
-        if (top.reasons.length) lines.push('✅ ' + top.reasons.join(' · '));
-        if (currentQuizResults.runnerUps.length) {
-            lines.push('');
-            lines.push('💡 其他選擇：');
-            currentQuizResults.runnerUps.forEach(function(r) {
-                lines.push('  • ' + pName(r.product) + ' HK$' + r.product.price.toLocaleString());
-            });
-        }
-        lines.push('');
-        lines.push('— Xiaomi 平板選購助手');
+        lines.push('💡 ' + t('rec.alts'));
+        currentQuizResults.runnerUps.forEach(function(r) {
+            lines.push('  • ' + pName(r.product) + ' HK$' + r.product.price.toLocaleString());
+        });
     }
+    lines.push('');
+    lines.push('— ' + t('home.headerTitle'));
     var text = lines.join('\n');
     if (navigator.share) {
         navigator.share({ title: currentLang==='en'?'Tablet Recommendation':'平板推薦', text: text }).catch(function(){});
