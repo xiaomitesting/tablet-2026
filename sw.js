@@ -1,7 +1,7 @@
-const CACHE_NAME = 'tablet-2026-v12';
+const CACHE_NAME = 'tablet-2026-v13';
+const APP_VERSION = 'v13';
 
 const CORE_ASSETS = [
-  './',
   './index.html',
   './style.css',
   './css/style.css',
@@ -22,7 +22,14 @@ const CORE_ASSETS = [
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(cache => {
+        // 逐個緩存，失敗不影響整體安裝
+        return Promise.allSettled(
+          CORE_ASSETS.map(url => cache.add(url).catch(err => {
+            console.warn('SW cache skip:', url, err.message);
+          }))
+        );
+      })
       .then(() => self.skipWaiting())
   );
 });
@@ -36,9 +43,12 @@ self.addEventListener('activate', event => {
       )
     ).then(() => self.clients.claim())
   );
+  // 通知所有客戶端重新載入
   event.waitUntil(
     self.clients.matchAll({ type: 'window' }).then(clients => {
-      clients.forEach(client => client.postMessage({ type: 'SW_UPDATED' }));
+      clients.forEach(client => {
+        client.postMessage({ type: 'SW_UPDATED', version: APP_VERSION });
+      });
     })
   );
 });
@@ -56,6 +66,7 @@ self.addEventListener('fetch', event => {
     || (event.request.headers.get('accept') || '').includes('text/html');
 
   if (isHTMLPage) {
+    // HTML: 網絡優先，失敗才用緩存
     event.respondWith(
       fetch(event.request)
         .then(response => {
@@ -68,6 +79,7 @@ self.addEventListener('fetch', event => {
         .catch(() => caches.match(event.request).then(cached => cached || caches.match('./offline.html')))
     );
   } else {
+    // 靜態資源: 緩存優先
     event.respondWith(
       caches.match(event.request)
         .then(cached => {

@@ -627,6 +627,24 @@ async function manualSync() {
     }
 }
 
+// 強制版本檢查：如果 SW 版本過舊，清除緩存並刷新
+(function() {
+    var EXPECTED_SW_VERSION = 'v13';
+    var stored = localStorage.getItem('sw_version');
+    if (stored && stored !== EXPECTED_SW_VERSION) {
+        localStorage.setItem('sw_version', EXPECTED_SW_VERSION);
+        if ('caches' in window) {
+            caches.keys().then(function(keys) {
+                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+            }).then(function() { location.reload(); });
+        } else {
+            location.reload();
+        }
+    } else {
+        localStorage.setItem('sw_version', EXPECTED_SW_VERSION);
+    }
+})();
+
 window.onload = async function() {
     try {
         var savedLang = localStorage.getItem('mi_tablet_lang');
