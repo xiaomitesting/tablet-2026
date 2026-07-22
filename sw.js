@@ -1,5 +1,5 @@
-const CACHE_NAME = 'tablet-2026-v13';
-const APP_VERSION = 'v13';
+const CACHE_NAME = 'tablet-2026-v14';
+const APP_VERSION = 'v14';
 
 const CORE_ASSETS = [
   './index.html',
@@ -23,7 +23,6 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        // 逐個緩存，失敗不影響整體安裝
         return Promise.allSettled(
           CORE_ASSETS.map(url => cache.add(url).catch(err => {
             console.warn('SW cache skip:', url, err.message);
@@ -43,7 +42,6 @@ self.addEventListener('activate', event => {
       )
     ).then(() => self.clients.claim())
   );
-  // 通知所有客戶端重新載入
   event.waitUntil(
     self.clients.matchAll({ type: 'window' }).then(clients => {
       clients.forEach(client => {
@@ -62,22 +60,20 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
+  const url = new URL(event.request.url);
+
+  // sw.js 永遠走網絡（確保新版 SW 能被下載）
+  if (url.pathname.endsWith('/sw.js') || url.pathname === '/sw.js' || url.pathname.endsWith('sw.js')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   const isHTMLPage = event.request.mode === 'navigate'
     || (event.request.headers.get('accept') || '').includes('text/html');
 
   if (isHTMLPage) {
-    // HTML: 網絡優先，失敗才用緩存
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          if (response && response.status === 200 && response.type === 'basic') {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => caches.match(event.request).then(cached => cached || caches.match('./offline.html')))
-    );
+    // HTML: 永遠走網絡，不緩存 HTML
+    event.respondWith(fetch(event.request));
   } else {
     // 靜態資源: 緩存優先
     event.respondWith(

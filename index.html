@@ -629,7 +629,7 @@ async function manualSync() {
 
 // 強制版本檢查：如果 SW 版本過舊，清除緩存並刷新
 (function() {
-    var EXPECTED_SW_VERSION = 'v13';
+    var EXPECTED_SW_VERSION = 'v14';
     var stored = localStorage.getItem('sw_version');
     if (stored && stored !== EXPECTED_SW_VERSION) {
         localStorage.setItem('sw_version', EXPECTED_SW_VERSION);
