@@ -1,5 +1,5 @@
-const CACHE_NAME = 'tablet-2026-v14';
-const APP_VERSION = 'v14';
+const CACHE_NAME = 'tablet-2026-v15';
+const APP_VERSION = 'v15';
 
 const CORE_ASSETS = [
   './index.html',
