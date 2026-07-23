@@ -232,7 +232,7 @@ const PRODUCTS = [
     stylus: true,
     keyboard: false,
     weight: 510,
-    thickness: 7.5,
+    thickness: 7.36,
     os: "HyperOS 3.0",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.3"],
     colors: ["Graphite Gray", "Lavender Purple", "Cyan"],
@@ -293,9 +293,9 @@ const PRODUCTS = [
     name: "REDMI Pad 2 兒童護眼版",
     series: "Redmi",
     generation: 2,
-    price: 1799,
+    price: 1599,
     variants: [
-      { ram: 4, storage: 128, price: 1799 }
+      { ram: 4, storage: 128, price: 1599 }
     ],
     currency: "HKD",
     size: 11,
