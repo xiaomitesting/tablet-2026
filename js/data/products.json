@@ -68,13 +68,13 @@
       "旗艦芯片性能頂級",
       "144Hz高刷大屏",
       "手寫筆+鍵盤全配",
-      "120W超快充"
+      "67W快充"
     ],
     "prosEn": [
       "Flagship chip, top performance",
       "144Hz high-refresh display",
       "Full stylus & keyboard support",
-      "120W ultra-fast charging"
+      "67W fast charging"
     ],
     "cons": [
       "機身較重",
@@ -145,13 +145,13 @@
       "柔光護眼屏",
       "旗艦芯片",
       "手寫筆+鍵盤全配",
-      "120W快充"
+      "67W快充"
     ],
     "prosEn": [
       "Matte anti-glare display",
       "Flagship processor",
       "Full stylus & keyboard",
-      "120W fast charging"
+      "67W fast charging"
     ],
     "cons": [
       "機身較重",
@@ -265,7 +265,7 @@
     "battery": 7500,
     "charging": "67W Turbo Charge",
     "weight": 326,
-    "stylus": true,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "灰色",
@@ -331,15 +331,15 @@
     "id": "redmi_pad_2_pro",
     "name": "Redmi Pad 2 Pro",
     "nameEn": "Redmi Pad 2 Pro",
-    "desc": "中端旗艦平板，Dimensity 9400 處理器，12.1吋大屏，12000mAh超大電池，支持手寫筆與鍵盤。",
-    "descEn": "Mid-range powerhouse with Dimensity 9400, 12.1\" display, 12000mAh battery, stylus and keyboard support.",
+    "desc": "中端旗艦平板，Snapdragon 7s Gen 4 處理器，12.1吋大屏，12000mAh超大電池，支持鍵盤。",
+    "descEn": "Mid-range powerhouse with Snapdragon 7s Gen 4, 12.1\" display, 12000mAh battery, and keyboard support.",
     "series": "Redmi",
     "price": 1899,
     "rating": 4.6,
     "tag": "長續航之選",
     "tagEn": "Long Battery Life",
-    "highlight": "Dimensity 9400 + 12000mAh + 12.1吋大屏 + 手寫筆+鍵盤",
-    "highlightEn": "Dimensity 9400 + 12000mAh + 12.1\" display + stylus & keyboard",
+    "highlight": "Snapdragon 7s Gen 4 + 12000mAh + 12.1吋大屏 + 鍵盤",
+    "highlightEn": "Snapdragon 7s Gen 4 + 12000mAh + 12.1\" display + keyboard",
     "sizeLabel": "12.1吋",
     "size": 12.1,
     "panel": "LCD",
@@ -350,7 +350,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 610,
-    "stylus": true,
+    "stylus": false,
     "keyboard": true,
     "colors": [
       "深灰色",
@@ -421,15 +421,15 @@
     "id": "redmi_pad_2_pro_matte",
     "name": "Redmi Pad 2 Pro 柔光版",
     "nameEn": "Redmi Pad 2 Pro Matte Edition",
-    "desc": "柔光護眼屏中端平板，Dimensity 9400 處理器，12000mAh大電池，支持手寫筆與鍵盤，長時間使用更舒適。",
-    "descEn": "Matte eye-care display tablet with Dimensity 9400, 12000mAh battery, stylus and keyboard support. Comfortable for extended sessions.",
+    "desc": "柔光護眼屏中端平板，Snapdragon 7s Gen 4 處理器，12000mAh大電池，支持鍵盤，長時間使用更舒適。",
+    "descEn": "Matte eye-care display tablet with Snapdragon 7s Gen 4, 12000mAh battery, and keyboard support. Comfortable for extended sessions.",
     "series": "Redmi",
     "price": 2399,
     "rating": 4.5,
     "tag": "護眼長續航",
     "tagEn": "Eye-Care + Long Battery",
-    "highlight": "柔光護眼屏 + 12000mAh + 手寫筆+鍵盤",
-    "highlightEn": "Matte eye-care display + 12000mAh + stylus & keyboard",
+    "highlight": "柔光護眼屏 + 12000mAh + 鍵盤",
+    "highlightEn": "Matte eye-care display + 12000mAh + keyboard",
     "sizeLabel": "12.1吋",
     "size": 12.1,
     "panel": "LCD 柔光屏",
@@ -440,7 +440,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 610,
-    "stylus": true,
+    "stylus": false,
     "keyboard": true,
     "colors": [
       "灰色"
@@ -497,15 +497,15 @@
     "id": "redmi_pad_2_pro_5g",
     "name": "Redmi Pad 2 Pro 5G",
     "nameEn": "Redmi Pad 2 Pro 5G",
-    "desc": "5G插卡平板，Dimensity 9400 處理器，12000mAh大電池，支持手寫筆與鍵盤，隨時隨地高速上網。",
-    "descEn": "5G cellular tablet with Dimensity 9400, 12000mAh battery, stylus and keyboard support. High-speed connectivity anywhere.",
+    "desc": "5G插卡平板，Snapdragon 7s Gen 4 處理器，12000mAh大電池，支持鍵盤，隨時隨地高速上網。",
+    "descEn": "5G cellular tablet with Snapdragon 7s Gen 4, 12000mAh battery, and keyboard support. High-speed connectivity anywhere.",
     "series": "Redmi",
     "price": 2699,
     "rating": 4.5,
     "tag": "5G隨時上網",
     "tagEn": "5G Always Online",
-    "highlight": "5G插卡 + Dimensity 9400 + 12000mAh + 手寫筆+鍵盤",
-    "highlightEn": "5G cellular + Dimensity 9400 + 12000mAh + stylus & keyboard",
+    "highlight": "5G插卡 + Snapdragon 7s Gen 4 + 12000mAh + 鍵盤",
+    "highlightEn": "5G cellular + Snapdragon 7s Gen 4 + 12000mAh + keyboard",
     "sizeLabel": "12.1吋",
     "size": 12.1,
     "panel": "LCD",
@@ -516,7 +516,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 600,
-    "stylus": true,
+    "stylus": false,
     "keyboard": true,
     "colors": [
       "深灰色",
@@ -591,9 +591,9 @@
     "ram": 4,
     "storage": 128,
     "battery": 9000,
-    "charging": "33W Charging",
+    "charging": "18W Charging",
     "weight": 510,
-    "stylus": true,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -636,19 +636,21 @@
     "pros": [
       "價格實惠",
       "11吋大屏",
-      "7000mAh續航"
+      "9000mAh續航"
     ],
     "prosEn": [
       "Affordable price",
       "11\" large display",
-      "7000mAh battery life"
+      "9000mAh battery life"
     ],
     "cons": [
       "不支持鍵盤",
+      "不支持手寫筆",
       "刷新率較低"
     ],
     "consEn": [
       "No keyboard",
+      "No stylus support",
       "Lower refresh rate"
     ]
   },
@@ -756,9 +758,9 @@
     "ram": 4,
     "storage": 128,
     "battery": 9000,
-    "charging": "33W Charging",
+    "charging": "18W Charging",
     "weight": 510,
-    "stylus": true,
+    "stylus": false,
     "keyboard": false,
     "colors": [
       "灰色"
@@ -792,22 +794,23 @@
     "extraVersions": [],
     "pros": [
       "柔光護眼屏",
-      "含保護殼+繪畫筆",
-      "8000mAh大電池",
+      "含保護殼",
+      "9000mAh大電池",
       "兒童模式"
     ],
     "prosEn": [
       "Matte eye-care display",
-      "Case + drawing pen included",
       "9000mAh battery",
       "Kids mode"
     ],
     "cons": [
       "不支持鍵盤",
+      "不支持手寫筆",
       "性能入門級"
     ],
     "consEn": [
       "No keyboard",
+      "No stylus support",
       "Entry-level performance"
     ]
   }
