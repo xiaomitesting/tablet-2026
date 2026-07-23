@@ -107,7 +107,7 @@
     "storage": 256,
     "battery": 9200,
     "charging": "67W Turbo Charge",
-    "weight": 485,
+    "weight": 494,
     "stylus": true,
     "keyboard": true,
     "colors": [
@@ -271,7 +271,7 @@
     "battery": 7500,
     "charging": "67W Turbo Charge",
     "weight": 326,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色",
