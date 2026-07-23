@@ -185,7 +185,7 @@
     "ram": 8,
     "storage": 256,
     "battery": 9200,
-    "charging": "67W Turbo Charge",
+    "charging": "45W Turbo Charge",
     "weight": 485,
     "stylus": true,
     "keyboard": true,
@@ -239,14 +239,8 @@
       "Smooth 120Hz",
       "Slim and light"
     ],
-    "cons": [
-      "不支持手寫筆",
-      "不支持鍵盤"
-    ],
-    "consEn": [
-      "No stylus support",
-      "No keyboard support"
-    ]
+    "cons": [],
+    "consEn": []
   },
   {
     "id": "pad_mini",
@@ -259,8 +253,8 @@
     "rating": 4.5,
     "tag": "小屏電競",
     "tagEn": "Compact Gaming",
-    "highlight": "165Hz電競屏 + 旗艦芯片 + 270g超輕",
-    "highlightEn": "165Hz gaming display + flagship chip + 270g ultra-light",
+    "highlight": "165Hz電競屏 + 旗艦芯片 + 326g超輕",
+    "highlightEn": "165Hz gaming display + flagship chip + 326g ultra-light",
     "sizeLabel": "8.8吋",
     "size": 8.8,
     "panel": "LCD",
@@ -312,13 +306,13 @@
     "extraVersions": [],
     "pros": [
       "165Hz電競屏",
-      "270g超輕便攜",
+      "326g超輕便攜",
       "旗艦芯片",
       "性價比高"
     ],
     "prosEn": [
       "165Hz gaming display",
-      "270g ultra-light",
+      "326g ultra-light",
       "Flagship chip",
       "Great value"
     ],
@@ -599,7 +593,7 @@
     "battery": 9000,
     "charging": "33W Charging",
     "weight": 510,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -650,12 +644,10 @@
       "7000mAh battery life"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "刷新率較低"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Lower refresh rate"
     ]
@@ -766,7 +758,7 @@
     "battery": 9000,
     "charging": "33W Charging",
     "weight": 510,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色"
@@ -807,16 +799,14 @@
     "prosEn": [
       "Matte eye-care display",
       "Case + drawing pen included",
-      "8000mAh battery",
+      "9000mAh battery",
       "Kids mode"
     ],
     "cons": [
-      "不支持手寫筆",
       "不支持鍵盤",
       "性能入門級"
     ],
     "consEn": [
-      "No stylus",
       "No keyboard",
       "Entry-level performance"
     ]
