@@ -314,7 +314,7 @@ const PRODUCTS = [
     keyboard: false,
     weight: 510,
     thickness: 7.36,
-    os: "HyperOS 3.0",
+    os: "HyperOS 2",
     connectivity: ["Wi-Fi 5", "Bluetooth 5.3"],
     colors: ["Gray"],
     scenarios: ["education", "kids", "reading"],
