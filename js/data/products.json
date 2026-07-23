@@ -348,7 +348,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 610,
-    "stylus": false,
+    "stylus": true,
     "keyboard": true,
     "colors": [
       "深灰色",
@@ -438,7 +438,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 610,
-    "stylus": false,
+    "stylus": true,
     "keyboard": true,
     "colors": [
       "灰色"
@@ -514,7 +514,7 @@
     "battery": 12000,
     "charging": "33W Charging",
     "weight": 600,
-    "stylus": false,
+    "stylus": true,
     "keyboard": true,
     "colors": [
       "深灰色",
@@ -673,7 +673,7 @@
     "battery": 7600,
     "charging": "18W Charging",
     "weight": 406,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "石墨灰",
@@ -756,7 +756,7 @@
     "battery": 9000,
     "charging": "18W Charging",
     "weight": 510,
-    "stylus": false,
+    "stylus": true,
     "keyboard": false,
     "colors": [
       "灰色"
