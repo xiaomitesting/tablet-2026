@@ -801,12 +801,10 @@
     ],
     "cons": [
       "不支持鍵盤",
-      "不支持手寫筆",
       "性能入門級"
     ],
     "consEn": [
       "No keyboard",
-      "No stylus support",
       "Entry-level performance"
     ]
   }
