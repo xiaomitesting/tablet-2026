@@ -149,7 +149,7 @@ const PRODUCTS = [
     speakers: 4,
     stylus: true,
     keyboard: true,
-    weight: 610,
+    weight: 600,
     thickness: 7.5,
     os: "HyperOS 3.0",
     connectivity: ["5G", "Wi-Fi 6", "Bluetooth 5.4"],
